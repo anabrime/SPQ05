@@ -17,6 +17,9 @@ public class Basic_RestaurantWindow extends JFrame {
 	
 	
 	public Basic_RestaurantWindow(){
+		setSize(840,470);
+		setVisible(true);
+		setResizable(false);
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -87,7 +90,7 @@ public class Basic_RestaurantWindow extends JFrame {
 		JButton btnLogout = new JButton("LogOut");
 		btnLogout.setBounds(731, 8, 89, 23);
 		getContentPane().add(btnLogout);
-		
+		repaint();
 		
 	}
 
