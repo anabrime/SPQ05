@@ -91,10 +91,9 @@ public class Basic_RestaurantWindow extends JFrame {
 		
 	}
 
-	
 
 	public static void main(String[] args) {
 		
-
+		new Basic_RestaurantWindow();
 	}
 }

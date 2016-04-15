@@ -90,7 +90,4 @@ public class Basic_LoginWindow extends JFrame{
 		setVisible(true);
 	}
 
-	public static void main(String[] args) {
-		new Basic_LoginWindow();
-	}
 }
