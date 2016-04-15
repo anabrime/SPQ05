@@ -11,6 +11,7 @@ import java.io.IOException;
 
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -77,7 +78,6 @@ public class Basic_LoginWindow extends JFrame{
 		});
 		textField.requestFocusInWindow();
 
-		
 		//NO MIRAR PLS
 		JButton botonTriki = new JButton("");
 		botonTriki.setBounds(new Rectangle(0, 0, 0, 0));
