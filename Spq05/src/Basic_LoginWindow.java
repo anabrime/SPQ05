@@ -36,13 +36,13 @@ public class Basic_LoginWindow extends JFrame{
 
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("/home/gorka/Pictures/logo.png"));
+		label.setIcon(new ImageIcon("C:/Users/Jon/git/spq/Spq05/img/logo.png"));
 		label.setBounds(0, 0, 434, 273);
 		panel.add(label);
 
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new File("/home/gorka/Pictures/logo.png"));
+			img = ImageIO.read(new File("C:/Users/Jon/git/spq/Spq05/img/logo.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

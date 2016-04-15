@@ -2,10 +2,16 @@ import javax.swing.JFrame;
 import java.awt.Panel;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 import javax.swing.JLabel;
@@ -139,7 +145,32 @@ public class BasicPrincipal extends JFrame {
 		btnFind.setBounds(434, 97, 89, 23);
 		panel.add(btnFind);
 		
-		setVisible(true);
+		
+		
+		
+		JLabel labelLogo = new JLabel("");
+		labelLogo.setIcon(new ImageIcon("C:\\Users\\Jon\\git\\spq\\Spq05\\img\\logo.png"));
+		labelLogo.setBounds(10, 11, 228, 73);
+		panel.add(labelLogo);
+
+		BufferedImage img = null;
+		try {
+			img = ImageIO.read(new File("C:\\Users\\Jon\\git\\spq\\Spq05\\img\\logo.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		Image dimg = img.getScaledInstance(labelLogo.getWidth(), labelLogo.getHeight(),
+				Image.SCALE_SMOOTH);
+
+		ImageIcon imageIcon = new ImageIcon(dimg);
+
+		labelLogo.setIcon(imageIcon);
+
+		
+		
+		this.setVisible(true);
+
 	}
 	public static void main(String[] args) {
 		new BasicPrincipal();
