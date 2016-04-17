@@ -32,10 +32,8 @@ public class Basic_LoginWindow extends JFrame{
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.setBounds(317, 236, 100, 25);
 		panel.add(btnNewButton);
-
-
 		
-		JLabel label = new JLabel("");
+		/*JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon("C:/Users/Jon/git/spq/Spq05/img/logo.png"));
 		label.setBounds(0, 0, 434, 273);
 		panel.add(label);
@@ -52,7 +50,7 @@ public class Basic_LoginWindow extends JFrame{
 
 		ImageIcon imageIcon = new ImageIcon(dimg);
 
-		label.setIcon(imageIcon);
+		label.setIcon(imageIcon);*/
 
 		textField = new JTextField();
 		textField.setText("Username");
@@ -90,4 +88,8 @@ public class Basic_LoginWindow extends JFrame{
 		setVisible(true);
 	}
 
+	public static void main(String[] args) {
+		
+		new Basic_LoginWindow();
+	}
 }

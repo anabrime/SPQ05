@@ -144,11 +144,8 @@ public class BasicPrincipal extends JFrame {
 		JButton btnFind = new JButton("Find");
 		btnFind.setBounds(434, 97, 89, 23);
 		panel.add(btnFind);
-		
-		
-		
-		
-		JLabel labelLogo = new JLabel("");
+				
+		/*JLabel labelLogo = new JLabel("");
 		labelLogo.setIcon(new ImageIcon("C:\\Users\\Jon\\git\\spq\\Spq05\\img\\logo.png"));
 		labelLogo.setBounds(10, 11, 228, 73);
 		panel.add(labelLogo);
@@ -165,7 +162,7 @@ public class BasicPrincipal extends JFrame {
 
 		ImageIcon imageIcon = new ImageIcon(dimg);
 
-		labelLogo.setIcon(imageIcon);
+		labelLogo.setIcon(imageIcon);*/
 
 		
 		
