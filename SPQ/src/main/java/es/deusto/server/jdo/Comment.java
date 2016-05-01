@@ -17,6 +17,8 @@ public class Comment implements Serializable {
 	String codR = null;
 	String codM = null;
 	String text = null;
+	Member member = null;
+	Restaurant restaurant = null;
 
 	public Comment(String codComent, String codR, String codM, String text) {
 		super();

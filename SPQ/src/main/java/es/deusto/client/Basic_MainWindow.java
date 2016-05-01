@@ -1,6 +1,8 @@
 package es.deusto.client;
 import javax.swing.JFrame;
 import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.image.BufferedImage;
@@ -32,6 +34,17 @@ public class Basic_MainWindow extends JFrame {
 	protected String[] places = {"Bilbao", "Gorliz ", "Getxo" };
 	protected String[] categorys = {"Mexican", "Italian ", "American", "Asian" };
 	protected String[] rates = {"1", "2", "3", "4", "5" };
+	protected JLabel UserNameLabel;
+	protected JButton logoutButton;
+	protected JButton findButton;
+	protected Panel panel;
+	protected JComboBox<String> comboBoxName;
+	protected JComboBox<String> comboBoxCategory;
+	protected JComboBox<String> comboBoxPlace;
+	protected JComboBox<String> comboBoxRate;
+	protected JScrollPane scrollPane;
+	protected JLabel logoLabel;
+	
 
 	protected String[] namesTriki = { "Name","Telepizza", "Deustoarrak ", "Foster" };
 	protected String[] placesTriki = { "Place","Bilbao", "Gorliz ", "Getxo" };
@@ -42,124 +55,87 @@ public class Basic_MainWindow extends JFrame {
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(700, 600);
-		Panel panel = new Panel();
+		panel = new Panel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
-		JLabel UserNameLabel = new JLabel("User A");
+		UserNameLabel = new JLabel("User A");
 		UserNameLabel.setBounds(469, 34, 54, 14);
 		UserNameLabel.setEnabled(false);
 		panel.add(UserNameLabel);
 
-		JButton LogoutButton = new JButton("Logout");
-		LogoutButton.setBounds(542, 30, 81, 23);
-		panel.add(LogoutButton);
+		logoutButton = new JButton("Logout");
+		logoutButton.setBounds(542, 30, 81, 23);
+		panel.add(logoutButton);
+		logoutButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 
-		final JComboBox<String> comboBoxName = new JComboBox<String>();
+		comboBoxName = new JComboBox<String>();
 		comboBoxName.setBounds(93, 88, 120, 20);
 		comboBoxName.setModel(new DefaultComboBoxModel<String>(namesTriki));
 		panel.add(comboBoxName);
-		comboBoxName.addFocusListener(new FocusListener() {
 
-			public void focusLost(FocusEvent e) {
-				comboBoxName.setModel(new DefaultComboBoxModel<String>(namesTriki));
-				comboBoxName.setSelectedIndex(0);
-				repaint();
-			}
-
-			public void focusGained(FocusEvent e) {
-				comboBoxName.setModel(new DefaultComboBoxModel<String>(names));
-				repaint();
-			}
-		});
-
-		final JComboBox<String> comboBoxCategory = new JComboBox<String>();
+		comboBoxCategory = new JComboBox<String>();
 		comboBoxCategory.setBounds(278, 88, 96, 20);
 		comboBoxCategory.setModel(new DefaultComboBoxModel<String>(categorysTriki));
 		panel.add(comboBoxCategory);
-		comboBoxCategory.addFocusListener(new FocusListener() {
 
-			public void focusLost(FocusEvent e) {
-				comboBoxCategory.setModel(new DefaultComboBoxModel<String>(categorysTriki));
-				comboBoxCategory.setSelectedIndex(0);
-				repaint();
-			}
-
-			public void focusGained(FocusEvent e) {
-				comboBoxCategory.setModel(new DefaultComboBoxModel<String>(categorys));
-				repaint();
-			}
-		});
-
-		final JComboBox<String> comboBoxPlace = new JComboBox<String>();
+		comboBoxPlace = new JComboBox<String>();
 		comboBoxPlace.setBounds(93, 113, 120, 20);
 		comboBoxPlace.setModel(new DefaultComboBoxModel<String>(placesTriki));
 		panel.add(comboBoxPlace);
-		comboBoxPlace.addFocusListener(new FocusListener() {
 
-			public void focusLost(FocusEvent e) {
-				comboBoxPlace.setModel(new DefaultComboBoxModel<String>(placesTriki));
-				comboBoxPlace.setSelectedIndex(0);
-				repaint();
-			}
-
-			public void focusGained(FocusEvent e) {
-				comboBoxPlace.setModel(new DefaultComboBoxModel<String>(places));
-				repaint();
-			}
-		});
-
-		final JComboBox<String> comboBoxRate = new JComboBox<String>();
+		comboBoxRate = new JComboBox<String>();
 		comboBoxRate.setBounds(278, 113, 96, 20);
 		comboBoxRate.setModel(new DefaultComboBoxModel<String>(ratesTriki));
 		panel.add(comboBoxRate);
-		comboBoxRate.addFocusListener(new FocusListener() {
 
-			public void focusLost(FocusEvent e) {
-				comboBoxRate.setModel(new DefaultComboBoxModel<String>(ratesTriki));
-				comboBoxRate.setSelectedIndex(0);
-				repaint();
-			}
-
-			public void focusGained(FocusEvent e) {
-				comboBoxRate.setModel(new DefaultComboBoxModel<String>(rates));
-				repaint();
-			}
-		});
-
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(60, 168, 477, 303);
 		panel.add(scrollPane);
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
 
-		JButton btnFind = new JButton("Find");
-		btnFind.setBounds(434, 97, 89, 23);
-		panel.add(btnFind);
+		findButton = new JButton("Find");
+		findButton.setBounds(434, 97, 89, 23);
+		panel.add(findButton);
+		findButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				find();
+			}
+		});
 				
-		/*JLabel labelLogo = new JLabel("");
-		labelLogo.setIcon(new ImageIcon("C:\\Users\\Jon\\git\\spq\\Spq05\\img\\logo.png"));
-		labelLogo.setBounds(10, 11, 228, 73);
-		panel.add(labelLogo);
+		logoLabel = new JLabel("");
+		logoLabel.setIcon(new ImageIcon("/home/gorka/Pictures/logo.png"));
+		logoLabel.setBounds(10, 11, 228, 73);
+		panel.add(logoLabel);
 
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new File("C:\\Users\\Jon\\git\\spq\\Spq05\\img\\logo.png"));
+			img = ImageIO.read(new File("/home/gorka/Pictures/logo.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		Image dimg = img.getScaledInstance(labelLogo.getWidth(), labelLogo.getHeight(),
+		Image dimg = img.getScaledInstance(logoLabel.getWidth(), logoLabel.getHeight(),
 				Image.SCALE_SMOOTH);
 
 		ImageIcon imageIcon = new ImageIcon(dimg);
 
-		labelLogo.setIcon(imageIcon);*/
+		logoLabel.setIcon(imageIcon);
 
 		
 		
 		this.setVisible(true);
 
+	}
+	
+	protected void find(){
+		
 	}
 }

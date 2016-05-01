@@ -23,7 +23,7 @@ public class Member implements Serializable {
 	String name = null;
 	String password = null;
 
-	@Persistent(defaultFetchGroup = "true", mappedBy = "user", dependentElement = "true")
+	@Persistent(mappedBy = "member", dependentElement = "true")
 	@Join
 	List<Comment> commentsM = new ArrayList<Comment>();
 

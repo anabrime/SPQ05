@@ -22,16 +22,29 @@ public class Restaurant implements Serializable {
 	String nameR = null;
 	String codCiudad = null;
 	String codComment = null;
-	int rate = 0;
-	int numRates = 0;
+	String rate = null;
+	String numRates = null;
 	String category = null;
 	String street = null;
+	City city = null;
 
-	@Persistent(defaultFetchGroup = "true", mappedBy = "user", dependentElement = "true")
+	@Persistent(mappedBy = "member", dependentElement = "true")
 	@Join
 	List<Comment> commentsR = new ArrayList<Comment>();
 
-	public Restaurant(String codR, String nameR, String codCiudad, String codComment, int rate, int numRates,
+	
+	public Restaurant(){
+		this.codR="";
+		this.nameR="";
+		this.codCiudad="";
+		this.codComment="";
+		this.rate="";
+		this.numRates="";
+		this.category="";
+		this.street="";
+		this.city=null;
+	}
+	public Restaurant(String codR, String nameR, String codCiudad, String codComment, String rate, String numRates,
 			String category, String street, List<Comment> commentsR) {
 		super();
 		this.codR = codR;
@@ -69,19 +82,19 @@ public class Restaurant implements Serializable {
 		this.codComment = codComment;
 	}
 
-	public int getRate() {
+	public String getRate() {
 		return rate;
 	}
 
-	public void setRate(int rate) {
+	public void setRate(String rate) {
 		this.rate = rate;
 	}
 
-	public int getNumRates() {
+	public String getNumRates() {
 		return numRates;
 	}
 
-	public void setNumRates(int numRates) {
+	public void setNumRates(String numRates) {
 		this.numRates = numRates;
 	}
 

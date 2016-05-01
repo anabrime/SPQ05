@@ -34,14 +34,14 @@ public class Basic_LoginWindow extends JFrame{
 		btnNewButton.setBounds(317, 236, 100, 25);
 		panel.add(btnNewButton);
 		
-		/*JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("C:/Users/Jon/git/spq/Spq05/img/logo.png"));
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon("/home/gorka/Pictures/logo.png"));
 		label.setBounds(0, 0, 434, 273);
 		panel.add(label);
 
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new File("C:/Users/Jon/git/spq/Spq05/img/logo.png"));
+			img = ImageIO.read(new File("/home/gorka/Pictures/logo.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -51,7 +51,7 @@ public class Basic_LoginWindow extends JFrame{
 
 		ImageIcon imageIcon = new ImageIcon(dimg);
 
-		label.setIcon(imageIcon);*/
+		label.setIcon(imageIcon);
 
 		textField = new JTextField();
 		textField.setText("Username");

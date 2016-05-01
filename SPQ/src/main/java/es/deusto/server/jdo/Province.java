@@ -20,7 +20,7 @@ public class Province implements Serializable {
 	String codP = null;
 	String name = null;
 
-	@Persistent(defaultFetchGroup = "true", mappedBy = "user", dependentElement = "true")
+	@Persistent(mappedBy = "province", dependentElement = "true")
 	@Join
 	List<City> cities = new ArrayList<City>();
 

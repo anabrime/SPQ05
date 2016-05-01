@@ -22,8 +22,9 @@ public class City implements Serializable {
 	String nameCity = null;
 	String codP = null;
 	String codPostal = null;
+	Province province = null;
 
-	@Persistent(defaultFetchGroup = "true", mappedBy = "user", dependentElement = "true")
+	@Persistent(mappedBy = "city", dependentElement = "true")
 	@Join
 	List<Restaurant> restaurants = new ArrayList<Restaurant>();
 
