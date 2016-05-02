@@ -17,16 +17,14 @@ public class Province implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@PrimaryKey
-	String codP = null;
 	String name = null;
 
 	@Persistent(mappedBy = "province", dependentElement = "true")
 	@Join
 	List<City> cities = new ArrayList<City>();
 
-	public Province(String codP, String name, List<City> cities) {
+	public Province(String name, List<City> cities) {
 		super();
-		this.codP = codP;
 		this.name = name;
 		this.cities = cities;
 	}
@@ -39,10 +37,6 @@ public class Province implements Serializable {
 		this.name = name;
 	}
 
-	public String getCodP() {
-		return codP;
-	}
-
 	public List<City> getCities() {
 		return cities;
 	}
@@ -53,7 +47,7 @@ public class Province implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Province [codP=" + codP + ", name=" + name + ", cities=" + cities + "]";
+		return "Province [name=" + name + ", cities=" + cities + "]";
 	}
 
 }

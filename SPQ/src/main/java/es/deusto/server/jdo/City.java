@@ -18,7 +18,6 @@ public class City implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@PrimaryKey
-	String codCity = null;
 	String nameCity = null;
 	String codP = null;
 	String codPostal = null;
@@ -28,9 +27,8 @@ public class City implements Serializable {
 	@Join
 	List<Restaurant> restaurants = new ArrayList<Restaurant>();
 
-	public City(String codCity, String nameCity, String codP, String codPostal, List<Restaurant> restaurants) {
+	public City(String nameCity, String codP, String codPostal, List<Restaurant> restaurants) {
 		super();
-		this.codCity = codCity;
 		this.nameCity = nameCity;
 		this.codP = codP;
 		this.codPostal = codPostal;
@@ -61,10 +59,6 @@ public class City implements Serializable {
 		this.codPostal = codPostal;
 	}
 
-	public String getCodCity() {
-		return codCity;
-	}
-
 	public List<Restaurant> getRestaurants() {
 		return restaurants;
 	}
@@ -73,10 +67,18 @@ public class City implements Serializable {
 		this.restaurants = restaurants;
 	}
 
+	public Province getProvince() {
+		return province;
+	}
+
+	public void setProvince(Province province) {
+		this.province = province;
+	}
+
 	@Override
 	public String toString() {
-		return "City [codCity=" + codCity + ", nameCity=" + nameCity + ", codP=" + codP + ", codPostal=" + codPostal
-				+ ", restaurants=" + restaurants + "]";
+		return "City [nameCity=" + nameCity + ", codP=" + codP + ", codPostal=" + codPostal + ", restaurants="
+				+ restaurants + "]";
 	}
 
 }

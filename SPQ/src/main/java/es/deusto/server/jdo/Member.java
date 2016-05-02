@@ -18,7 +18,6 @@ public class Member implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@PrimaryKey
-	String codM = null;
 	String email = null;
 	String name = null;
 	String password = null;
@@ -27,9 +26,8 @@ public class Member implements Serializable {
 	@Join
 	List<Comment> commentsM = new ArrayList<Comment>();
 
-	public Member(String codM, String email, String name, String password, List<Comment> commentsM) {
+	public Member(String email, String name, String password, List<Comment> commentsM) {
 		super();
-		this.codM = codM;
 		this.email = email;
 		this.name = name;
 		this.password = password;
@@ -56,14 +54,10 @@ public class Member implements Serializable {
 		this.email = email;
 	}
 
-	public String getCod() {
-		return codM;
-	}
-
 	@Override
 	public String toString() {
-		return "Member [codM=" + codM + ", email=" + email + ", name=" + name + ", password=" + password
-				+ ", commentsM=" + commentsM + "]";
+		return "Member [email=" + email + ", name=" + name + ", password=" + password + ", commentsM=" + commentsM
+				+ "]";
 	}
 
 }

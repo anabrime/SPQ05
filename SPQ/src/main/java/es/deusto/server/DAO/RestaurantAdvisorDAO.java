@@ -10,6 +10,8 @@ import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
 
+import es.deusto.server.jdo.Comment;
+import es.deusto.server.jdo.Member;
 import es.deusto.server.jdo.Restaurant;
 
 public class RestaurantAdvisorDAO {
@@ -338,6 +340,52 @@ public class RestaurantAdvisorDAO {
 			}
 
 	}
+		public void storeComment(Comment comment) {
+			
+			PersistenceManager pm = pmf.getPersistenceManager();
+			Transaction tx = pm.currentTransaction();
+		    try {
+		       tx.begin();
+		       System.out.println("   * Storing a user: " + comment);
+			       pm.makePersistent(comment);
+			       tx.commit();
+			    } catch (Exception ex) {
+			    	System.out.println("   $ Error storing an object: " + ex.getMessage());
+			    } finally {
+			    	if (tx != null && tx.isActive()) {
+			    		tx.rollback();
+			    	}
+						
+		    		pm.close();
+			    }
+			}
+		public void addRateToRestaurant(Restaurant restaurant, String newRate) {
+			int newRate2= Integer.parseInt(newRate);
+			int mediaRates= Integer.parseInt(restaurant.getRate());
+			int numRates=Integer.parseInt(restaurant.getNumRates());
+			int newMediaRates= ((mediaRates*numRates)+newRate2)/(numRates+1);
+			restaurant.setRate(String.valueOf(newMediaRates));
+			restaurant.setNumRates(String.valueOf((numRates)+1));
+			PersistenceManager pm = pmf.getPersistenceManager();
+		    Transaction tx = pm.currentTransaction();
+		    
+		    try {
+		    	tx.begin();
+			       System.out.println("   * Updating a restaurant (mediaRate): " + newMediaRates);
+
+		    	pm.makePersistent(restaurant);
+		    	tx.commit();
+		     } catch (Exception ex) {
+			   	System.out.println("Error updating a user: " + ex.getMessage());
+		     } finally {
+			   	if (tx != null && tx.isActive()) {
+			   		tx.rollback();
+			   	}
+					
+		   		pm.close();
+		     }
+
+		}
 		
 }
 

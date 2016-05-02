@@ -6,6 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 
 import es.deusto.server.DAO.RestaurantAdvisorDAO;
+import es.deusto.server.jdo.Comment;
 import es.deusto.server.jdo.Restaurant;
 
 
@@ -67,6 +68,12 @@ public class Server extends UnicastRemoteObject implements IServer {
 	public Restaurant getRestaurantByCategoryAndRate(String text, String text1)throws RemoteException  {
 		dao.getRestaurantByCategoryAndRate(text,text1);
 		return null;
+	}
+	public void setComment(Comment comment)throws RemoteException  {
+		dao.storeComment(comment);
+	}
+	public void addRateToRestaurant(Restaurant restaurant, String newRate) throws RemoteException{
+		dao.addRateToRestaurant(restaurant, newRate);
 	}
 	
 }
