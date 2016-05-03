@@ -29,5 +29,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/gorka/Downloads/datanucleus-maven-plugin-4.0.0-release.jar"/>
 	<classpathentry kind="lib" path="/home/gorka/git/SPQ/SPQ/src/main/resources/datanucleus-maven-plugin-4.0.0-release.jar"/>
+	<classpathentry kind="src" path="/SavingMessagesRMI-JDO-DAO"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

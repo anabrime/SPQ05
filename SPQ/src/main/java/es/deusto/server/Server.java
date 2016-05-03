@@ -69,11 +69,19 @@ public class Server extends UnicastRemoteObject implements IServer {
 		dao.getRestaurantByCategoryAndRate(text,text1);
 		return null;
 	}
-	public void setComment(Comment comment)throws RemoteException  {
-		dao.storeComment(comment);
+	public boolean setComment(Comment comment)throws RemoteException  {
+		return dao.storeComment(comment);
 	}
-	public void addRateToRestaurant(Restaurant restaurant, String newRate) throws RemoteException{
-		dao.addRateToRestaurant(restaurant, newRate);
+	public boolean addRateToRestaurant(Restaurant restaurant, String newRate) throws RemoteException{
+		return dao.addRateToRestaurant(restaurant, newRate);
 	}
+	public Member getMember(String name)throws RemoteException  {
+		dao.getMember(name);
+		return null;
+	}
+	public void addMember(String name, String password, String email){
+		dao.addMember(name, password, email);
+	}
+	
 	
 }

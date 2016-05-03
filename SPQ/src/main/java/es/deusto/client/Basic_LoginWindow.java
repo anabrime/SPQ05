@@ -20,21 +20,29 @@ import javax.swing.JTextField;
 
 public class Basic_LoginWindow extends JFrame{
 	
-	private JTextField textField;
+	private JTextField textFieldUsername;
+	protected JPanel panel;
+	protected JButton loginButton;
+	protected JLabel label;
 
 	public Basic_LoginWindow() {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(434,300);
 		setResizable(false);
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
-		JButton btnNewButton = new JButton("Login");
-		btnNewButton.setBounds(317, 236, 100, 25);
-		panel.add(btnNewButton);
+		loginButton = new JButton("Login");
+		loginButton.setBounds(317, 236, 100, 25);
+		panel.add(loginButton);
+		loginButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				login();
+			}
+		});
 		
-		JLabel label = new JLabel("");
+		label = new JLabel("");
 		label.setIcon(new ImageIcon("/home/gorka/Pictures/logo.png"));
 		label.setBounds(0, 0, 434, 273);
 		panel.add(label);
@@ -53,28 +61,50 @@ public class Basic_LoginWindow extends JFrame{
 
 		label.setIcon(imageIcon);
 
-		textField = new JTextField();
-		textField.setText("Username");
-		textField.repaint();
-		textField.setBounds(315, 205, 105, 19);
-		panel.add(textField);
-		textField.setColumns(10);
-		textField.addFocusListener(new FocusListener() {
+		textFieldUsername = new JTextField();
+		textFieldUsername.setText("Username");
+		textFieldUsername.repaint();
+		textFieldUsername.setBounds(315, 205, 105, 19);
+		panel.add(textFieldUsername);
+		textFieldUsername.setColumns(10);
+		textFieldUsername.addFocusListener(new FocusListener() {
 
 			public void focusLost(FocusEvent e) {
-				if (textField.getText().equals("")) {
-				textField.setText("Username");
+				if (textFieldUsername.getText().equals("")) {
+				textFieldUsername.setText("Username");
 				repaint();
 				}
 			}
 
 			public void focusGained(FocusEvent e) {
-				textField.setText("");
+				textFieldUsername.setText("");
 				repaint();
 			}
 		});
-		textField.requestFocusInWindow();
+		textFieldUsername.requestFocusInWindow();
 
+		textFieldPassword = new JTextField();
+		textFieldPassword.setText("Password");
+		textFieldPassword.repaint();
+		textFieldPassword.setBounds(315, 205, 105, 19);
+		panel.add(textFieldPassword);
+		textFieldPassword.setColumns(10);
+		textFieldPassword.addFocusListener(new FocusListener() {
+
+			public void focusLost(FocusEvent e) {
+				if (textFieldPassword.getText().equals("")) {
+				textFieldPassword.setText("Password");
+				repaint();
+				}
+			}
+
+			public void focusGained(FocusEvent e) {
+				textFieldPassword.setText("");
+				repaint();
+			}
+		});
+		textFieldPassword.requestFocusInWindow();
+		
 		//NO MIRAR PLS
 		JButton botonTriki = new JButton("");
 		botonTriki.setBounds(new Rectangle(0, 0, 0, 0));
@@ -86,5 +116,7 @@ public class Basic_LoginWindow extends JFrame{
 		repaint();
 		setVisible(true);
 	}
-	
+	protected void login(){
+		 
+	}
 }
