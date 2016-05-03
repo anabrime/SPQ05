@@ -43,7 +43,7 @@ public class Restaurant implements Serializable {
 		this.pathImagen = "";
 	}
 
-	public Restaurant(String nameR, tring rate, String numRates, String category, String street,
+	public Restaurant(String nameR, String rate, String numRates, String category, String street,
 			List<Comment> commentsR, String description, String pathImagen) {
 		super();
 		this.nameR = nameR;
