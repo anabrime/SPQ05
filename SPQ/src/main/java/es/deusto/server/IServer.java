@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 import javax.jdo.Query;
 
 import es.deusto.server.jdo.Comment;
+import es.deusto.server.jdo.Member;
 import es.deusto.server.jdo.Restaurant;
 
 public interface IServer extends Remote {

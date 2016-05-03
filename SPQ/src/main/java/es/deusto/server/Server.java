@@ -7,6 +7,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import es.deusto.server.DAO.RestaurantAdvisorDAO;
 import es.deusto.server.jdo.Comment;
+import es.deusto.server.jdo.Member;
 import es.deusto.server.jdo.Restaurant;
 
 
