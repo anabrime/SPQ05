@@ -19,7 +19,6 @@ public class Restaurant implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@PrimaryKey
 	String nameR = null;
-	String codComment = null;
 	String rate = null;
 	String numRates = null;
 	String category = null;
@@ -35,7 +34,6 @@ public class Restaurant implements Serializable {
 
 	public Restaurant() {
 		this.nameR = "";
-		this.codComment = "";
 		this.rate = "";
 		this.numRates = "";
 		this.category = "";
@@ -45,11 +43,10 @@ public class Restaurant implements Serializable {
 		this.pathImagen = "";
 	}
 
-	public Restaurant(String nameR, String codComment, String rate, String numRates, String category, String street,
+	public Restaurant(String nameR, tring rate, String numRates, String category, String street,
 			List<Comment> commentsR, String description, String pathImagen) {
 		super();
 		this.nameR = nameR;
-		this.codComment = codComment;
 		this.rate = rate;
 		this.numRates = numRates;
 		this.category = category;
@@ -65,14 +62,6 @@ public class Restaurant implements Serializable {
 
 	public void setNameR(String nameR) {
 		this.nameR = nameR;
-	}
-
-	public String getCodComment() {
-		return codComment;
-	}
-
-	public void setCodComment(String codComment) {
-		this.codComment = codComment;
 	}
 
 	public String getRate() {
