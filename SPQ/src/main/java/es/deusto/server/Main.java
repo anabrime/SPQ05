@@ -15,6 +15,10 @@ public class Main {
 			IServer server = new Server();
 			Naming.rebind(serverName, server);
 			System.out.println(" Server "+serverName+" active and waiting...");
+			java.io.InputStreamReader inputStreamReader = new java.io.InputStreamReader ( System.in );
+			java.io.BufferedReader stdin = new java.io.BufferedReader ( inputStreamReader );
+			String line  = stdin.readLine();
+
 		}catch (Exception e){
 			e.printStackTrace();
 		}

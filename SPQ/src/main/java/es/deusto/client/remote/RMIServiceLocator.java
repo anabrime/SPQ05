@@ -1,10 +1,11 @@
 package es.deusto.client.remote;
 
+import es.deusto.server.IServer;
 import es.deusto.server.Server;
 
 public class RMIServiceLocator {
 
-	private Server server; 
+	private IServer server; 
 
 	public RMIServiceLocator(String IP, String port, String name){
 		this.setManager(IP,port,name);
@@ -14,16 +15,14 @@ public class RMIServiceLocator {
 
 		String serverName="//"+ IP +":"+ port +"/"+ name ;
 		try{
-			System.out.println("Estoy RMI");
-			this.server = (Server) java.rmi.Naming.lookup(serverName);
-			System.out.println("He conectado");
+			this.server = (IServer) java.rmi.Naming.lookup(serverName);
 		}catch(Exception e) {
 			System.err.println("- Exception running the client: " + e.getMessage());
 			e.printStackTrace();
 		}
 	}
 	
-	public Server getService(){
+	public IServer getService(){
 		return server;
 	}
 }

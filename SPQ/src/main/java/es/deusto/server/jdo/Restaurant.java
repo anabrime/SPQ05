@@ -9,24 +9,22 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-@PersistenceCapable(detachable = "true")
+@PersistenceCapable
 
 public class Restaurant implements Serializable {
 
 	/**
 	 * User implements Serializable to be transferred to the RMI client
 	 */
-	private static final long serialVersionUID = 1L;
+
 	@PrimaryKey
-	String codR = null;
 	String nameR = null;
-	String codCiudad = null;
-	String codComment = null;
 	String rate = null;
 	String numRates = null;
 	String category = null;
 	String street = null;
-	City city = null;
+	
+	City city = new City();
 
 	@Persistent(mappedBy = "member", dependentElement = "true")
 	@Join
@@ -34,28 +32,28 @@ public class Restaurant implements Serializable {
 
 	
 	public Restaurant(){
-		this.codR="";
 		this.nameR="";
-		this.codCiudad="";
-		this.codComment="";
 		this.rate="";
 		this.numRates="";
 		this.category="";
 		this.street="";
 		this.city=null;
 	}
-	public Restaurant(String codR, String nameR, String codCiudad, String codComment, String rate, String numRates,
-			String category, String street, List<Comment> commentsR) {
+	public Restaurant(String nameR, String rate, String numRates,
+			String category, String street, List<Comment> commentsR, City city) {
 		super();
-		this.codR = codR;
 		this.nameR = nameR;
-		this.codCiudad = codCiudad;
-		this.codComment = codComment;
 		this.rate = rate;
 		this.numRates = numRates;
 		this.category = category;
 		this.street = street;
 		this.commentsR = commentsR;
+		this.city=city;
+	}
+	private static final long serialVersionUID = 1L;
+	
+	public City getCity() {
+		return city;
 	}
 
 	public String getNameR() {
@@ -64,22 +62,6 @@ public class Restaurant implements Serializable {
 
 	public void setNameR(String nameR) {
 		this.nameR = nameR;
-	}
-
-	public String getCodCiudad() {
-		return codCiudad;
-	}
-
-	public void setCodCiudad(String codCiudad) {
-		this.codCiudad = codCiudad;
-	}
-
-	public String getCodComment() {
-		return codComment;
-	}
-
-	public void setCodComment(String codComment) {
-		this.codComment = codComment;
 	}
 
 	public String getRate() {
@@ -104,10 +86,6 @@ public class Restaurant implements Serializable {
 
 	public void setCategpry(String categpry) {
 		this.category = categpry;
-	}
-
-	public String getCodR() {
-		return codR;
 	}
 
 	public String getCategory() {
@@ -136,9 +114,7 @@ public class Restaurant implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Restaurant [codR=" + codR + ", nameR=" + nameR + ", codCiudad=" + codCiudad + ", codComment="
-				+ codComment + ", rate=" + rate + ", numRates=" + numRates + ", category=" + category + ", street="
-				+ street + ", commentsR=" + commentsR + "]";
+		return getNameR();
 	}
 
 }

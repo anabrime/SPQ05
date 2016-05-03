@@ -1,8 +1,16 @@
 package es.deusto.client;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import es.deusto.client.remote.RMIServiceLocator;
+import es.deusto.server.jdo.*;
 
 public class Delegate_MainWindow extends Basic_MainWindow{
 
@@ -11,9 +19,12 @@ public class Delegate_MainWindow extends Basic_MainWindow{
 	Boolean category = false;
 	Boolean rate = false;
 	Boolean place = false;
+	List<Restaurant> list;
+	int contadorFilas = 0;
 	
 	public Delegate_MainWindow(String IP, String port, String serverName) {
 		rmi = new RMIServiceLocator(IP, port, serverName);
+		list = new ArrayList<Restaurant>();
 	}
 	private void getComboBoxes(){
 		if(!comboBoxCategory.getSelectedItem().equals("Category"))
@@ -28,39 +39,40 @@ public class Delegate_MainWindow extends Basic_MainWindow{
 		if(!comboBoxRate.getSelectedItem().equals("Rate"))
 			rate = true;
 	}
-	@Override
-	protected void find(){
+	private void find(){
+		getComboBoxes();
 		if(category && !name && !place && !rate)
 			try {
-				rmi.getService().getRestaurantByCategory(comboBoxCategory.getSelectedItem().toString());
+				list = rmi.getService().getRestaurantByCategory(comboBoxCategory.getSelectedItem().toString());
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		if(!category && name && !place && !rate)
 			try {
-				rmi.getService().getRestaurantByName(comboBoxName.getSelectedItem().toString());
+				list = rmi.getService().getRestaurantByName(comboBoxName.getSelectedItem().toString());
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		if(!category && !name && place && !rate)
 			try {
-				rmi.getService().getRestaurantByPlace(comboBoxPlace.getSelectedItem().toString());
+				list = rmi.getService().getRestaurantByPlace(comboBoxPlace.getSelectedItem().toString());
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		if(!category && !name && !place && rate)
 			try {
-				rmi.getService().getRestaurantByRate(comboBoxRate.getSelectedItem().toString());
+				list = rmi.getService().getRestaurantByRate(comboBoxRate.getSelectedItem().toString());
+				System.out.println(list.toString());
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		if(category && name && !place && ! rate)
 			try {
-				rmi.getService().getRestaurantByNameAndCategory(comboBoxName.getSelectedItem().toString()
+				list = rmi.getService().getRestaurantByNameAndCategory(comboBoxName.getSelectedItem().toString()
 						, comboBoxCategory.getSelectedItem().toString());
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
@@ -68,7 +80,7 @@ public class Delegate_MainWindow extends Basic_MainWindow{
 			}
 		if(!category && name && place && !rate)
 			try {
-				rmi.getService().getRestaurantByNameAndPlace(comboBoxName.getSelectedItem().toString()
+				list = rmi.getService().getRestaurantByNameAndPlace(comboBoxName.getSelectedItem().toString()
 						, comboBoxPlace.getSelectedItem().toString());
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
@@ -76,7 +88,7 @@ public class Delegate_MainWindow extends Basic_MainWindow{
 			}
 		if(!category && name && !place && rate)
 			try {
-				rmi.getService().getRestaurantByNameAndRate(comboBoxName.getSelectedItem().toString()
+				list = rmi.getService().getRestaurantByNameAndRate(comboBoxName.getSelectedItem().toString()
 						, comboBoxRate.getSelectedItem().toString());
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
@@ -84,7 +96,7 @@ public class Delegate_MainWindow extends Basic_MainWindow{
 			}
 		if(category && !name && !place && rate)
 			try {
-				rmi.getService().getRestaurantByCategoryAndRate(comboBoxCategory.getSelectedItem().toString()
+				list = rmi.getService().getRestaurantByCategoryAndRate(comboBoxCategory.getSelectedItem().toString()
 						, comboBoxRate.getSelectedItem().toString());
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
@@ -92,7 +104,7 @@ public class Delegate_MainWindow extends Basic_MainWindow{
 			}
 		if(category && !name && place && !rate)
 			try {
-				rmi.getService().getRestaurantByPlaceAndCategory(comboBoxPlace.getSelectedItem().toString()
+				list = rmi.getService().getRestaurantByPlaceAndCategory(comboBoxPlace.getSelectedItem().toString()
 						, comboBoxCategory.getSelectedItem().toString());
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
@@ -100,16 +112,31 @@ public class Delegate_MainWindow extends Basic_MainWindow{
 			}
 		if(category && !name && place && !rate)
 			try {
-				rmi.getService().getRestaurantByPlaceAndRate(comboBoxPlace.getSelectedItem().toString()
+				list = rmi.getService().getRestaurantByPlaceAndRate(comboBoxPlace.getSelectedItem().toString()
 						, comboBoxRate.getSelectedItem().toString());
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		else{
-			System.out.println("ERROR");
-		}
 			
+	}
+	
+	private void addToTable () {
+		find();
+		for (Restaurant rest : list) {
+		    table.setValueAt(rest.getNameR(), contadorFilas, 0);
+		    table.setValueAt(rest.getCategory(), contadorFilas, 1);
+		    table.setValueAt(rest.getRate(), contadorFilas, 2);
+		    contadorFilas++;
+		}
+		scrollPane.repaint();
+	
+	}
+	
+	protected void execute(){
+		addToTable();
+		scrollPane.repaint();
+		this.repaint();
 	}
 	
 }

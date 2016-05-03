@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
-@PersistenceCapable(detachable = "true")
+@PersistenceCapable
 
 public class Comment implements Serializable {
 
@@ -13,7 +13,6 @@ public class Comment implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@PrimaryKey
-	String codComent = null;
 	String codR = null;
 	String codM = null;
 	String text = null;
@@ -22,7 +21,6 @@ public class Comment implements Serializable {
 
 	public Comment(String codComent, String codR, String codM, String text) {
 		super();
-		this.codComent = codComent;
 		this.codR = codR;
 		this.codM = codM;
 		this.text = text;
@@ -52,13 +50,9 @@ public class Comment implements Serializable {
 		this.text = text;
 	}
 
-	public String getCodComent() {
-		return codComent;
-	}
-
 	@Override
 	public String toString() {
-		return "Comment [codComent=" + codComent + ", codR=" + codR + ", codM=" + codM + ", text=" + text + "]";
+		return null;
 	}
 
 }

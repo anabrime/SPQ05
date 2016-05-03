@@ -9,7 +9,7 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-@PersistenceCapable(detachable = "true")
+@PersistenceCapable
 
 public class City implements Serializable {
 
@@ -18,21 +18,17 @@ public class City implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@PrimaryKey
-	String codCity = null;
-	String nameCity = null;
-	String codP = null;
-	String codPostal = null;
-	Province province = null;
+	String nameCity = "";
+	String codPostal = "";
 
 	@Persistent(mappedBy = "city", dependentElement = "true")
 	@Join
 	List<Restaurant> restaurants = new ArrayList<Restaurant>();
 
-	public City(String codCity, String nameCity, String codP, String codPostal, List<Restaurant> restaurants) {
+	public City(){}
+	public City( String nameCity, String codPostal, List<Restaurant> restaurants) {
 		super();
-		this.codCity = codCity;
 		this.nameCity = nameCity;
-		this.codP = codP;
 		this.codPostal = codPostal;
 		this.restaurants = restaurants;
 	}
@@ -45,24 +41,12 @@ public class City implements Serializable {
 		this.nameCity = nameCity;
 	}
 
-	public String getCodP() {
-		return codP;
-	}
-
-	public void setCodP(String codP) {
-		this.codP = codP;
-	}
-
 	public String getCodPostal() {
 		return codPostal;
 	}
 
 	public void setCodPostal(String codPostal) {
 		this.codPostal = codPostal;
-	}
-
-	public String getCodCity() {
-		return codCity;
 	}
 
 	public List<Restaurant> getRestaurants() {
@@ -75,8 +59,7 @@ public class City implements Serializable {
 
 	@Override
 	public String toString() {
-		return "City [codCity=" + codCity + ", nameCity=" + nameCity + ", codP=" + codP + ", codPostal=" + codPostal
-				+ ", restaurants=" + restaurants + "]";
+		return "";
 	}
 
 }

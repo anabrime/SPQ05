@@ -9,15 +9,19 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import java.awt.Insets;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -29,10 +33,10 @@ public class Basic_MainWindow extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private JTable table;
-	protected String[] names = {"Telepizza", "Deustoarrak ", "Foster" };
+	protected JTable table;
+	protected String[] names = {"Telepizza", "Deustoarrak ", "Foster","MejicanoTere", "Smoking yewepe"};
 	protected String[] places = {"Bilbao", "Gorliz ", "Getxo" };
-	protected String[] categorys = {"Mexican", "Italian ", "American", "Asian" };
+	protected String[] categorys = {"Mexican", "Italian ", "American", "Asian", "Basque" };
 	protected String[] rates = {"1", "2", "3", "4", "5" };
 	protected JLabel UserNameLabel;
 	protected JButton logoutButton;
@@ -92,13 +96,14 @@ public class Basic_MainWindow extends JFrame {
 		comboBoxRate.setBounds(278, 113, 96, 20);
 		comboBoxRate.setModel(new DefaultComboBoxModel<String>(ratesTriki));
 		panel.add(comboBoxRate);
+		table = new JTable(10,3);
 
-		scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane(table);
+		table.setFillsViewportHeight(true);
 		scrollPane.setBounds(60, 168, 477, 303);
+		scrollPane.setBorder(BorderFactory.createLineBorder(Color.RED));;
 		panel.add(scrollPane);
 
-		table = new JTable();
-		scrollPane.setViewportView(table);
 
 		findButton = new JButton("Find");
 		findButton.setBounds(434, 97, 89, 23);
@@ -106,7 +111,7 @@ public class Basic_MainWindow extends JFrame {
 		findButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				find();
+				execute();
 			}
 		});
 				
@@ -135,7 +140,7 @@ public class Basic_MainWindow extends JFrame {
 
 	}
 	
-	protected void find(){
+	protected void execute(){
 		
 	}
 }
