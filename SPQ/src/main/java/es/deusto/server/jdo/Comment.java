@@ -12,34 +12,29 @@ public class Comment implements Serializable {
 	 * User implements Serializable to be transferred to the RMI client
 	 */
 	private static final long serialVersionUID = 1L;
+<<<<<<< HEAD
 	@PrimaryKey
 	String codR = null;
 	String codM = null;
+=======
+>>>>>>> branch 'master' of https://github.com/jb25/spq
 	String text = null;
+	@PrimaryKey
 	Member member = null;
+	@PrimaryKey
 	Restaurant restaurant = null;
 
-	public Comment(String codComent, String codR, String codM, String text) {
+	public Comment(String text, Member member, Restaurant restaurant) {
 		super();
+<<<<<<< HEAD
 		this.codR = codR;
 		this.codM = codM;
+=======
+
+>>>>>>> branch 'master' of https://github.com/jb25/spq
 		this.text = text;
-	}
-
-	public String getCodR() {
-		return codR;
-	}
-
-	public void setCodR(String codR) {
-		this.codR = codR;
-	}
-
-	public String getCodM() {
-		return codM;
-	}
-
-	public void setCodM(String codM) {
-		this.codM = codM;
+		this.restaurant = restaurant;
+		this.member = member;
 	}
 
 	public String getText() {
@@ -52,7 +47,11 @@ public class Comment implements Serializable {
 
 	@Override
 	public String toString() {
+<<<<<<< HEAD
 		return null;
+=======
+		return "Comment [text=" + text + ", member=" + member + ", restaurant=" + restaurant + "]";
+>>>>>>> branch 'master' of https://github.com/jb25/spq
 	}
 
 }

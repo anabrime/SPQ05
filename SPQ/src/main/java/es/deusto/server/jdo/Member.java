@@ -26,7 +26,7 @@ public class Member implements Serializable {
 	@Join
 	List<Comment> commentsM = new ArrayList<Comment>();
 
-	public Member(String codM, String email, String name, String password, List<Comment> commentsM) {
+	public Member(String email, String name, String password, List<Comment> commentsM) {
 		super();
 		this.email = email;
 		this.name = name;
@@ -54,10 +54,18 @@ public class Member implements Serializable {
 		this.email = email;
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/jb25/spq
 	@Override
 	public String toString() {
+<<<<<<< HEAD
 		return null;
+=======
+		return "Member [email=" + email + ", name=" + name + ", password=" + password + ", commentsM=" + commentsM
+				+ "]";
+>>>>>>> branch 'master' of https://github.com/jb25/spq
 	}
 
 }
