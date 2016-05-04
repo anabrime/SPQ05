@@ -18,7 +18,7 @@ public class Client {
 		}
 
 		try {
-			new Delegate_MainWindow(args[0], args[1], args[2]);
+			new Delegate_LoginWindow(args[0], args[1], args[2]);
 			
 		} catch (Exception e) {
 			System.err.println("RMI Example exception: " + e.getMessage());

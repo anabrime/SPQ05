@@ -11,7 +11,7 @@ import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
 
-public class Restaurant implements Serializable {
+public class Restaurant{
 
 	/**
 	 * User implements Serializable to be transferred to the RMI client
@@ -23,22 +23,13 @@ public class Restaurant implements Serializable {
 	String numRates = null;
 	String category = null;
 	String street = null;
-<<<<<<< HEAD
-	
-	City city = new City();
-=======
 	String description = null;
 	String pathImagen = null;
-	@PrimaryKey
 	City city = null;
->>>>>>> branch 'master' of https://github.com/jb25/spq
 
 	@Persistent(mappedBy = "member", dependentElement = "true")
 	@Join
 	List<Comment> commentsR = new ArrayList<Comment>();
-
-<<<<<<< HEAD
-	
 	public Restaurant(){
 		this.nameR="";
 		this.rate="";
@@ -46,26 +37,9 @@ public class Restaurant implements Serializable {
 		this.category="";
 		this.street="";
 		this.city=null;
-=======
-	public Restaurant() {
-		this.nameR = "";
-		this.rate = "";
-		this.numRates = "";
-		this.category = "";
-		this.street = "";
-		this.city = null;
-		this.description = "";
-		this.pathImagen = "";
->>>>>>> branch 'master' of https://github.com/jb25/spq
 	}
-<<<<<<< HEAD
 	public Restaurant(String nameR, String rate, String numRates,
 			String category, String street, List<Comment> commentsR, City city) {
-=======
-
-	public Restaurant(String nameR, String rate, String numRates, String category, String street,
-			List<Comment> commentsR, String description, String pathImagen) {
->>>>>>> branch 'master' of https://github.com/jb25/spq
 		super();
 		this.nameR = nameR;
 		this.rate = rate;
@@ -73,17 +47,12 @@ public class Restaurant implements Serializable {
 		this.category = category;
 		this.street = street;
 		this.commentsR = commentsR;
-<<<<<<< HEAD
 		this.city=city;
 	}
 	private static final long serialVersionUID = 1L;
 	
 	public City getCity() {
 		return city;
-=======
-		this.description = description;
-		this.pathImagen = pathImagen;
->>>>>>> branch 'master' of https://github.com/jb25/spq
 	}
 
 	public String getNameR() {
@@ -150,9 +119,6 @@ public class Restaurant implements Serializable {
 		this.description = description;
 	}
 
-	public City getCity() {
-		return city;
-	}
 
 	public void setCity(City city) {
 		this.city = city;
@@ -164,17 +130,6 @@ public class Restaurant implements Serializable {
 
 	public void setPathImagen(String pathImagen) {
 		this.pathImagen = pathImagen;
-	}
-
-	@Override
-	public String toString() {
-<<<<<<< HEAD
-		return getNameR();
-=======
-		return "Restaurant [nameR=" + nameR + ", codComment=" + codComment + ", rate=" + rate + ", numRates=" + numRates
-				+ ", category=" + category + ", street=" + street + ", description=" + description + ", city=" + city
-				+ ", commentsR=" + commentsR + "]";
->>>>>>> branch 'master' of https://github.com/jb25/spq
 	}
 
 }

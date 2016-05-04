@@ -25,6 +25,8 @@ import javax.swing.JPanel;
 import java.awt.Insets;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
 public class Basic_MainWindow extends JFrame {
@@ -34,13 +36,14 @@ public class Basic_MainWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	protected JTable table;
-	protected String[] names = {"Telepizza", "Deustoarrak ", "Foster","MejicanoTere", "Smoking yewepe"};
+	protected String[] names = {"Telepizza", "Deustoarrak", "Foster","MejicanoTere", "Smoking yewepe"};
 	protected String[] places = {"Bilbao", "Gorliz ", "Getxo" };
-	protected String[] categorys = {"Mexican", "Italian ", "American", "Asian", "Basque" };
+	protected String[] categorys = {"Mexican", "Italian", "American", "Asian", "Basque" };
 	protected String[] rates = {"1", "2", "3", "4", "5" };
 	protected JLabel UserNameLabel;
 	protected JButton logoutButton;
 	protected JButton findButton;
+	protected JButton openRestaurantButton;
 	protected Panel panel;
 	protected JComboBox<String> comboBoxName;
 	protected JComboBox<String> comboBoxCategory;
@@ -50,9 +53,9 @@ public class Basic_MainWindow extends JFrame {
 	protected JLabel logoLabel;
 	
 
-	protected String[] namesTriki = { "Name","Telepizza", "Deustoarrak ", "Foster" };
+	protected String[] namesTriki = { "Name","Telepizza", "Deustoarrak", "Foster","MejicanoTere", "Smoking yewepe" };
 	protected String[] placesTriki = { "Place","Bilbao", "Gorliz ", "Getxo" };
-	protected String[] categorysTriki = { "Category","Mexican", "Italian ", "American", "Asian" };
+	protected String[] categorysTriki = { "Category","Mexican", "Italian", "American", "Asian" };
 	protected String[] ratesTriki = { "Rate","1", "2", "3", "4", "5" };
 
 	public Basic_MainWindow() {
@@ -74,9 +77,19 @@ public class Basic_MainWindow extends JFrame {
 		logoutButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
+				logout();
 			}
 		});
 
+		openRestaurantButton = new JButton("Open");
+		openRestaurantButton.setBounds(570, 350,81,23);
+		panel.add(openRestaurantButton);
+		openRestaurantButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				openRestaurant();
+			}
+		});
 		comboBoxName = new JComboBox<String>();
 		comboBoxName.setBounds(93, 88, 120, 20);
 		comboBoxName.setModel(new DefaultComboBoxModel<String>(namesTriki));
@@ -111,7 +124,13 @@ public class Basic_MainWindow extends JFrame {
 		findButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				execute();
+				SwingUtilities.invokeLater(new Runnable() {
+					
+					public void run() {
+						// TODO Auto-generated method stub
+						execute();
+					}
+				});
 			}
 		});
 				
@@ -141,6 +160,14 @@ public class Basic_MainWindow extends JFrame {
 	}
 	
 	protected void execute(){
+		
+	}
+	
+	protected void logout(){
+		
+	}
+	
+	protected void openRestaurant() {
 		
 	}
 }

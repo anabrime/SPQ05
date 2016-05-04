@@ -5,27 +5,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.annotations.Join;
+import javax.jdo.annotations.Key;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
+import javax.jdo.annotations.Serialized;
 
 @PersistenceCapable
-
-public class Member implements Serializable {
+public class Member{
 
 	/**
 	 * User implements Serializable to be transferred to the RMI client
 	 */
 	private static final long serialVersionUID = 1L;
+	String email = "";
 	@PrimaryKey
-	String email = null;
-	String name = null;
-	String password = null;
+	String name = "4lp4rg4t4";
+	String password = "4lp4rg4t4";
 
 	@Persistent(mappedBy = "member", dependentElement = "true")
 	@Join
 	List<Comment> commentsM = new ArrayList<Comment>();
 
+	public Member(){}
+	
 	public Member(String email, String name, String password, List<Comment> commentsM) {
 		super();
 		this.email = email;
@@ -52,20 +55,6 @@ public class Member implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/jb25/spq
-	@Override
-	public String toString() {
-<<<<<<< HEAD
-		return null;
-=======
-		return "Member [email=" + email + ", name=" + name + ", password=" + password + ", commentsM=" + commentsM
-				+ "]";
->>>>>>> branch 'master' of https://github.com/jb25/spq
 	}
 
 }

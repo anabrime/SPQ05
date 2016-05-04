@@ -10,4 +10,7 @@ With the Restaurant Advisor you can search all the restaurant of all the country
 - [x] Find the rigth restaurant at the Restaurant Advisor :+1:
 
 > A project made by Gorka Barturen, Jon Bilbao, Asier Salsidua and Ana Brime.
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/anabrime/RestaurantAdvisor

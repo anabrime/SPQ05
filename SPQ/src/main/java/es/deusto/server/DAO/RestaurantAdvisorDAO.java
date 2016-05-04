@@ -9,38 +9,24 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
+
+import es.deusto.server.dto.MemberDTO;
+import es.deusto.server.dto.RestaurantDTO;
 import es.deusto.server.jdo.*;
 
-<<<<<<< HEAD
-import es.deusto.server.jdo.City;
-=======
-import es.deusto.server.jdo.Comment;
-import es.deusto.server.jdo.Member;
->>>>>>> branch 'master' of https://github.com/jb25/spq
-import es.deusto.server.jdo.Restaurant;
+import es.deusto.server.jdo.*;
 
 public class RestaurantAdvisorDAO {
-<<<<<<< HEAD
 	// Load Persistence Manager Factory - referencing the Persistence Unit defined in persistence.xml
 	PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	// Persistence Manager
 	PersistenceManager pm = null;
 	//Transaction to group DB operations
 	Transaction tx = null;	
-=======
-	// Load Persistence Manager Factory - referencing the Persistence Unit
-	// defined in persistence.xml
-	PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
-	// Persistence Manager
-	PersistenceManager pm = null;
-	// Transaction to group DB operations
-	Transaction tx = null;
->>>>>>> branch 'master' of https://github.com/jb25/spq
 
 	@SuppressWarnings("finally")
-<<<<<<< HEAD
-	public List<Restaurant> getRestaurantByName(String text) {
-		List<Restaurant> r = new ArrayList<Restaurant>();
+	public List<RestaurantDTO> getRestaurantByName(String text) {
+		List<RestaurantDTO> r = new ArrayList<RestaurantDTO>();
 		try{
 			System.out.println("INFO: Getting the Restaurant from the db: ");
 			pm = pmf.getPersistenceManager();
@@ -51,9 +37,15 @@ public class RestaurantAdvisorDAO {
 
 			Extent<Restaurant> extent = pm.getExtent(Restaurant.class, true);
 
-			for (Restaurant Restaurant : extent) {
-				if(Restaurant.getNameR().equals(text))
-					r.add(Restaurant);				
+			for (Restaurant restaurant : extent) {
+				if(restaurant.getNameR().equals(text))
+					r.add(new RestaurantDTO(restaurant.getNameR(),
+											restaurant.getRate(),
+											restaurant.getNumRates(),
+											restaurant.getCategory(),
+											restaurant.getStreet(),
+											new ArrayList<Comment>(),
+											restaurant.getCity()));				
 			}
 			tx.commit();
 			System.out.println("Restaurant retrieves successfully");
@@ -61,27 +53,6 @@ public class RestaurantAdvisorDAO {
 			e.printStackTrace();
 			System.out.println("WARN: Exception when retrieving from database");
 		}finally{
-=======
-	public Restaurant getRestaurantByName(String text) {
-		Restaurant r = new Restaurant();
-		try {
-			System.out.println("INFO: Getting the song from the db: ");
-			pm = pmf.getPersistenceManager();
-			// Obtain the current transaction
-			tx = pm.currentTransaction();
-			// Start the transaction
-			tx.begin();
-			Query q = pm.newQuery("SELECT FROM " + Restaurant.class.getName() + " WHERE nameR == '" + text + "'");
-			q.setUnique(true);
-			r = (Restaurant) q.execute();
-
-			tx.commit();
-			System.out.println("Restaurant retrieves successfully");
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("WARN: Exception when retrieving from database");
-		} finally {
->>>>>>> branch 'master' of https://github.com/jb25/spq
 			if (tx != null && tx.isActive()) {
 				tx.rollback();
 			}
@@ -93,11 +64,10 @@ public class RestaurantAdvisorDAO {
 		}
 
 	}
-<<<<<<< HEAD
 
 	@SuppressWarnings("finally")
-	public List<Restaurant> getRestaurantByCategory(String text) {
-		List<Restaurant> r = new ArrayList<Restaurant>();
+	public List<RestaurantDTO> getRestaurantByCategory(String text) {
+		List<RestaurantDTO> r = new ArrayList<RestaurantDTO>();
 		try{
 			System.out.println("INFO: Getting the Restaurant from the db: ");
 			pm = pmf.getPersistenceManager();
@@ -108,11 +78,17 @@ public class RestaurantAdvisorDAO {
 
 			Extent<Restaurant> extent = pm.getExtent(Restaurant.class, true);
 
-			for (Restaurant Restaurant : extent) {
-				if(Restaurant.getCategory().equals(text))
-					r.add(Restaurant);				
+			for (Restaurant restaurant : extent) {
+				if(restaurant.getCategory().equals(text))
+					r.add(new RestaurantDTO(restaurant.getNameR(),
+							restaurant.getRate(),
+							restaurant.getNumRates(),
+							restaurant.getCategory(),
+							restaurant.getStreet(),
+							new ArrayList<Comment>(),
+							restaurant.getCity()));				
 			}
-
+			System.out.println(r.get(0).toString());
 			tx.commit();
 			System.out.println("Restaurant retrieves successfully");
 		}catch(Exception e){
@@ -131,8 +107,8 @@ public class RestaurantAdvisorDAO {
 
 	}
 	@SuppressWarnings("finally")
-	public List<Restaurant> getRestaurantByPlace(String text) {
-		List<Restaurant> r = new ArrayList<Restaurant>();
+	public List<RestaurantDTO> getRestaurantByPlace(String text) {
+		List<RestaurantDTO> r = new ArrayList<RestaurantDTO>();
 		try{
 			System.out.println("INFO: Getting the Restaurant from the db: ");
 			pm = pmf.getPersistenceManager();
@@ -143,9 +119,15 @@ public class RestaurantAdvisorDAO {
 
 			Extent<Restaurant> extent = pm.getExtent(Restaurant.class, true);
 
-			for (Restaurant Restaurant : extent) {
-				if(Restaurant.getCity().toString().equals(text))
-					r.add(Restaurant);				
+			for (Restaurant restaurant : extent) {
+				if(restaurant.getCity().toString().equals(text))
+					r.add(new RestaurantDTO(restaurant.getNameR(),
+							restaurant.getRate(),
+							restaurant.getNumRates(),
+							restaurant.getCategory(),
+							restaurant.getStreet(),
+							new ArrayList<Comment>(),
+							restaurant.getCity()));			
 			}
 
 			tx.commit();
@@ -166,8 +148,8 @@ public class RestaurantAdvisorDAO {
 
 	}
 	@SuppressWarnings("finally")
-	public List<Restaurant> getRestaurantByRate(String text) {
-		List<Restaurant> r = new ArrayList<Restaurant>();
+	public List<RestaurantDTO> getRestaurantByRate(String text) {
+		List<RestaurantDTO> r = new ArrayList<RestaurantDTO>();
 		try{
 			System.out.println("INFO: Getting the Restaurant from the db: ");
 			pm = pmf.getPersistenceManager();
@@ -178,9 +160,15 @@ public class RestaurantAdvisorDAO {
 
 			Extent<Restaurant> extent = pm.getExtent(Restaurant.class, true);
 
-			for (Restaurant Restaurant : extent) {
-				if(Restaurant.getRate().equals(text))
-					r.add(Restaurant);				
+			for (Restaurant restaurant : extent) {
+				if(restaurant.getRate().equals(text))
+					r.add(new RestaurantDTO(restaurant.getNameR(),
+							restaurant.getRate(),
+							restaurant.getNumRates(),
+							restaurant.getCategory(),
+							restaurant.getStreet(),
+							new ArrayList<Comment>(),
+							restaurant.getCity()));			
 			}
 			System.out.println(r);
 
@@ -202,8 +190,8 @@ public class RestaurantAdvisorDAO {
 
 	}
 	@SuppressWarnings("finally")
-	public List<Restaurant> getRestaurantByNameAndCategory(String text, String text1) {
-		List<Restaurant> r = new ArrayList<Restaurant>();
+	public List<RestaurantDTO> getRestaurantByNameAndCategory(String text, String text1) {
+		List<RestaurantDTO> r = new ArrayList<RestaurantDTO>();
 		try{
 			System.out.println("INFO: Getting the Restaurant from the db: ");
 			pm = pmf.getPersistenceManager();
@@ -214,9 +202,15 @@ public class RestaurantAdvisorDAO {
 
 			Extent<Restaurant> extent = pm.getExtent(Restaurant.class, true);
 
-			for (Restaurant Restaurant : extent) {
-				if(Restaurant.getNameR().equals(text) && Restaurant.getCategory().equals(text1))
-					r.add(Restaurant);				
+			for (Restaurant restaurant : extent) {
+				if(restaurant.getNameR().equals(text) && restaurant.getCategory().equals(text1))
+					r.add(new RestaurantDTO(restaurant.getNameR(),
+							restaurant.getRate(),
+							restaurant.getNumRates(),
+							restaurant.getCategory(),
+							restaurant.getStreet(),
+							new ArrayList<Comment>(),
+							restaurant.getCity()));				
 			}
 
 			tx.commit();
@@ -237,8 +231,8 @@ public class RestaurantAdvisorDAO {
 
 	}
 	@SuppressWarnings("finally")
-	public List<Restaurant> getRestaurantByNameAndRate(String text, String text1) {
-		List<Restaurant> r = new ArrayList<Restaurant>();
+	public List<RestaurantDTO> getRestaurantByNameAndRate(String text, String text1) {
+		List<RestaurantDTO> r = new ArrayList<RestaurantDTO>();
 		try{
 			System.out.println("INFO: Getting the Restaurant from the db: ");
 			pm = pmf.getPersistenceManager();
@@ -249,9 +243,15 @@ public class RestaurantAdvisorDAO {
 
 			Extent<Restaurant> extent = pm.getExtent(Restaurant.class, true);
 
-			for (Restaurant Restaurant : extent) {
-				if(Restaurant.getNameR().equals(text) && Restaurant.getRate().equals(text1))
-					r.add(Restaurant);				
+			for (Restaurant restaurant : extent) {
+				if(restaurant.getNameR().equals(text) && restaurant.getRate().equals(text1))
+					r.add(new RestaurantDTO(restaurant.getNameR(),
+							restaurant.getRate(),
+							restaurant.getNumRates(),
+							restaurant.getCategory(),
+							restaurant.getStreet(),
+							new ArrayList<Comment>(),
+							restaurant.getCity()));				
 			}
 
 			tx.commit();
@@ -272,8 +272,8 @@ public class RestaurantAdvisorDAO {
 
 	}
 	@SuppressWarnings("finally")
-	public List<Restaurant> getRestaurantByNameAndPlace(String text, String text1) {
-		List<Restaurant> r = new ArrayList<Restaurant>();
+	public List<RestaurantDTO> getRestaurantByNameAndPlace(String text, String text1) {
+		List<RestaurantDTO> r = new ArrayList<RestaurantDTO>();
 		try{
 			System.out.println("INFO: Getting the Restaurant from the db: ");
 			pm = pmf.getPersistenceManager();
@@ -284,9 +284,15 @@ public class RestaurantAdvisorDAO {
 
 			Extent<Restaurant> extent = pm.getExtent(Restaurant.class, true);
 
-			for (Restaurant Restaurant : extent) {
-				if(Restaurant.getNameR().equals(text) && Restaurant.getCity().toString().equals(text1))
-					r.add(Restaurant);				
+			for (Restaurant restaurant : extent) {
+				if(restaurant.getNameR().equals(text) && restaurant.getCity().toString().equals(text1))
+					r.add(new RestaurantDTO(restaurant.getNameR(),
+							restaurant.getRate(),
+							restaurant.getNumRates(),
+							restaurant.getCategory(),
+							restaurant.getStreet(),
+							new ArrayList<Comment>(),
+							restaurant.getCity()));					
 			}
 
 			tx.commit();
@@ -308,8 +314,8 @@ public class RestaurantAdvisorDAO {
 
 	}
 	@SuppressWarnings("finally")
-	public List<Restaurant> getRestaurantByPlaceAndCategory(String text, String text1) {
-		List<Restaurant> r = new ArrayList<Restaurant>();
+	public List<RestaurantDTO> getRestaurantByPlaceAndCategory(String text, String text1) {
+		List<RestaurantDTO> r = new ArrayList<RestaurantDTO>();
 		try{
 			System.out.println("INFO: Getting the Restaurant from the db: ");
 			pm = pmf.getPersistenceManager();
@@ -320,9 +326,15 @@ public class RestaurantAdvisorDAO {
 
 			Extent<Restaurant> extent = pm.getExtent(Restaurant.class, true);
 
-			for (Restaurant Restaurant : extent) {
-				if(Restaurant.getCity().toString().equals(text) && Restaurant.getCategory().equals(text1))
-					r.add(Restaurant);				
+			for (Restaurant restaurant : extent) {
+				if(restaurant.getCity().toString().equals(text) && restaurant.getCategory().equals(text1))
+					r.add(new RestaurantDTO(restaurant.getNameR(),
+							restaurant.getRate(),
+							restaurant.getNumRates(),
+							restaurant.getCategory(),
+							restaurant.getStreet(),
+							new ArrayList<Comment>(),
+							restaurant.getCity()));					
 			}
 
 			tx.commit();
@@ -344,8 +356,8 @@ public class RestaurantAdvisorDAO {
 	}
 
 	@SuppressWarnings("finally")
-	public List<Restaurant> getRestaurantByPlaceAndRate(String text, String text1) {
-		List<Restaurant> r = new ArrayList<Restaurant>();
+	public List<RestaurantDTO> getRestaurantByPlaceAndRate(String text, String text1) {
+		List<RestaurantDTO> r = new ArrayList<RestaurantDTO>();
 		try{
 			System.out.println("INFO: Getting the Restaurant from the db: ");
 			pm = pmf.getPersistenceManager();
@@ -356,9 +368,15 @@ public class RestaurantAdvisorDAO {
 
 			Extent<Restaurant> extent = pm.getExtent(Restaurant.class, true);
 
-			for (Restaurant Restaurant : extent) {
-				if(Restaurant.getCity().toString().equals(text) && Restaurant.getRate().equals(text1))
-					r.add(Restaurant);				
+			for (Restaurant restaurant : extent) {
+				if(restaurant.getCity().toString().equals(text) && restaurant.getRate().equals(text1))
+					r.add(new RestaurantDTO(restaurant.getNameR(),
+							restaurant.getRate(),
+							restaurant.getNumRates(),
+							restaurant.getCategory(),
+							restaurant.getStreet(),
+							new ArrayList<Comment>(),
+							restaurant.getCity()));			
 			}
 
 			tx.commit();
@@ -378,8 +396,8 @@ public class RestaurantAdvisorDAO {
 		}
 	}
 	@SuppressWarnings("finally")
-	public List<Restaurant> getRestaurantByCategoryAndRate(String text, String text1) {
-		List<Restaurant> r = new ArrayList<Restaurant>();
+	public List<RestaurantDTO> getRestaurantByCategoryAndRate(String text, String text1) {
+		List<RestaurantDTO> r = new ArrayList<RestaurantDTO>();
 		try{
 			System.out.println("INFO: Getting the Restaurant from the db: ");
 			pm = pmf.getPersistenceManager();
@@ -388,9 +406,15 @@ public class RestaurantAdvisorDAO {
 			//Start the transaction
 			tx.begin();				
 			Extent<Restaurant> extent = pm.getExtent(Restaurant.class, true);
-			for (Restaurant Restaurant : extent) {
-				if(Restaurant.getCategory().equals(text) && Restaurant.getRate().equals(text1))
-					r.add(Restaurant);				
+			for (Restaurant restaurant : extent) {
+				if(restaurant.getCategory().equals(text) && restaurant.getRate().equals(text1))
+					r.add(new RestaurantDTO(restaurant.getNameR(),
+							restaurant.getRate(),
+							restaurant.getNumRates(),
+							restaurant.getCategory(),
+							restaurant.getStreet(),
+							new ArrayList<Comment>(),
+							restaurant.getCity()));	
 			}
 
 			tx.commit();
@@ -466,307 +490,7 @@ public class RestaurantAdvisorDAO {
 			}
 		}
 	}
-	public static void main(String[] args) {
-		RestaurantAdvisorDAO dao = new RestaurantAdvisorDAO();
-		System.out.println(dao.getRestaurantByName("Bilbao"));
-	}
 
-}
-=======
->>>>>>> branch 'master' of https://github.com/jb25/spq
-
-	@SuppressWarnings("finally")
-	public Restaurant getRestaurantByCategory(String text) {
-		Restaurant r = new Restaurant();
-		try {
-			System.out.println("INFO: Getting the song from the db: ");
-			pm = pmf.getPersistenceManager();
-			// Obtain the current transaction
-			tx = pm.currentTransaction();
-			// Start the transaction
-			tx.begin();
-			Query q = pm.newQuery("SELECT FROM " + Restaurant.class.getName() + " WHERE category == '" + text + "'");
-			q.setUnique(true);
-			r = (Restaurant) q.execute();
-
-			tx.commit();
-			System.out.println("Restaurant retrieves successfully");
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("WARN: Exception when retrieving from database");
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
-			return r;
-		}
-
-	}
-
-	@SuppressWarnings("finally")
-	public Restaurant getRestaurantByPlace(String text) {
-		Restaurant r = new Restaurant();
-		try {
-			System.out.println("INFO: Getting the song from the db: ");
-			pm = pmf.getPersistenceManager();
-			// Obtain the current transaction
-			tx = pm.currentTransaction();
-			// Start the transaction
-			tx.begin();
-			Query q = pm.newQuery("SELECT FROM " + Restaurant.class.getName() + " WHERE city == '" + text + "'");
-			q.setUnique(true);
-			r = (Restaurant) q.execute();
-
-			tx.commit();
-			System.out.println("Restaurant retrieves successfully");
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("WARN: Exception when retrieving from database");
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
-			return r;
-		}
-
-	}
-
-	@SuppressWarnings("finally")
-	public Restaurant getRestaurantByRate(String text) {
-		Restaurant r = new Restaurant();
-		try {
-			System.out.println("INFO: Getting the song from the db: ");
-			pm = pmf.getPersistenceManager();
-			// Obtain the current transaction
-			tx = pm.currentTransaction();
-			// Start the transaction
-			tx.begin();
-			Query q = pm.newQuery("SELECT FROM " + Restaurant.class.getName() + " WHERE rate == '" + text + "'");
-			q.setUnique(true);
-			r = (Restaurant) q.execute();
-
-			tx.commit();
-			System.out.println("Restaurant retrieves successfully");
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("WARN: Exception when retrieving from database");
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
-			return r;
-		}
-
-	}
-
-	@SuppressWarnings("finally")
-	public Restaurant getRestaurantByNameAndCategory(String text, String text1) {
-		Restaurant r = new Restaurant();
-		try {
-			System.out.println("INFO: Getting the song from the db: ");
-			pm = pmf.getPersistenceManager();
-			// Obtain the current transaction
-			tx = pm.currentTransaction();
-			// Start the transaction
-			tx.begin();
-			Query q = pm.newQuery("SELECT FROM " + Restaurant.class.getName() + " WHERE nameR == '" + text + "' "
-					+ "AND category == '" + text1 + "'");
-			q.setUnique(true);
-			r = (Restaurant) q.execute();
-
-			tx.commit();
-			System.out.println("Restaurant retrieves successfully");
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("WARN: Exception when retrieving from database");
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
-			return r;
-		}
-
-	}
-
-	@SuppressWarnings("finally")
-	public Restaurant getRestaurantByNameAndRate(String text, String text1) {
-		Restaurant r = new Restaurant();
-		try {
-			System.out.println("INFO: Getting the song from the db: ");
-			pm = pmf.getPersistenceManager();
-			// Obtain the current transaction
-			tx = pm.currentTransaction();
-			// Start the transaction
-			tx.begin();
-			Query q = pm.newQuery("SELECT FROM " + Restaurant.class.getName() + " WHERE nameR == '" + text + "' "
-					+ "AND rate == '" + text1 + "'");
-			q.setUnique(true);
-			r = (Restaurant) q.execute();
-
-			tx.commit();
-			System.out.println("Restaurant retrieves successfully");
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("WARN: Exception when retrieving from database");
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
-			return r;
-		}
-
-	}
-
-	@SuppressWarnings("finally")
-	public Restaurant getRestaurantByNameAndPlace(String text, String text1) {
-		Restaurant r = new Restaurant();
-		try {
-			System.out.println("INFO: Getting the song from the db: ");
-			pm = pmf.getPersistenceManager();
-			// Obtain the current transaction
-			tx = pm.currentTransaction();
-			// Start the transaction
-			tx.begin();
-			Query q = pm.newQuery("SELECT FROM " + Restaurant.class.getName() + " WHERE nameR == '" + text + "' "
-					+ "AND city == '" + text1 + "'");
-			q.setUnique(true);
-			r = (Restaurant) q.execute();
-
-			tx.commit();
-			System.out.println("Restaurant retrieves successfully");
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("WARN: Exception when retrieving from database");
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
-			return r;
-		}
-
-	}
-
-	@SuppressWarnings("finally")
-	public Restaurant getRestaurantByPlaceAndCategory(String text, String text1) {
-		Restaurant r = new Restaurant();
-		try {
-			System.out.println("INFO: Getting the song from the db: ");
-			pm = pmf.getPersistenceManager();
-			// Obtain the current transaction
-			tx = pm.currentTransaction();
-			// Start the transaction
-			tx.begin();
-			Query q = pm.newQuery("SELECT FROM " + Restaurant.class.getName() + " WHERE city == '" + text + "' "
-					+ "AND category == '" + text1 + "'");
-			q.setUnique(true);
-			r = (Restaurant) q.execute();
-
-			tx.commit();
-			System.out.println("Restaurant retrieves successfully");
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("WARN: Exception when retrieving from database");
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
-			return r;
-		}
-
-	}
-
-	@SuppressWarnings("finally")
-	public Restaurant getRestaurantByPlaceAndRate(String text, String text1) {
-		Restaurant r = new Restaurant();
-		try {
-			System.out.println("INFO: Getting the song from the db: ");
-			pm = pmf.getPersistenceManager();
-			// Obtain the current transaction
-			tx = pm.currentTransaction();
-			// Start the transaction
-			tx.begin();
-			Query q = pm.newQuery("SELECT FROM " + Restaurant.class.getName() + " WHERE city == '" + text + "' "
-					+ "AND rate == '" + text1 + "'");
-			q.setUnique(true);
-			r = (Restaurant) q.execute();
-
-			tx.commit();
-			System.out.println("Restaurant retrieves successfully");
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("WARN: Exception when retrieving from database");
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
-			return r;
-		}
-	}
-
-	@SuppressWarnings("finally")
-	public Restaurant getRestaurantByCategoryAndRate(String text, String text1) {
-		Restaurant r = new Restaurant();
-		try {
-			System.out.println("INFO: Getting the song from the db: ");
-			pm = pmf.getPersistenceManager();
-			// Obtain the current transaction
-			tx = pm.currentTransaction();
-			// Start the transaction
-			tx.begin();
-			Query q = pm.newQuery("SELECT FROM " + Restaurant.class.getName() + " WHERE category == '" + text + "' "
-					+ "AND rate == '" + text1 + "'");
-			q.setUnique(true);
-			r = (Restaurant) q.execute();
-
-			tx.commit();
-			System.out.println("Restaurant retrieves successfully");
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("WARN: Exception when retrieving from database");
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
-			}
-
-			if (pm != null && !pm.isClosed()) {
-				pm.close();
-			}
-			return r;
-		}
-
-	}
 
 	public boolean storeComment(Comment comment) {
 		boolean ok = false;
@@ -822,18 +546,28 @@ public class RestaurantAdvisorDAO {
 
 	}
 	@SuppressWarnings("finally")
-	public Member getMember(String name){
-		Member m = null;
+	public MemberDTO retrieveMember(String name){
+		Member m = new Member();
+		MemberDTO memberDTO = new MemberDTO();
 		try{
 			System.out.println("INFO: Getting the member from the db: ");
 			pm = pmf.getPersistenceManager();
 			//Obtain the current transaction
 			tx = pm.currentTransaction();		
 			//Start the transaction
-			tx.begin();
-			Query q = pm.newQuery("SELECT FROM "+Member.class.getName()+" WHERE nameM == '"+name+"'");
-			q.setUnique(true);
-			m = (Member)q.execute();
+			tx.begin();				
+			
+			Extent<Member> extent = pm.getExtent(Member.class, true);
+			for (Member member : extent) {
+				System.out.println(member.getName());
+				if(member.getName().equals(name)){
+					System.out.println("ESTA DENTRO DEL IF");
+					m = member;}
+			}
+			
+			System.out.println(m.getName());
+			System.out.println(m.getPassword());
+			memberDTO = new MemberDTO(m.getName(), m.getPassword());
 			
 			tx.commit();
 			System.out.println("Member retrieves successfully");
@@ -848,11 +582,11 @@ public class RestaurantAdvisorDAO {
 			if (pm != null && !pm.isClosed()) {
 				pm.close();
 			}
-			return m;
 		}
+		return memberDTO;
 	}
 	
-	public void addMember(String name, String password, String email){
+	public boolean addMember(String name, String password, String email){
 		
 		List<Comment> commentsM = new ArrayList<Comment>();
 		Member member = new Member(email, name, password, commentsM);
@@ -865,8 +599,10 @@ public class RestaurantAdvisorDAO {
 
 	    	pm.makePersistent(member);
 	    	tx.commit();
+	    	return true;
 	     } catch (Exception ex) {
 		   	System.out.println("Error updating a user: " + ex.getMessage());
+		   	return false;
 	     } finally {
 		   	if (tx != null && tx.isActive()) {
 		   		tx.rollback();

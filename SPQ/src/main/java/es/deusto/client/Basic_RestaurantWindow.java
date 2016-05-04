@@ -36,7 +36,7 @@ public class Basic_RestaurantWindow extends JFrame {
 	protected JTextField textField_Name;
 	protected JTextField textField_Location;
 	protected JTextField textField_Rate;
-	protected String imgLogo = "C:\\Users\\Jon\\git\\spq\\SPQ\\img\\logo.JPG";
+	protected String imgLogo = "/home/gorka/Pictures/logo.png";
 	protected String imgPhotoRestaurant;
 	protected JTextPane textNombreDelUsuarioArriba;
 	protected JTextPane txtpnComment;
@@ -80,54 +80,53 @@ public class Basic_RestaurantWindow extends JFrame {
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 
-		JTextPane txtpnName = new JTextPane();
+		JLabel txtpnName = new JLabel();
 		txtpnName.setText("Name:");
 		txtpnName.setBounds(168, 11, 50, 20);
 		panel_1.add(txtpnName);
 
-		JTextPane txtpnLocation_1 = new JTextPane();
+		JLabel txtpnLocation_1 = new JLabel();
 		txtpnLocation_1.setText("Location:");
 		txtpnLocation_1.setBounds(168, 35, 50, 20);
 		panel_1.add(txtpnLocation_1);
 
-		JTextPane txtpnRate = new JTextPane();
+		JLabel txtpnRate = new JLabel();
 		txtpnRate.setText("Rate:");
 		txtpnRate.setBounds(168, 59, 50, 20);
 		panel_1.add(txtpnRate);
 
-		textField_Description = new JTextField();
+		textField_Description = new JTextField("Description");
 		textField_Description.setBounds(10, 90, 359, 148);
 		panel_1.add(textField_Description);
-		textField_Description.setColumns(10);
 
 		JPanel panel_Photo = new JPanel();
 		panel_Photo.setBounds(10, 11, 147, 68);
 		panel_1.add(panel_Photo);
 
 		JLabel lbl_photoRestaurant = new JLabel();
-		lbl_photoRestaurant.setIcon(new ImageIcon(imgPhotoRestaurant)); // falta
+//		lbl_photoRestaurant.setIcon(new ImageIcon(imgPhotoRestaurant)); // falta
 																		// poner
 																		// la
 		// referencia
 		lbl_photoRestaurant.setBounds(10, 11, 147, 6);
 		panel_Photo.add(lbl_photoRestaurant);
 
-		BufferedImage img_Restaurant = null;
-		try {
-			img_Restaurant = ImageIO.read(new File(imgPhotoRestaurant)); // falta
-																			// poner
-																			// la
-			// referencia
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		BufferedImage img_Restaurant = null;
+//		try {
+////			img_Restaurant = ImageIO.read(new File(imgPhotoRestaurant)); // falta
+//																			// poner
+//																			// la
+//			// referencia
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 
-		Image dimg_Restaurant = img_Restaurant.getScaledInstance(lbl_photoRestaurant.getWidth(),
-				lbl_photoRestaurant.getHeight(), Image.SCALE_SMOOTH);
+//		Image dimg_Restaurant = img_Restaurant.getScaledInstance(lbl_photoRestaurant.getWidth(),
+//				lbl_photoRestaurant.getHeight(), Image.SCALE_SMOOTH);
 
-		ImageIcon imageIcon_Restaurant = new ImageIcon(dimg_Restaurant);
+//		ImageIcon imageIcon_Restaurant = new ImageIcon(dimg_Restaurant);
 
-		lbl_photoRestaurant.setIcon(imageIcon_Restaurant);
+//		lbl_photoRestaurant.setIcon(imageIcon_Restaurant);
 
 		textField_Name = new JTextField();
 		textField_Name.setBounds(228, 11, 86, 20);
@@ -153,11 +152,9 @@ public class Basic_RestaurantWindow extends JFrame {
 		lblNombre.setBounds(10, 70, 71, 28);
 		panel_2.add(lblNombre);
 
-		textField_UserName = new JTextField();
-		textField_UserName.setEditable(false);
+		textField_UserName = new JTextField("UserName");
 		textField_UserName.setBounds(68, 74, 86, 20);
 		panel_2.add(textField_UserName);
-		textField_UserName.setColumns(10);
 
 		JLabel lblComentarios = new JLabel("Comments");
 		lblComentarios.setFont((new java.awt.Font("Tahoma", 0, 36)));

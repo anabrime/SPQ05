@@ -1,6 +1,7 @@
 package es.deusto.client;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,28 +18,27 @@ public class Basic_RegistrationWindow extends JFrame {
 	protected JTextField textField;
 	protected JTextField txtPassword;
 	protected JTextField txtEmail;
-	protected JButton suscriveButton;
-	protected JTextPane txtpnIntroduceYourName;
-	protected JTextPane txtpnIntroducePassword;
-	protected JTextPane txtpnIntroduceEmail;
+	protected JButton suscribeButton;
+	protected JLabel txtpnIntroduceYourName;
+	protected JLabel txtpnIntroducePassword;
+	protected JLabel txtpnIntroduceEmail;
 
 	public Basic_RegistrationWindow() {
 		getContentPane().setLayout(null);
 		setVisible(true);
 		setSize(407, 147);
 
-		suscriveButton = new JButton("Suscrive");
-		suscriveButton.setBounds(252, 37, 89, 23);
-		getContentPane().add(suscriveButton);
-		suscriveButton.addActionListener(new ActionListener() {
+		suscribeButton = new JButton("Suscrive");
+		suscribeButton.setBounds(252, 37, 89, 23);
+		getContentPane().add(suscribeButton);
+		suscribeButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				suscrive();
+				suscribe();
 			}
 		});
 
-		txtpnIntroduceYourName = new JTextPane();
-		txtpnIntroduceYourName.setText("Introduce user name:");
+		txtpnIntroduceYourName = new JLabel("Introduce user name:");
 		txtpnIntroduceYourName.setBounds(10, 21, 136, 23);
 		getContentPane().add(txtpnIntroduceYourName);
 
@@ -47,8 +47,7 @@ public class Basic_RegistrationWindow extends JFrame {
 		getContentPane().add(textField);
 		textField.setColumns(10);
 
-		txtpnIntroducePassword = new JTextPane();
-		txtpnIntroducePassword.setText("Introduce password:");
+		txtpnIntroducePassword = new JLabel("Introduce password:");
 		txtpnIntroducePassword.setBounds(10, 55, 136, 20);
 		getContentPane().add(txtpnIntroducePassword);
 
@@ -57,8 +56,7 @@ public class Basic_RegistrationWindow extends JFrame {
 		getContentPane().add(txtPassword);
 		txtPassword.setColumns(10);
 
-		txtpnIntroduceEmail = new JTextPane();
-		txtpnIntroduceEmail.setText("Introduce email:");
+		txtpnIntroduceEmail = new JLabel("Introduce email:");
 		txtpnIntroduceEmail.setBounds(10, 55, 136, 20);
 		getContentPane().add(txtpnIntroduceEmail);
 
@@ -70,7 +68,7 @@ public class Basic_RegistrationWindow extends JFrame {
 		repaint();
 	}
 
-	protected void suscrive() {
+	protected void suscribe() {
 
 	}
 }

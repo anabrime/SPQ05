@@ -18,26 +18,15 @@ public class City implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@PrimaryKey
-<<<<<<< HEAD
 	String nameCity = "";
 	String codPostal = "";
-=======
-	String nameCity = null;
-	String codP = null;
-	String codPostal = null;
-	Province province = null;
->>>>>>> branch 'master' of https://github.com/jb25/spq
 
 	@Persistent(mappedBy = "city", dependentElement = "true")
 	@Join
 	List<Restaurant> restaurants = new ArrayList<Restaurant>();
 
-<<<<<<< HEAD
 	public City(){}
 	public City( String nameCity, String codPostal, List<Restaurant> restaurants) {
-=======
-	public City(String nameCity, String codP, String codPostal, List<Restaurant> restaurants) {
->>>>>>> branch 'master' of https://github.com/jb25/spq
 		super();
 		this.nameCity = nameCity;
 		this.codPostal = codPostal;
@@ -68,22 +57,6 @@ public class City implements Serializable {
 		this.restaurants = restaurants;
 	}
 
-	public Province getProvince() {
-		return province;
-	}
 
-	public void setProvince(Province province) {
-		this.province = province;
-	}
-
-	@Override
-	public String toString() {
-<<<<<<< HEAD
-		return "";
-=======
-		return "City [nameCity=" + nameCity + ", codP=" + codP + ", codPostal=" + codPostal + ", restaurants="
-				+ restaurants + "]";
->>>>>>> branch 'master' of https://github.com/jb25/spq
-	}
 
 }

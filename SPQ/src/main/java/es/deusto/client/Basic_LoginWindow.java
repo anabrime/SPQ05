@@ -25,6 +25,7 @@ public class Basic_LoginWindow extends JFrame{
 	protected JTextField textFieldUsername, textFieldPassword;
 	protected JPanel panel;
 	protected JButton loginButton;
+	protected JButton registerButton;
 	protected JLabel label;
 
 	public Basic_LoginWindow() {
@@ -34,7 +35,17 @@ public class Basic_LoginWindow extends JFrame{
 		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-
+		
+		registerButton = new JButton("Register");
+		registerButton.setBounds(217, 236, 100, 25);
+		registerButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				register();
+			}
+		});
+		panel.add(registerButton);		
+		
 		loginButton = new JButton("Login");
 		loginButton.setBounds(317, 236, 100, 25);
 		panel.add(loginButton);
@@ -44,25 +55,6 @@ public class Basic_LoginWindow extends JFrame{
 				login();
 			}
 		});
-		
-		label = new JLabel("");
-		label.setIcon(new ImageIcon("/home/gorka/Pictures/logo.png"));
-		label.setBounds(0, 0, 434, 273);
-		panel.add(label);
-
-		BufferedImage img = null;
-		try {
-			img = ImageIO.read(new File("/home/gorka/Pictures/logo.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		Image dimg = img.getScaledInstance(label.getWidth(), label.getHeight(),
-				Image.SCALE_SMOOTH);
-
-		ImageIcon imageIcon = new ImageIcon(dimg);
-
-		label.setIcon(imageIcon);
 
 		textFieldUsername = new JTextField();
 		textFieldUsername.setText("Username");
@@ -70,21 +62,6 @@ public class Basic_LoginWindow extends JFrame{
 		textFieldUsername.setBounds(317, 168, 105, 19);
 		panel.add(textFieldUsername);
 		textFieldUsername.setColumns(10);
-		textFieldUsername.addFocusListener(new FocusListener() {
-
-			public void focusLost(FocusEvent e) {
-				if (textFieldUsername.getText().equals("")) {
-				textFieldUsername.setText("Username");
-				repaint();
-				}
-			}
-
-			public void focusGained(FocusEvent e) {
-				textFieldUsername.setText("");
-				repaint();
-			}
-		});
-		textFieldUsername.requestFocusInWindow();
 
 		textFieldPassword = new JTextField();
 		textFieldPassword.setText("Password");
@@ -92,34 +69,34 @@ public class Basic_LoginWindow extends JFrame{
 		textFieldPassword.setBounds(315, 205, 105, 19);
 		panel.add(textFieldPassword);
 		textFieldPassword.setColumns(10);
-		textFieldPassword.addFocusListener(new FocusListener() {
-
-			public void focusLost(FocusEvent e) {
-				if (textFieldPassword.getText().equals("")) {
-				textFieldPassword.setText("Password");
-				repaint();
-				}
-			}
-
-			public void focusGained(FocusEvent e) {
-				textFieldPassword.setText("");
-				repaint();
-			}
-		});
-		textFieldPassword.requestFocusInWindow();
+		label = new JLabel("");
+		label.setIcon(new ImageIcon("/home/gorka/Pictures/logo.png"));
+		label.setBounds(0, 0, 434, 273);
+		panel.add(label);
 		
-		//NO MIRAR PLS
-		JButton botonTriki = new JButton("");
-		botonTriki.setBounds(new Rectangle(0, 0, 0, 0));
-		botonTriki.requestFocus();
-		panel.add(botonTriki);
-		botonTriki.requestFocusInWindow();
-		//MIRAR A PARTIR DE AKI xD
+		BufferedImage img = null;
+		try {
+			img = ImageIO.read(new File("/home/gorka/Pictures/logo.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+				Image dimg = img.getScaledInstance(label.getWidth(), label.getHeight(),
+						Image.SCALE_SMOOTH);
+				
+				ImageIcon imageIcon = new ImageIcon(dimg);
+						label.setIcon(imageIcon);
+		
 		revalidate();
 		repaint();
 		setVisible(true);
 	}
 	protected void login(){
 		 
+	}
+	
+	protected void register() {
+		
 	}
 }
