@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import es.deusto.client.remote.RMIServiceLocator;
-import es.deusto.server.dto.RestaurantDTO;
+import es.deusto.server.DTO.RestaurantDTO;
 import es.deusto.server.jdo.*;
 
 public class Delegate_MainWindow extends Basic_MainWindow{
