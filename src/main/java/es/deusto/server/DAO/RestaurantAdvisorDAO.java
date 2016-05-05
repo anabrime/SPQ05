@@ -338,7 +338,7 @@ public class RestaurantAdvisorDAO {
 			}
 
 			tx.commit();
-			System.out.println("Restaurant retrieves successfully");
+			System.out.println("Restaurant  retrieves successfully");
 		}catch(Exception e){
 			e.printStackTrace();
 			System.out.println("WARN: Exception when retrieving from database");
