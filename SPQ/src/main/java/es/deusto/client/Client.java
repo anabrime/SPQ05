@@ -3,6 +3,7 @@ package es.deusto.client;
 import java.rmi.RMISecurityManager;
 import es.deusto.server.IServer;
 
+@SuppressWarnings("deprecation")
 public class Client {
 
 	public static void main(String[] args) {
@@ -18,6 +19,7 @@ public class Client {
 		}
 
 		try {
+			System.out.println("iep");
 			new Delegate_LoginWindow(args[0], args[1], args[2]);
 			
 		} catch (Exception e) {

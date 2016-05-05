@@ -493,6 +493,7 @@ public class RestaurantAdvisorDAO {
 
 
 	public boolean storeComment(Comment comment) {
+		System.out.println("entro en stroComment final");
 		boolean ok = false;
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();

@@ -57,6 +57,7 @@ public class Basic_MainWindow extends JFrame {
 	protected String[] placesTriki = { "Place","Bilbao", "Gorliz ", "Getxo" };
 	protected String[] categorysTriki = { "Category","Mexican", "Italian", "American", "Asian" };
 	protected String[] ratesTriki = { "Rate","1", "2", "3", "4", "5" };
+	protected String img="C:\\logo.png";
 
 	public Basic_MainWindow() {
 		
@@ -135,13 +136,13 @@ public class Basic_MainWindow extends JFrame {
 		});
 				
 		logoLabel = new JLabel("");
-		logoLabel.setIcon(new ImageIcon("/home/gorka/Pictures/logo.png"));
+		logoLabel.setIcon(new ImageIcon("C:\\logo.png"));
 		logoLabel.setBounds(10, 11, 228, 73);
 		panel.add(logoLabel);
 
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new File("/home/gorka/Pictures/logo.png"));
+			img = ImageIO.read(new File("C:\\logo.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

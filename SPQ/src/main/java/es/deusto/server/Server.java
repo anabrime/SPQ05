@@ -68,6 +68,7 @@ public class Server extends UnicastRemoteObject implements IServer {
 		dao.createDatabase();
 	}
 	public boolean setComment(Comment comment)throws RemoteException  {
+		System.out.println("setcomment");
 		return dao.storeComment(comment);
 	}
 	public boolean addRateToRestaurant(Restaurant restaurant, String newRate) throws RemoteException{

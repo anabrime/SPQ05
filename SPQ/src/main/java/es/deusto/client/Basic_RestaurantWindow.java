@@ -36,7 +36,8 @@ public class Basic_RestaurantWindow extends JFrame {
 	protected JTextField textField_Name;
 	protected JTextField textField_Location;
 	protected JTextField textField_Rate;
-	protected String imgLogo = "/home/gorka/Pictures/logo.png";
+	protected String imgLogo = "C:\\logo.png";
+
 	protected String imgPhotoRestaurant;
 	protected JTextPane textNombreDelUsuarioArriba;
 	protected JTextPane txtpnComment;
@@ -111,22 +112,22 @@ public class Basic_RestaurantWindow extends JFrame {
 		lbl_photoRestaurant.setBounds(10, 11, 147, 6);
 		panel_Photo.add(lbl_photoRestaurant);
 
-//		BufferedImage img_Restaurant = null;
-//		try {
-////			img_Restaurant = ImageIO.read(new File(imgPhotoRestaurant)); // falta
-//																			// poner
-//																			// la
-//			// referencia
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-
-//		Image dimg_Restaurant = img_Restaurant.getScaledInstance(lbl_photoRestaurant.getWidth(),
-//				lbl_photoRestaurant.getHeight(), Image.SCALE_SMOOTH);
-
-//		ImageIcon imageIcon_Restaurant = new ImageIcon(dimg_Restaurant);
-
-//		lbl_photoRestaurant.setIcon(imageIcon_Restaurant);
+////		BufferedImage img_Restaurant = null;
+////		try {
+//////			img_Restaurant = ImageIO.read(new File(imgPhotoRestaurant)); // falta
+////																			// poner
+////																			// la
+////			// referencia
+////		} catch (IOException e) {
+////			e.printStackTrace();
+////		}
+//
+////		Image dimg_Restaurant = img_Restaurant.getScaledInstance(lbl_photoRestaurant.getWidth(),
+////				lbl_photoRestaurant.getHeight(), Image.SCALE_SMOOTH);
+//
+////		ImageIcon imageIcon_Restaurant = new ImageIcon(dimg_Restaurant);
+//
+////		lbl_photoRestaurant.setIcon(imageIcon_Restaurant);
 
 		textField_Name = new JTextField();
 		textField_Name.setBounds(228, 11, 86, 20);
@@ -144,7 +145,7 @@ public class Basic_RestaurantWindow extends JFrame {
 		textField_Rate.setColumns(10);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(507, 193, 313, 249);
+		panel_2.setBounds(466, 193, 354, 249);
 		getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 
@@ -153,16 +154,16 @@ public class Basic_RestaurantWindow extends JFrame {
 		panel_2.add(lblNombre);
 
 		textField_UserName = new JTextField("UserName");
-		textField_UserName.setBounds(68, 74, 86, 20);
+		textField_UserName.setBounds(89, 74, 86, 20);
 		panel_2.add(textField_UserName);
 
 		JLabel lblComentarios = new JLabel("Comments");
 		lblComentarios.setFont((new java.awt.Font("Tahoma", 0, 36)));
-		lblComentarios.setBounds(10, 11, 255, 44);
+		lblComentarios.setBounds(10, 15, 255, 44);
 		panel_2.add(lblComentarios);
 
 		textField_CommentText = new JTextField();
-		textField_CommentText.setBounds(68, 117, 235, 121);
+		textField_CommentText.setBounds(109, 117, 235, 121);
 		panel_2.add(textField_CommentText);
 		textField_CommentText.setColumns(10);
 
@@ -172,7 +173,7 @@ public class Basic_RestaurantWindow extends JFrame {
 		panel_2.add(txtpnComment);
 
 		JButton btnComment = new JButton("COMMENT");
-		btnComment.setBounds(214, 73, 89, 23);
+		btnComment.setBounds(255, 73, 89, 23);
 		panel_2.add(btnComment);
 
 		btnComment.addActionListener(new ActionListener() {

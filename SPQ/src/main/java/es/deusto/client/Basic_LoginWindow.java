@@ -27,6 +27,7 @@ public class Basic_LoginWindow extends JFrame{
 	protected JButton loginButton;
 	protected JButton registerButton;
 	protected JLabel label;
+	protected String img="C:\\logo.png";
 
 	public Basic_LoginWindow() {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -70,13 +71,14 @@ public class Basic_LoginWindow extends JFrame{
 		panel.add(textFieldPassword);
 		textFieldPassword.setColumns(10);
 		label = new JLabel("");
-		label.setIcon(new ImageIcon("/home/gorka/Pictures/logo.png"));
+		label.setIcon(new ImageIcon("C:\\logo.png"));
+		
 		label.setBounds(0, 0, 434, 273);
 		panel.add(label);
 		
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new File("/home/gorka/Pictures/logo.png"));
+			img = ImageIO.read(new File("C:\\logo.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
