@@ -17,7 +17,7 @@ public class Main {
 			java.io.InputStreamReader inputStreamReader = new java.io.InputStreamReader ( System.in );
 			java.io.BufferedReader stdin = new java.io.BufferedReader ( inputStreamReader );
 			String line  = stdin.readLine();
-
+//			((Server) server).createDatabase();
 		}catch (Exception e){
 			e.printStackTrace();
 		}

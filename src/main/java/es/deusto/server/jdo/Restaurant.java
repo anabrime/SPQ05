@@ -25,7 +25,7 @@ public class Restaurant{
 	String street = null;
 	String description = null;
 	String pathImagen = null;
-	City city = null;
+	City city = new City();
 
 	@Persistent(mappedBy = "member", dependentElement = "true")
 	@Join

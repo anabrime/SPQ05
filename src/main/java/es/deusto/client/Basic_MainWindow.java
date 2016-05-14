@@ -63,6 +63,7 @@ public class Basic_MainWindow extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(700, 600);
 		panel = new Panel();
+		panel.setBackground(Color.DARK_GRAY);
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
@@ -71,8 +72,17 @@ public class Basic_MainWindow extends JFrame {
 		UserNameLabel.setEnabled(false);
 		panel.add(UserNameLabel);
 
-		logoutButton = new JButton("Logout");
-		logoutButton.setBounds(542, 30, 81, 23);
+		logoutButton = new JButton();
+		logoutButton.setBounds(542, 30, 35, 35);
+		ImageIcon icon2 = new ImageIcon("/home/gorka/workspace/SPQ-05/SPQ/img/logoutB.png");
+		Image img2 = icon2.getImage() ;  
+		Image newimg2 = img2.getScaledInstance( logoutButton.getWidth(),logoutButton.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
+		icon2 = new ImageIcon( newimg2 );
+		logoutButton.setIcon(icon2);
+		logoutButton.setBorderPainted(false);
+		logoutButton.setContentAreaFilled(false); 
+		logoutButton.setFocusPainted(false); 
+		logoutButton.setOpaque(false);
 		panel.add(logoutButton);
 		logoutButton.addActionListener(new ActionListener() {
 			
@@ -81,8 +91,17 @@ public class Basic_MainWindow extends JFrame {
 			}
 		});
 
-		openRestaurantButton = new JButton("Open");
-		openRestaurantButton.setBounds(570, 350,81,23);
+		openRestaurantButton = new JButton();
+		openRestaurantButton.setBounds(570, 250,40,40);
+		ImageIcon icon3 = new ImageIcon("/home/gorka/workspace/SPQ-05/SPQ/img/openB.png");
+		Image img3 = icon3.getImage() ;  
+		Image newimg3 = img3.getScaledInstance( openRestaurantButton.getWidth(),openRestaurantButton.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
+		icon3 = new ImageIcon( newimg3 );
+		openRestaurantButton.setIcon(icon3);
+		openRestaurantButton.setBorderPainted(false);
+		openRestaurantButton.setContentAreaFilled(false); 
+		openRestaurantButton.setFocusPainted(false); 
+		openRestaurantButton.setOpaque(false);
 		panel.add(openRestaurantButton);
 		openRestaurantButton.addActionListener(new ActionListener() {
 			
@@ -91,35 +110,44 @@ public class Basic_MainWindow extends JFrame {
 			}
 		});
 		comboBoxName = new JComboBox<String>();
-		comboBoxName.setBounds(93, 88, 120, 20);
+		comboBoxName.setBounds(93, 115, 120, 20);
 		comboBoxName.setModel(new DefaultComboBoxModel<String>(namesTriki));
 		panel.add(comboBoxName);
 
 		comboBoxCategory = new JComboBox<String>();
-		comboBoxCategory.setBounds(278, 88, 96, 20);
+		comboBoxCategory.setBounds(278, 115, 96, 20);
 		comboBoxCategory.setModel(new DefaultComboBoxModel<String>(categorysTriki));
 		panel.add(comboBoxCategory);
 
 		comboBoxPlace = new JComboBox<String>();
-		comboBoxPlace.setBounds(93, 113, 120, 20);
+		comboBoxPlace.setBounds(93, 140, 120, 20);
 		comboBoxPlace.setModel(new DefaultComboBoxModel<String>(placesTriki));
 		panel.add(comboBoxPlace);
 
 		comboBoxRate = new JComboBox<String>();
-		comboBoxRate.setBounds(278, 113, 96, 20);
+		comboBoxRate.setBounds(278, 140, 96, 20);
 		comboBoxRate.setModel(new DefaultComboBoxModel<String>(ratesTriki));
 		panel.add(comboBoxRate);
 		table = new JTable(10,3);
 
 		scrollPane = new JScrollPane(table);
 		table.setFillsViewportHeight(true);
-		scrollPane.setBounds(60, 168, 477, 303);
-		scrollPane.setBorder(BorderFactory.createLineBorder(Color.RED));;
+		scrollPane.setBounds(60, 200, 477, 303);
+//		scrollPane.setBorder(BorderFactory.createLineBorder(Color.RED));;
 		panel.add(scrollPane);
 
 
-		findButton = new JButton("Find");
-		findButton.setBounds(434, 97, 89, 23);
+		findButton = new JButton();
+		findButton.setBounds(434, 110, 50, 50);
+		ImageIcon icon1 = new ImageIcon("/home/gorka/workspace/SPQ-05/SPQ/img/findB.png");
+		Image img1 = icon1.getImage() ;  
+		Image newimg1 = img1.getScaledInstance( findButton.getWidth(),findButton.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
+		icon1 = new ImageIcon( newimg1 );
+		findButton.setIcon(icon1);
+		findButton.setBorderPainted(false);
+		findButton.setContentAreaFilled(false); 
+	    findButton.setFocusPainted(false); 
+		findButton.setOpaque(false);
 		panel.add(findButton);
 		findButton.addActionListener(new ActionListener() {
 			
@@ -136,7 +164,7 @@ public class Basic_MainWindow extends JFrame {
 				
 		logoLabel = new JLabel("");
 		logoLabel.setIcon(new ImageIcon("/home/gorka/Pictures/logo.png"));
-		logoLabel.setBounds(10, 11, 228, 73);
+		logoLabel.setBounds(10, 10, 100, 75);
 		panel.add(logoLabel);
 
 		BufferedImage img = null;

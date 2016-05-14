@@ -6,9 +6,12 @@ import javax.swing.JLabel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 import javax.swing.JTextField;
+import java.awt.Color;
+import java.awt.Image;
 
 public class Basic_RegistrationWindow extends JFrame {
 	/**
@@ -24,12 +27,22 @@ public class Basic_RegistrationWindow extends JFrame {
 	protected JLabel txtpnIntroduceEmail;
 
 	public Basic_RegistrationWindow() {
+		getContentPane().setBackground(Color.DARK_GRAY);
 		getContentPane().setLayout(null);
 		setVisible(true);
 		setSize(407, 147);
 
-		suscribeButton = new JButton("Suscrive");
-		suscribeButton.setBounds(252, 37, 89, 23);
+		suscribeButton = new JButton();
+		suscribeButton.setBounds(270, 37, 89, 35);
+		ImageIcon icon1 = new ImageIcon("/home/gorka/workspace/SPQ-05/SPQ/img/registerB.png");
+		Image img1 = icon1.getImage() ;  
+		Image newimg = img1.getScaledInstance( suscribeButton.getWidth(), suscribeButton.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
+		icon1 = new ImageIcon( newimg );
+		suscribeButton.setIcon(icon1);
+		suscribeButton.setBorderPainted(false);
+		suscribeButton.setContentAreaFilled(false); 
+		suscribeButton.setFocusPainted(false); 
+		suscribeButton.setOpaque(false);
 		getContentPane().add(suscribeButton);
 		suscribeButton.addActionListener(new ActionListener() {
 
@@ -38,25 +51,27 @@ public class Basic_RegistrationWindow extends JFrame {
 			}
 		});
 
-		txtpnIntroduceYourName = new JLabel("Introduce user name:");
+		txtpnIntroduceYourName = new JLabel("Username: ");
+		txtpnIntroduceYourName.setForeground(Color.WHITE);
 		txtpnIntroduceYourName.setBounds(10, 21, 136, 23);
 		getContentPane().add(txtpnIntroduceYourName);
 
 		textField = new JTextField();
-		textField.setBounds(156, 21, 86, 20);
+		textField.setBounds(125, 21, 120, 20);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 
-		txtpnIntroducePassword = new JLabel("Introduce password:");
+		txtpnIntroducePassword = new JLabel("Password:");
+		txtpnIntroducePassword.setForeground(Color.WHITE);
 		txtpnIntroducePassword.setBounds(10, 55, 136, 20);
 		getContentPane().add(txtpnIntroducePassword);
 
 		txtPassword = new JTextField();
-		txtPassword.setBounds(156, 55, 86, 20);
+		txtPassword.setBounds(125, 55, 120, 20);
 		getContentPane().add(txtPassword);
 		txtPassword.setColumns(10);
 
-		txtpnIntroduceEmail = new JLabel("Introduce email:");
+		txtpnIntroduceEmail = new JLabel("");
 		txtpnIntroduceEmail.setBounds(10, 55, 136, 20);
 		getContentPane().add(txtpnIntroduceEmail);
 

@@ -439,18 +439,32 @@ public class RestaurantAdvisorDAO {
 		try {
 			System.out.println("- Store objects in the DB");
 			City city = new City("Bilbao","49020",new ArrayList<Restaurant>());
+			City city2 = new City("Londres","547978943",new ArrayList<Restaurant>());
+			City city3 = new City("Valencia","345345",new ArrayList<Restaurant>());
+			
 			Restaurant restaurant1 = new Restaurant("Telepizza", "0", "0", "Italian", "", new ArrayList<Comment>(),city);
-//			Restaurant restaurant2 = new Restaurant("Telepizza", "0", "0", "Italian", "", new ArrayList<Comment>(), new City("Madrid","123123",new ArrayList<Restaurant>()));
-//			Restaurant restaurant3 = new Restaurant("Telepizza", "0", "0", "Italian", "", new ArrayList<Comment>(), new City("Barcelona","12345",new ArrayList<Restaurant>()));
-//			Restaurant restaurant4 = new Restaurant("Deustoarrak", "0", "0", "Basque", "", new ArrayList<Comment>(), new City("Bilbao","2378",new ArrayList<Restaurant>()));
-//			Restaurant restaurant5 = new Restaurant("Foster", "0", "0", "American", "", new ArrayList<Comment>(), new City("Bilbao","1254",new ArrayList<Restaurant>()));
-//			Restaurant restaurant6 = new Restaurant("MejicanoTere", "0", "0", "Mexican", "", new ArrayList<Comment>(), new City("Bilbao","98765",new ArrayList<Restaurant>()));
-//			Restaurant restaurant7 = new Restaurant("MejicanoTere", "0", "0", "Mexican", "", new ArrayList<Comment>(), new City("Valencia","345345",new ArrayList<Restaurant>()));
-//			Restaurant restaurant8 = new Restaurant("Smoking yewepe", "0", "0", "Asian", "", new ArrayList<Comment>(), new City("Bilbao","65443",new ArrayList<Restaurant>()));
-//			Restaurant restaurant9 = new Restaurant("Smoking yewepe", "0", "0", "Asian", "", new ArrayList<Comment>(), new City("Londres","547978943",new ArrayList<Restaurant>()));
-			System.out.println(city);
-			System.out.println(restaurant1);
-			System.out.println(new ArrayList<Comment>());
+//			Restaurant restaurant2 = new Restaurant("Telepizza", "0", "0", "Italian", "", new ArrayList<Comment>(), city2);
+//			Restaurant restaurant3 = new Restaurant("Telepizza", "0", "0", "Italian", "", new ArrayList<Comment>(),city3);
+			Restaurant restaurant4 = new Restaurant("Deustoarrak", "0", "0", "Basque", "", new ArrayList<Comment>(), city);
+			Restaurant restaurant5 = new Restaurant("Foster", "0", "0", "American", "", new ArrayList<Comment>(),city);
+			Restaurant restaurant6 = new Restaurant("MejicanoTere", "0", "0", "Mexican", "", new ArrayList<Comment>(), city);
+//			Restaurant restaurant7 = new Restaurant("MejicanoTere", "0", "0", "Mexican", "", new ArrayList<Comment>(),city2);
+//			Restaurant restaurant8 = new Restaurant("Smoking yewepe", "0", "0", "Asian", "", new ArrayList<Comment>(),city);
+			Restaurant restaurant9 = new Restaurant("Smoking yewepe", "0", "0", "Asian", "", new ArrayList<Comment>(),city3);
+			
+			
+			Member member = new Member("asd@asd","jon","jon",new ArrayList<Comment>());
+			Member member2 = new Member("asd@asd","ana","ana",new ArrayList<Comment>());
+			Member member3 = new Member("asd@asd","asier","asier",new ArrayList<Comment>());
+			Member member4 = new Member("asd@asd","gorka","gorka",new ArrayList<Comment>());
+			
+
+			Comment comment = new Comment("Restaurante precioso", member, restaurant1);
+			Comment comment2 = new Comment("Nos han hecho descuento por ser guapos", member2, restaurant4);
+			Comment comment3 = new Comment("Me ha dado asco", member3, restaurant5);
+			Comment comment4 = new Comment("Hay un pelo en la sopa", member4, restaurant6);
+			Comment comment5 = new Comment("Una mierda", member, restaurant9);
+			Comment comment6 = new Comment("Se come dpm", member2, restaurant1);
 			
 			//Get the Persistence Manager
 			pm = pmf.getPersistenceManager();
@@ -461,16 +475,30 @@ public class RestaurantAdvisorDAO {
 
 			System.out.println("Storing restaurants: ");
 
-//			pm.makePersistent(city);
+			pm.makePersistent(city);
+			pm.makePersistent(city2);
+			pm.makePersistent(city3);
 			pm.makePersistent(restaurant1);
 //			pm.makePersistent(restaurant2);
 //			pm.makePersistent(restaurant3);
-//			pm.makePersistent(restaurant4);
-//			pm.makePersistent(restaurant5);
-//			pm.makePersistent(restaurant6);
+			pm.makePersistent(restaurant4);
+			pm.makePersistent(restaurant5);
+			pm.makePersistent(restaurant6);
 //			pm.makePersistent(restaurant7);
 //			pm.makePersistent(restaurant8);
-//			pm.makePersistent(restaurant9);
+			pm.makePersistent(restaurant9);
+
+			pm.makePersistent(member);
+			pm.makePersistent(member2);
+			pm.makePersistent(member3);
+			pm.makePersistent(member4);
+
+			pm.makePersistent(comment);
+			pm.makePersistent(comment2);
+			pm.makePersistent(comment3);
+			pm.makePersistent(comment4);
+			pm.makePersistent(comment5);
+			pm.makePersistent(comment6);
 			
 
 			//End the transaction
@@ -498,7 +526,7 @@ public class RestaurantAdvisorDAO {
 		Transaction tx = pm.currentTransaction();
 		try {
 			tx.begin();
-			System.out.println("   * Storing a user: " + comment);
+			System.out.println("   * Storing a comment: " + comment);
 			pm.makePersistent(comment);
 			tx.commit();
 			ok = true;
@@ -611,4 +639,70 @@ public class RestaurantAdvisorDAO {
 	   		pm.close();
 	     }
 	}
+	
+	public List<Comment> getAllCommentsOfRestaurant(RestaurantDTO restaurantDTO) {
+		List<Comment> r = new ArrayList<Comment>();
+		try{
+			System.out.println("INFO: Getting the comments from the db: ");
+			pm = pmf.getPersistenceManager();
+			//Obtain the current transaction
+			tx = pm.currentTransaction();		
+			//Start the transaction
+			tx.begin();				
+			
+			Extent<Comment> extent = pm.getExtent(Comment.class, true);
+			for (Comment comment : extent) {
+				if(comment.getRestaurant().equals(restaurantDTO))
+					r.add(comment);
+					}
+
+			tx.commit();
+			System.out.println("Restaurant retrieves successfully");
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("WARN: Exception when retrieving from database");
+		}finally{
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+
+			if (pm != null && !pm.isClosed()) {
+				pm.close();
+			}
+		}
+		
+		return r;
+		}
+	
+	public boolean storeComment(String text, RestaurantDTO restaurant, Member member){
+		Restaurant r = new Restaurant(restaurant.getNameR(),
+									restaurant.getRate(),
+									restaurant.getNumRates(),
+									restaurant.getCategory(),
+									restaurant.getStreet(),
+									restaurant.getCommentsR(),
+									restaurant.getCity());
+		Comment comment = new Comment(text, member, r);
+		PersistenceManager pm = pmf.getPersistenceManager();
+	    Transaction tx = pm.currentTransaction();
+	    
+	    try {
+	    	tx.begin();
+		       System.out.println("   * Inserting a Comment into de Database " + member.toString());
+
+	    	pm.makePersistent(comment);
+	    	tx.commit();
+	    	return true;
+	     } catch (Exception ex) {
+		   	System.out.println("Error updating a user: " + ex.getMessage());
+		   	return false;
+	     } finally {
+		   	if (tx != null && tx.isActive()) {
+		   		tx.rollback();
+		   	}
+				
+	   		pm.close();
+	     }
+	}
+		
 }

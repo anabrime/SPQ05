@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
 import java.awt.Label;
+import java.awt.Color;
 
 public class Basic_RestaurantWindow extends JFrame {
 
@@ -38,24 +39,28 @@ public class Basic_RestaurantWindow extends JFrame {
 	protected JTextField textField_Rate;
 	protected String imgLogo = "/home/gorka/Pictures/logo.png";
 	protected String imgPhotoRestaurant;
-	protected JTextPane textNombreDelUsuarioArriba;
-	protected JTextPane txtpnComment;
 	protected final JComboBox<String> comboBoxRate;
 
 	public Basic_RestaurantWindow() {
+		getContentPane().setBackground(Color.DARK_GRAY);
 		setSize(840, 470);
 		setVisible(true);
 		setResizable(false);
 		getContentPane().setLayout(null);
 
-		JPanel panel_LogoRA = new JPanel();
-		panel_LogoRA.setBounds(10, 11, 232, 114);
-		getContentPane().add(panel_LogoRA);
-
 		JButton btn_logo = new JButton();
 		btn_logo.setIcon(new ImageIcon(imgLogo));
-		btn_logo.setBounds(10, 11, 232, 114);
-		panel_LogoRA.add(btn_logo);
+		btn_logo.setBounds(10, 10, 100, 75);
+		ImageIcon icon2 = new ImageIcon("/home/gorka/Pictures/logo.png");
+		Image img2 = icon2.getImage() ;  
+		Image newimg2 = img2.getScaledInstance( btn_logo.getWidth(), btn_logo.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
+		icon2 = new ImageIcon( newimg2 );
+		btn_logo.setBorderPainted(false);
+		btn_logo.setContentAreaFilled(false);
+		btn_logo.setFocusPainted(false);
+		btn_logo.setOpaque(false);
+		btn_logo.setIcon(icon2);
+		getContentPane().add(btn_logo);
 
 		BufferedImage img = null;
 		try {
@@ -76,23 +81,27 @@ public class Basic_RestaurantWindow extends JFrame {
 		});
 
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.DARK_GRAY);
 		panel_1.setBounds(10, 193, 379, 249);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 
 		JLabel txtpnName = new JLabel();
+		txtpnName.setForeground(Color.WHITE);
 		txtpnName.setText("Name:");
-		txtpnName.setBounds(168, 11, 50, 20);
+		txtpnName.setBounds(168, 11, 80, 20);
 		panel_1.add(txtpnName);
 
 		JLabel txtpnLocation_1 = new JLabel();
+		txtpnLocation_1.setForeground(Color.WHITE);
 		txtpnLocation_1.setText("Location:");
-		txtpnLocation_1.setBounds(168, 35, 50, 20);
+		txtpnLocation_1.setBounds(168, 35, 80, 20);
 		panel_1.add(txtpnLocation_1);
 
 		JLabel txtpnRate = new JLabel();
+		txtpnRate.setForeground(Color.WHITE);
 		txtpnRate.setText("Rate:");
-		txtpnRate.setBounds(168, 59, 50, 20);
+		txtpnRate.setBounds(168, 59, 80, 20);
 		panel_1.add(txtpnRate);
 
 		textField_Description = new JTextField("Description");
@@ -129,34 +138,38 @@ public class Basic_RestaurantWindow extends JFrame {
 //		lbl_photoRestaurant.setIcon(imageIcon_Restaurant);
 
 		textField_Name = new JTextField();
-		textField_Name.setBounds(228, 11, 86, 20);
+		textField_Name.setBounds(250, 11, 115, 20);
 		panel_1.add(textField_Name);
 		textField_Name.setColumns(10);
 
 		textField_Location = new JTextField();
-		textField_Location.setBounds(228, 35, 86, 20);
+		textField_Location.setBounds(250, 35, 115, 20);
 		panel_1.add(textField_Location);
 		textField_Location.setColumns(10);
 
 		textField_Rate = new JTextField();
-		textField_Rate.setBounds(228, 59, 86, 20);
+		textField_Rate.setBounds(250, 59, 115, 20);
 		panel_1.add(textField_Rate);
 		textField_Rate.setColumns(10);
 
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Color.DARK_GRAY);
+		panel_2.setForeground(Color.DARK_GRAY);
 		panel_2.setBounds(507, 193, 313, 249);
 		getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 
-		JLabel lblNombre = new JLabel("User name:");
-		lblNombre.setBounds(10, 70, 71, 28);
+		JLabel lblNombre = new JLabel("Username:");
+		lblNombre.setForeground(Color.WHITE);
+		lblNombre.setBounds(10, 70, 81, 28);
 		panel_2.add(lblNombre);
 
-		textField_UserName = new JTextField("UserName");
-		textField_UserName.setBounds(68, 74, 86, 20);
+		textField_UserName = new JTextField("");
+		textField_UserName.setBounds(110, 74, 110, 20);
 		panel_2.add(textField_UserName);
 
 		JLabel lblComentarios = new JLabel("Comments");
+		lblComentarios.setForeground(Color.WHITE);
 		lblComentarios.setFont((new java.awt.Font("Tahoma", 0, 36)));
 		lblComentarios.setBounds(10, 11, 255, 44);
 		panel_2.add(lblComentarios);
@@ -166,13 +179,17 @@ public class Basic_RestaurantWindow extends JFrame {
 		panel_2.add(textField_CommentText);
 		textField_CommentText.setColumns(10);
 
-		txtpnComment = new JTextPane();
-		txtpnComment.setText("Comment:");
-		txtpnComment.setBounds(10, 117, 71, 28);
-		panel_2.add(txtpnComment);
-
-		JButton btnComment = new JButton("COMMENT");
-		btnComment.setBounds(214, 73, 89, 23);
+		JButton btnComment = new JButton();
+		btnComment.setBounds(230, 60, 40, 40);
+		ImageIcon icon1 = new ImageIcon("/home/gorka/workspace/SPQ-05/SPQ/img/addB.png");
+		Image img1 = icon1.getImage() ;  
+		Image newimg1 = img1.getScaledInstance( btnComment.getWidth(),btnComment.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
+		icon1 = new ImageIcon( newimg1 );
+		btnComment.setIcon(icon1);
+		btnComment.setBorderPainted(false);
+		btnComment.setContentAreaFilled(false); 
+		btnComment.setFocusPainted(false); 
+		btnComment.setOpaque(false);
 		panel_2.add(btnComment);
 
 		btnComment.addActionListener(new ActionListener() {
@@ -215,19 +232,24 @@ public class Basic_RestaurantWindow extends JFrame {
 		comboBoxRate.setModel(new DefaultComboBoxModel<String>(ratesTriki));
 		getContentPane().add(comboBoxRate);
 
-		textNombreDelUsuarioArriba = new JTextPane();
-		textNombreDelUsuarioArriba.setEditable(false);
-		textNombreDelUsuarioArriba.setBounds(601, 11, 106, 20);
-		getContentPane().add(textNombreDelUsuarioArriba);
-
-		JButton btn_Logout = new JButton("LogOut");
-		btn_Logout.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		JButton logoutButton = new JButton();
+		logoutButton.setBounds(742, 30, 35, 35);
+		ImageIcon icon3 = new ImageIcon("/home/gorka/workspace/SPQ-05/SPQ/img/logoutB.png");
+		Image img3 = icon3.getImage() ;  
+		Image newimg3 = img3.getScaledInstance( logoutButton.getWidth(),logoutButton.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
+		icon3 = new ImageIcon( newimg3 );
+		logoutButton.setIcon(icon3);
+		logoutButton.setBorderPainted(false);
+		logoutButton.setContentAreaFilled(false); 
+		logoutButton.setFocusPainted(false); 
+		logoutButton.setOpaque(false);
+		add(logoutButton);
+		logoutButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
 				logout();
 			}
 		});
-		btn_Logout.setBounds(731, 8, 89, 23);
-		getContentPane().add(btn_Logout);
 		repaint();
 
 	}
@@ -243,6 +265,7 @@ public class Basic_RestaurantWindow extends JFrame {
 
 	protected void logout() {
 	}
+	
 	protected void goMainWindow() {
 	}
 }

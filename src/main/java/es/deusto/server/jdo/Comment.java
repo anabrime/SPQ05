@@ -13,16 +13,12 @@ public class Comment implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@PrimaryKey
-	String codR = null;
-	String codM = null;
 	String text = null;
 	Member member = null;
 	Restaurant restaurant = null;
 
 	public Comment(String text, Member member, Restaurant restaurant) {
 		super();
-		this.codR = codR;
-		this.codM = codM;
 		this.text = text;
 		this.restaurant = restaurant;
 		this.member = member;
@@ -39,6 +35,10 @@ public class Comment implements Serializable {
 	@Override
 	public String toString() {
 		return null;
+	}
+	
+	public Restaurant getRestaurant(){
+		return this.restaurant;
 	}
 
 }

@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
+import java.awt.Color;
+import java.awt.Label;
 
 public class Basic_LoginWindow extends JFrame{
 	
@@ -26,28 +28,46 @@ public class Basic_LoginWindow extends JFrame{
 	protected JPanel panel;
 	protected JButton loginButton;
 	protected JButton registerButton;
-	protected JLabel label;
 
 	public Basic_LoginWindow() {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(434,300);
 		setResizable(false);
 		panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
 		getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
 		
-		registerButton = new JButton("Register");
-		registerButton.setBounds(217, 236, 100, 25);
+		registerButton = new JButton();
+		registerButton.setBounds(100, 190, 100, 25);
+		ImageIcon icon1 = new ImageIcon("/home/gorka/workspace/SPQ-05/SPQ/img/registerB.png");
+		Image img1 = icon1.getImage() ;  
+		Image newimg = img1.getScaledInstance( registerButton.getWidth(), registerButton.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
+		icon1 = new ImageIcon( newimg );
+		registerButton.setIcon(icon1);
+		registerButton.setBorderPainted(false);
+		registerButton.setContentAreaFilled(false); 
+	    registerButton.setFocusPainted(false); 
+		registerButton.setOpaque(false);
 		registerButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				register();
 			}
 		});
+		panel.setLayout(null);
 		panel.add(registerButton);		
 		
 		loginButton = new JButton("Login");
-		loginButton.setBounds(317, 236, 100, 25);
+		ImageIcon icon2 = new ImageIcon("/home/gorka/workspace/SPQ-05/SPQ/img/loginB.png");
+		Image img2 = icon2.getImage() ;  
+		Image newimg2 = img2.getScaledInstance( registerButton.getWidth(), registerButton.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
+		icon2 = new ImageIcon( newimg2 );
+		loginButton.setBorderPainted(false);
+		loginButton.setContentAreaFilled(false);
+		loginButton.setFocusPainted(false);
+		loginButton.setOpaque(false);
+		loginButton.setIcon(icon2);
+		loginButton.setBounds(210, 185, 140, 35);
 		panel.add(loginButton);
 		loginButton.addActionListener(new ActionListener() {
 
@@ -57,21 +77,21 @@ public class Basic_LoginWindow extends JFrame{
 		});
 
 		textFieldUsername = new JTextField();
+		textFieldUsername.setBounds(145, 80, 150, 19);
 		textFieldUsername.setText("Username");
 		textFieldUsername.repaint();
-		textFieldUsername.setBounds(317, 168, 105, 19);
 		panel.add(textFieldUsername);
 		textFieldUsername.setColumns(10);
 
 		textFieldPassword = new JTextField();
+		textFieldPassword.setBounds(145, 130, 150, 19);
 		textFieldPassword.setText("Password");
 		textFieldPassword.repaint();
-		textFieldPassword.setBounds(315, 205, 105, 19);
 		panel.add(textFieldPassword);
 		textFieldPassword.setColumns(10);
-		label = new JLabel("");
-		label.setIcon(new ImageIcon("/home/gorka/Pictures/logo.png"));
-		label.setBounds(0, 0, 434, 273);
+		
+		JLabel label = new JLabel();
+		label.setBounds(10, 10, 100, 75);
 		panel.add(label);
 		
 		BufferedImage img = null;
@@ -80,13 +100,10 @@ public class Basic_LoginWindow extends JFrame{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
-				Image dimg = img.getScaledInstance(label.getWidth(), label.getHeight(),
-						Image.SCALE_SMOOTH);
-				
-				ImageIcon imageIcon = new ImageIcon(dimg);
-						label.setIcon(imageIcon);
+		Image dimg = img.getScaledInstance(label.getWidth(), label.getHeight(),
+				Image.SCALE_SMOOTH);
+		ImageIcon imageIcon = new ImageIcon(dimg);
+		label.setIcon(imageIcon);
 		
 		revalidate();
 		repaint();
