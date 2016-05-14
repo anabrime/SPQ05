@@ -1,3 +1,4 @@
+
 /**
  * 
  */
@@ -129,7 +130,51 @@ public class RestaurantAdvisorTest {
 		}
 
 	}
+	@Before
+	public void setUpDatabase() {
+		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin(); 
+  
+			System.out.println("Deleting test members from persistence. Cleaningup.");
+			Query q1 = pm.newQuery(Member.class);
+			long numberInstancesDeleted = q1.deletePersistentAll();
+			System.out.println("Deleted " + numberInstancesDeleted + " user");
 
+			System.out.println("Deleting test restaurants from persistence. Cleaningup.");
+			Query q4 = pm.newQuery(Comment.class);
+			long numberInstancesDeleted4 = q4.deletePersistentAll();
+			System.out.println("Deleted " + numberInstancesDeleted4 + " user");
+
+			System.out.println("Deleting test restaurants from persistence. Cleaningup.");
+			Query q2 = pm.newQuery(Restaurant.class);
+			long numberInstancesDeleted2 = q2.deletePersistentAll();
+			System.out.println("Deleted " + numberInstancesDeleted2 + " user");
+
+			System.out.println("Deleting test restaurants from persistence. Cleaningup.");
+			Query q3 = pm.newQuery(City.class);
+			long numberInstancesDeleted3 = q3.deletePersistentAll();
+			System.out.println("Deleted " + numberInstancesDeleted3 + " user");
+
+			tx.commit();
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
+		IServer server;
+		try {
+			server = new Server();
+			((Server) server).createDatabase();
+
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	@Before
 	public void setUpClient() {
 		try {
@@ -157,14 +202,16 @@ public class RestaurantAdvisorTest {
 		t.add(new RestaurantDTO("Foster", "3", "2", "Mexican", "asd", null, new City("Bilbao", null, null)));
 
 		City city = new City();
-		Comment comment= new Comment("a", m,new Restaurant());
+		new Comment("a", m, new Restaurant());
 		city.getCodPostal();
-		//        try {
-//			server.addMember("jb", "123", "asddf");
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		// try {
+		// server.addMember("jb", "123", "asddf");
+		// } catch (RemoteException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		//
+
 	}
 
 	/*
@@ -295,7 +342,8 @@ public class RestaurantAdvisorTest {
 		 * Very simple test
 		 */
 		for (int i = 0; i < t.size(); i++) {
-			if ("Foster".equals(t.get(i).getNameR()) && "5".equals(t.get(i).getRate()));
+			if ("Foster".equals(t.get(i).getNameR()) && "5".equals(t.get(i).getRate()))
+				;
 			cont++;
 		}
 		if (cont == t.size()) {
@@ -320,7 +368,8 @@ public class RestaurantAdvisorTest {
 		 * Very simple test
 		 */
 		for (int i = 0; i < t.size(); i++) {
-			if ("Foster".equals(t.get(i).getNameR()) && "Bilbao".equals(t.get(i).getCity()));
+			if ("Foster".equals(t.get(i).getNameR()) && "Bilbao".equals(t.get(i).getCity()))
+				;
 			cont++;
 		}
 		if (cont == t.size()) {
@@ -334,7 +383,6 @@ public class RestaurantAdvisorTest {
 		boolean test = false;
 		int cont = 0;
 
-
 		try {
 			System.out.println("Test 8 - Get a Restaurant by City and Category");
 			t = server.getRestaurantByPlaceAndCategory("Bilbao", "Mexican");
@@ -346,10 +394,11 @@ public class RestaurantAdvisorTest {
 		 * Very simple test
 		 */
 		for (int i = 0; i < t.size(); i++) {
-			if ("Mexican".equals(t.get(i).getCategory()) && "Bilbao".equals(t.get(i).getCity()));
+			if ("Mexican".equals(t.get(i).getCategory()) && "Bilbao".equals(t.get(i).getCity()))
+				;
 			cont++;
-			
-			System.out.println("Mexican".equals(t.get(i).getCategory())+"-"+ "Bilbao".equals(t.get(i).getCity()));
+
+			System.out.println("Mexican".equals(t.get(i).getCategory()) + "-" + "Bilbao".equals(t.get(i).getCity()));
 		}
 		if (cont == t.size()) {
 			test = true;
@@ -373,7 +422,8 @@ public class RestaurantAdvisorTest {
 		 * Very simple test
 		 */
 		for (int i = 0; i < t.size(); i++) {
-			if ("Bilbao".equals(t.get(i).getCity()) && "5".equals(t.get(i).getRate()));
+			if ("Bilbao".equals(t.get(i).getCity()) && "5".equals(t.get(i).getRate()))
+				;
 			cont++;
 		}
 		if (cont == t.size()) {
@@ -397,7 +447,8 @@ public class RestaurantAdvisorTest {
 		 * Very simple test
 		 */
 		for (int i = 0; i < t.size(); i++) {
-			if ("Mexican".equals(t.get(i).getCategory()) && "5".equals(t.get(i).getRate()));
+			if ("Mexican".equals(t.get(i).getCategory()) && "5".equals(t.get(i).getRate()))
+				;
 			cont++;
 		}
 		if (cont == t.size()) {
@@ -409,11 +460,11 @@ public class RestaurantAdvisorTest {
 	@Test
 	public void setCommentTest() {
 		boolean test = !false;
-		int cont = 0;
-		Restaurant rest= new Restaurant(t.get(0).getNameR(), t.get(0).getRate()	, t.get(0).getNumRates(), t.get(0).getCategory(), t.get(0).getStreet(), t.get(0).getCommentsR(), t.get(0).getCity());
+		Restaurant rest = new Restaurant(t.get(0).getNameR(), t.get(0).getRate(), t.get(0).getNumRates(),
+				t.get(0).getCategory(), t.get(0).getStreet(), t.get(0).getCommentsR(), t.get(0).getCity());
 		try {
 			System.out.println("Test 11 - set a comment");
-			test = server.setComment(new Comment("new comment",m, rest));
+			test = server.setComment(new Comment("new comment", m, rest));
 
 		} catch (Exception re) {
 			System.err.println(" # Messenger RemoteException: " + re.getMessage());
@@ -431,8 +482,7 @@ public class RestaurantAdvisorTest {
 		try {
 			System.out.println("Test 12 - set a rate to a restaurant");
 			test = server.addRateToRestaurant(
-					new Restaurant("Foster", "3", "2", "Mexican", "asd", null, new City("Bilbao", null, null)),"2");
-					
+					new Restaurant("Foster", "3", "2", "Mexican", "asd", null, new City("Bilbao", null, null)), "2");
 
 		} catch (Exception re) {
 			System.err.println(" # Messenger RemoteException: " + re.getMessage());
@@ -458,7 +508,7 @@ public class RestaurantAdvisorTest {
 		 * Very simple test
 		 */
 		assertTrue(test);
-		
+
 	}
 
 	@Test
@@ -482,22 +532,24 @@ public class RestaurantAdvisorTest {
 		 */
 		assertTrue(test);
 	}
-	
+
 	@Test
 	public void MemberDAOTest() {
-		MemberDTO mdto= new MemberDTO("manolo", "33");
+		MemberDTO mdto = new MemberDTO("manolo", "33");
 		mdto.getName();
 		mdto.getPassword();
-		if (mdto.getName()=="manolo") {
+		if (mdto.getName() == "manolo") {
 			assertTrue(true);
-		}else 		assertTrue(false);
+		} else
+			assertTrue(false);
 
 	}
+
 	@Test
 	public void RestaurantDAOTest() {
-		RestaurantDTO rdto= new RestaurantDTO("casaPaco", "5", "4455643", "rico", "asdf", new ArrayList<Comment>(), new City());
-		RestaurantDTO rdto2= new RestaurantDTO();
-		rdto2=rdto;
+		RestaurantDTO rdto = new RestaurantDTO("casaPaco", "5", "4455643", "rico", "asdf", new ArrayList<Comment>(),
+				new City());
+		new RestaurantDTO();
 		Restaurant r = new Restaurant();
 		r.setCategory(rdto.getCategory());
 		r.setCity(r.getCity());
@@ -507,54 +559,70 @@ public class RestaurantAdvisorTest {
 		r.setStreet(rdto.getStreet());
 		if (rdto.equals(r)) {
 			assertTrue(true);
-		}else 		assertTrue(false);
+		} else
+			assertTrue(false);
 
 	}
-	@Test 
+
+	@Test
 	public void WindowsTest() {
 
-		Basic_LoginWindow l= new Basic_LoginWindow();
-		Basic_MainWindow m= new Basic_MainWindow();
-		Basic_RegistrationWindow r= new Basic_RegistrationWindow();
-		Basic_RestaurantWindow rst= new Basic_RestaurantWindow();
-		Delegate_LoginWindow dl= new Delegate_LoginWindow("127.0.0.1", "1099", "RestaurantAdvisor");
-		Delegate_RestaurantWindow drest= new Delegate_RestaurantWindow(new RestaurantDTO(), "127.0.0.1", "1099", "RestaurantAdvisor");
-		Delegate_RegistrationWindow dr= new Delegate_RegistrationWindow("127.0.0.1", "1099", "RestaurantAdvisor");
-		Delegate_MainWindow mw= new Delegate_MainWindow("127.0.0.1", "1099", "RestaurantAdvisor");
+		new Basic_LoginWindow();
+		new Basic_MainWindow();
+		new Basic_RegistrationWindow();
+		new Basic_RestaurantWindow();
+		new Delegate_LoginWindow("127.0.0.1", "1099", "RestaurantAdvisor");
+		new Delegate_RestaurantWindow(r,"127.0.0.1", "1099", "RestaurantAdvisor");
+		Delegate_RegistrationWindow dr = new Delegate_RegistrationWindow("127.0.0.1", "1099", "RestaurantAdvisor");
+		new Delegate_MainWindow("127.0.0.1", "1099", "RestaurantAdvisor");
 		dr.getData();
 	}
 
+	@After
+	public void RestoreDatabase() {
+		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
 
-	// @After
-	// public void deleteDatabase() {
-	// PersistenceManagerFactory pmf =
-	// JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
-	// PersistenceManager pm = pmf.getPersistenceManager();
-	// Transaction tx = pm.currentTransaction();
-	// try {
-	// tx.begin();
-	//
-	// System.out.println("Deleting test members from persistence. Cleaning
-	// up.");
-	// Query q1 = pm.newQuery(Member.class);
-	// long numberInstancesDeleted = q1.deletePersistentAll();
-	// System.out.println("Deleted " + numberInstancesDeleted + " user");
-	//
-	// System.out.println("Deleting test restaurants from persistence. Cleaning
-	// up.");
-	// Query q2 = pm.newQuery(Restaurant.class);
-	// long numberInstancesDeleted2 = q2.deletePersistentAll();
-	// System.out.println("Deleted " + numberInstancesDeleted2 + " user");
-	//
-	// tx.commit();
-	// } finally {
-	// if (tx.isActive()) {
-	// tx.rollback();
-	// }
-	// pm.close();
-	// }
-	//
-	// }
+			System.out.println("Deleting test members from persistence. Cleaningup.");
+			Query q1 = pm.newQuery(Member.class);
+			long numberInstancesDeleted = q1.deletePersistentAll();
+			System.out.println("Deleted " + numberInstancesDeleted + " user");
+
+			System.out.println("Deleting test restaurants from persistence. Cleaningup.");
+			Query q4 = pm.newQuery(Comment.class);
+			long numberInstancesDeleted4 = q4.deletePersistentAll();
+			System.out.println("Deleted " + numberInstancesDeleted4 + " user");
+
+			System.out.println("Deleting test restaurants from persistence. Cleaningup.");
+			Query q2 = pm.newQuery(Restaurant.class);
+			long numberInstancesDeleted2 = q2.deletePersistentAll();
+			System.out.println("Deleted " + numberInstancesDeleted2 + " user");
+
+			System.out.println("Deleting test restaurants from persistence. Cleaningup.");
+			Query q3 = pm.newQuery(City.class);
+			long numberInstancesDeleted3 = q3.deletePersistentAll();
+			System.out.println("Deleted " + numberInstancesDeleted3 + " user");
+
+			tx.commit();
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
+		IServer server;
+		try {
+			server = new Server();
+			((Server) server).createDatabase();
+
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	@AfterClass
 	static public void tearDown() {
@@ -566,3 +634,4 @@ public class RestaurantAdvisorTest {
 		}
 	}
 }
+
