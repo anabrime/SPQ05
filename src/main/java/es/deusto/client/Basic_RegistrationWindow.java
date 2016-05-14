@@ -34,7 +34,7 @@ public class Basic_RegistrationWindow extends JFrame {
 
 		suscribeButton = new JButton();
 		suscribeButton.setBounds(270, 37, 89, 35);
-		ImageIcon icon1 = new ImageIcon("/home/gorka/workspace/SPQ-05/SPQ/img/registerB.png");
+		ImageIcon icon1 = new ImageIcon("C:\\Users\\Jon\\git\\spqimg\\registerB.png");
 		Image img1 = icon1.getImage() ;  
 		Image newimg = img1.getScaledInstance( suscribeButton.getWidth(), suscribeButton.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon1 = new ImageIcon( newimg );
