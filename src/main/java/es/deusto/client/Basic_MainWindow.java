@@ -74,7 +74,7 @@ public class Basic_MainWindow extends JFrame {
 
 		logoutButton = new JButton();
 		logoutButton.setBounds(542, 30, 35, 35);
-		ImageIcon icon2 = new ImageIcon("/home/gorka/workspace/SPQ-05/SPQ/img/logoutB.png");
+		ImageIcon icon2 = new ImageIcon("C:\\Users\\Jon\\git\\spqimg\\logoutB.png");
 		Image img2 = icon2.getImage() ;  
 		Image newimg2 = img2.getScaledInstance( logoutButton.getWidth(),logoutButton.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon2 = new ImageIcon( newimg2 );
@@ -93,7 +93,7 @@ public class Basic_MainWindow extends JFrame {
 
 		openRestaurantButton = new JButton();
 		openRestaurantButton.setBounds(570, 250,40,40);
-		ImageIcon icon3 = new ImageIcon("/home/gorka/workspace/SPQ-05/SPQ/img/openB.png");
+		ImageIcon icon3 = new ImageIcon("C:\\Users\\Jon\\git\\spqimg\\openB.png");
 		Image img3 = icon3.getImage() ;  
 		Image newimg3 = img3.getScaledInstance( openRestaurantButton.getWidth(),openRestaurantButton.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon3 = new ImageIcon( newimg3 );
@@ -139,7 +139,7 @@ public class Basic_MainWindow extends JFrame {
 
 		findButton = new JButton();
 		findButton.setBounds(434, 110, 50, 50);
-		ImageIcon icon1 = new ImageIcon("/home/gorka/workspace/SPQ-05/SPQ/img/findB.png");
+		ImageIcon icon1 = new ImageIcon("C:\\Users\\Jon\\git\\spqimg\\findB.png");
 		Image img1 = icon1.getImage() ;  
 		Image newimg1 = img1.getScaledInstance( findButton.getWidth(),findButton.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon1 = new ImageIcon( newimg1 );
@@ -163,13 +163,13 @@ public class Basic_MainWindow extends JFrame {
 		});
 				
 		logoLabel = new JLabel("");
-		logoLabel.setIcon(new ImageIcon("/home/gorka/Pictures/logo.png"));
+		logoLabel.setIcon(new ImageIcon("C:\\Users\\Jon\\git\\spqimg\\logo.png"));
 		logoLabel.setBounds(10, 10, 100, 75);
 		panel.add(logoLabel);
 
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new File("/home/gorka/Pictures/logo.png"));
+			img = ImageIO.read(new File("C:\\Users\\Jon\\git\\spqimg\\logo.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

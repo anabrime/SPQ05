@@ -39,7 +39,7 @@ public class Basic_LoginWindow extends JFrame{
 		
 		registerButton = new JButton();
 		registerButton.setBounds(100, 190, 100, 25);
-		ImageIcon icon1 = new ImageIcon("/home/gorka/workspace/SPQ-05/SPQ/img/registerB.png");
+		ImageIcon icon1 = new ImageIcon("C:\\Users\\Jon\\git\\spqimg\\registerB.png");
 		Image img1 = icon1.getImage() ;  
 		Image newimg = img1.getScaledInstance( registerButton.getWidth(), registerButton.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon1 = new ImageIcon( newimg );
@@ -58,7 +58,7 @@ public class Basic_LoginWindow extends JFrame{
 		panel.add(registerButton);		
 		
 		loginButton = new JButton("Login");
-		ImageIcon icon2 = new ImageIcon("/home/gorka/workspace/SPQ-05/SPQ/img/loginB.png");
+		ImageIcon icon2 = new ImageIcon("C:\\Users\\Jon\\git\\spqimg\\loginB.png");
 		Image img2 = icon2.getImage() ;  
 		Image newimg2 = img2.getScaledInstance( registerButton.getWidth(), registerButton.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon2 = new ImageIcon( newimg2 );
@@ -96,7 +96,7 @@ public class Basic_LoginWindow extends JFrame{
 		
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new File("/home/gorka/Pictures/logo.png"));
+			img = ImageIO.read(new File("C:\\Users\\Jon\\git\\spqimg\\logo.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
