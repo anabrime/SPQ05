@@ -573,8 +573,8 @@ public class RestaurantAdvisorTest {
 		new Basic_RestaurantWindow();
 //		new Delegate_LoginWindow("127.0.0.1", "1099", "RestaurantAdvisor");
 		new Delegate_RestaurantWindow(r,"127.0.0.1", "1099", "RestaurantAdvisor");
-//		Delegate_RegistrationWindow dr = new Delegate_RegistrationWindow("127.0.0.1", "1099", "RestaurantAdvisor");
-		new Delegate_MainWindow("127.0.0.1", "1099", "RestaurantAdvisor");
+		Delegate_RegistrationWindow dr = new Delegate_RegistrationWindow("127.0.0.1", "1099", "RestaurantAdvisor");
+//		new Delegate_MainWindow("127.0.0.1", "1099", "RestaurantAdvisor");
 		dr.getData();
 	}
 
