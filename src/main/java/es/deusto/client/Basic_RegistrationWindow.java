@@ -5,6 +5,7 @@ import javax.swing.JLabel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -27,6 +28,7 @@ public class Basic_RegistrationWindow extends JFrame {
 	protected JLabel txtpnIntroduceEmail;
 
 	public Basic_RegistrationWindow() {
+		setResizable(false);
 		getContentPane().setBackground(Color.DARK_GRAY);
 		getContentPane().setLayout(null);
 		setVisible(true);
@@ -34,7 +36,7 @@ public class Basic_RegistrationWindow extends JFrame {
 
 		suscribeButton = new JButton();
 		suscribeButton.setBounds(270, 37, 89, 35);
-		ImageIcon icon1 = new ImageIcon("C:\\Users\\Jon\\git\\spqimg\\registerB.png");
+		ImageIcon icon1 = new ImageIcon(new File("img/registerB.png").getAbsolutePath());
 		Image img1 = icon1.getImage() ;  
 		Image newimg = img1.getScaledInstance( suscribeButton.getWidth(), suscribeButton.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon1 = new ImageIcon( newimg );

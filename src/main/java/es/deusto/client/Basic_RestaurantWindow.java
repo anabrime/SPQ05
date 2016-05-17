@@ -37,11 +37,12 @@ public class Basic_RestaurantWindow extends JFrame {
 	protected JTextField textField_Name;
 	protected JTextField textField_Location;
 	protected JTextField textField_Rate;
-	protected String imgLogo = "C:\\Users\\Jon\\git\\spqimg\\logo.png";
+	protected String imgLogo = "/home/gorka/Pictures/logo.png";
 	protected String imgPhotoRestaurant;
 	protected final JComboBox<String> comboBoxRate;
 
 	public Basic_RestaurantWindow() {
+		setResizable(false);
 		getContentPane().setBackground(Color.DARK_GRAY);
 		setSize(840, 470);
 		setVisible(true);
@@ -51,7 +52,8 @@ public class Basic_RestaurantWindow extends JFrame {
 		JButton btn_logo = new JButton();
 		btn_logo.setIcon(new ImageIcon(imgLogo));
 		btn_logo.setBounds(10, 10, 100, 75);
-		ImageIcon icon2 = new ImageIcon("C:\\Users\\Jon\\git\\spqimg\\logo.png");
+		
+		ImageIcon icon2 = new ImageIcon("/home/gorka/Pictures/logo.png");
 		Image img2 = icon2.getImage() ;  
 		Image newimg2 = img2.getScaledInstance( btn_logo.getWidth(), btn_logo.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon2 = new ImageIcon( newimg2 );
@@ -60,6 +62,7 @@ public class Basic_RestaurantWindow extends JFrame {
 		btn_logo.setFocusPainted(false);
 		btn_logo.setOpaque(false);
 		btn_logo.setIcon(icon2);
+		
 		getContentPane().add(btn_logo);
 
 		BufferedImage img = null;
@@ -181,7 +184,7 @@ public class Basic_RestaurantWindow extends JFrame {
 
 		JButton btnComment = new JButton();
 		btnComment.setBounds(230, 60, 40, 40);
-		ImageIcon icon1 = new ImageIcon("C:\\Users\\Jon\\git\\spqimg\\addB.png");
+		ImageIcon icon1 = new ImageIcon(new File("img/addB.png").getAbsolutePath());
 		Image img1 = icon1.getImage() ;  
 		Image newimg1 = img1.getScaledInstance( btnComment.getWidth(),btnComment.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon1 = new ImageIcon( newimg1 );
@@ -234,7 +237,7 @@ public class Basic_RestaurantWindow extends JFrame {
 
 		JButton logoutButton = new JButton();
 		logoutButton.setBounds(742, 30, 35, 35);
-		ImageIcon icon3 = new ImageIcon("C:\\Users\\Jon\\git\\spqimg\\logoutB.png");
+		ImageIcon icon3 = new ImageIcon(new File("img/logoutB").getAbsolutePath());
 		Image img3 = icon3.getImage() ;  
 		Image newimg3 = img3.getScaledInstance( logoutButton.getWidth(),logoutButton.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon3 = new ImageIcon( newimg3 );
