@@ -1,15 +1,23 @@
 package es.deusto.client;
 import javax.swing.JFrame;
 import java.awt.Panel;
+import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
+import java.text.AttributedCharacterIterator;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 
@@ -60,6 +68,7 @@ public class Basic_MainWindow extends JFrame {
 	protected String[] ratesTriki = { "Rate","1", "2", "3", "4", "5" };
 
 	public Basic_MainWindow() {
+	    
 		setResizable(false );
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(700, 600);
@@ -111,8 +120,17 @@ public class Basic_MainWindow extends JFrame {
 			}
 		});
 		
-		premiumButton = new JButton("Premiun");
-		premiumButton.setBounds(542, 61, 81, 23);
+		premiumButton = new JButton();
+		premiumButton.setBounds(590, 30, 75, 75);
+		ImageIcon icon4 = new ImageIcon(new File("img/premiumB.png").getAbsolutePath());
+		Image img4 = icon4.getImage() ; 
+		Image newimg4 = img4.getScaledInstance( premiumButton.getWidth(), premiumButton.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
+		icon4 = new ImageIcon( newimg4 );
+		premiumButton.setIcon(icon4);
+		premiumButton.setBorderPainted(false);
+		premiumButton.setContentAreaFilled(false); 
+		premiumButton.setFocusPainted(false); 
+		premiumButton.setOpaque(false);
 		panel.add(premiumButton);
 		premiumButton.addActionListener(new ActionListener() {
 			
@@ -206,6 +224,13 @@ public class Basic_MainWindow extends JFrame {
 	
 	protected void execute(){
 		
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+	    Graphics2D g2d = (Graphics2D)g.create();
+	    g2d.setColor(Color.RED);
+	    g2d.drawLine(100, 100, 400, 100);
 	}
 	
 	protected void logout(){
