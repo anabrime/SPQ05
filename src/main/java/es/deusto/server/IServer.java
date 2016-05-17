@@ -28,4 +28,6 @@ public interface IServer extends Remote {
 	public boolean addRateToRestaurant(Restaurant restaurant, String newRate) throws RemoteException;
 	public MemberDTO retrieveMember(String name)throws RemoteException ;
 	public boolean addMember(String name, String password, String email)throws RemoteException;
+	public MemberDTO addPay(MemberDTO memberDTO, int months) throws RemoteException;
+	public boolean time(MemberDTO memberDTO) throws RemoteException;
 }

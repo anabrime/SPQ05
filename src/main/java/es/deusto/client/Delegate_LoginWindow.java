@@ -54,7 +54,7 @@ public class Delegate_LoginWindow extends Basic_LoginWindow {
 			if (memberDTO.getPassword().equals(passwordS)) {
 				System.out.println("EL USUARIO ES CORRECTO");
 				this.dispose();
-					new Delegate_MainWindow(IP, port, serverName);
+					new Delegate_MainWindow(IP, port, serverName, memberDTO);
 			} else
 				System.out.println("The password or the username are not correct.");
 		} else {

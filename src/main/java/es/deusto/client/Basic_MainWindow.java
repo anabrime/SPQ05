@@ -44,6 +44,7 @@ public class Basic_MainWindow extends JFrame {
 	protected JButton logoutButton;
 	protected JButton findButton;
 	protected JButton openRestaurantButton;
+	protected JButton premiumButton;
 	protected Panel panel;
 	protected JComboBox<String> comboBoxName;
 	protected JComboBox<String> comboBoxCategory;
@@ -109,6 +110,17 @@ public class Basic_MainWindow extends JFrame {
 				openRestaurant();
 			}
 		});
+		
+		premiumButton = new JButton("Premiun");
+		premiumButton.setBounds(542, 61, 81, 23);
+		panel.add(premiumButton);
+		premiumButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				openPremium();			
+			}
+		});
+		
 		comboBoxName = new JComboBox<String>();
 		comboBoxName.setBounds(93, 115, 120, 20);
 		comboBoxName.setModel(new DefaultComboBoxModel<String>(namesTriki));
@@ -186,6 +198,11 @@ public class Basic_MainWindow extends JFrame {
 		this.setVisible(true);
 
 	}
+	
+	protected void openPremium(){
+		
+	}
+	
 	
 	protected void execute(){
 		

@@ -1,3 +1,8 @@
+/**
+ * 
+ */
+
+
 package es.deusto.client.remote;
 
 import es.deusto.server.IServer;
@@ -11,6 +16,9 @@ public class RMIServiceLocator {
 		this.setManager(IP,port,name);
 	}
 
+	/**
+	 * 
+	 */
 	private void setManager(String IP, String port, String name) {
 
 		String serverName="//"+ IP +":"+ port +"/"+ name ;
@@ -21,7 +29,9 @@ public class RMIServiceLocator {
 			e.printStackTrace();
 		}
 	}
-	
+	 /** Returns the instance of the server
+	  * 
+	  */
 	public IServer getService(){
 		return server;
 	}

@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import es.deusto.client.remote.RMIServiceLocator;
+import es.deusto.server.DTO.MemberDTO;
 import es.deusto.server.DTO.RestaurantDTO;
 import es.deusto.server.jdo.*;
 
@@ -22,11 +23,13 @@ public class Delegate_MainWindow extends Basic_MainWindow{
 	Boolean place = false;
 	List<RestaurantDTO> list;
 	int contadorFilas = 0;
+	MemberDTO memDTO;
 	String IP,port,serverName;
 	
-	public Delegate_MainWindow(String IP, String port, String serverName) {
+	public Delegate_MainWindow(String IP, String port, String serverName, MemberDTO memberDTO) {
 		rmi = new RMIServiceLocator(IP, port, serverName);
 		this.IP = IP;
+		this.memDTO = memberDTO;
 		this.port = port;
 		this.serverName = serverName;
 		list = new ArrayList<RestaurantDTO>();
@@ -169,14 +172,25 @@ public class Delegate_MainWindow extends Basic_MainWindow{
 	}
 	
 	@Override
+	protected void openPremium(){
+		new Delegate_PremiumWindow(IP, port, serverName, memDTO);
+		this.dispose();
+	}
+	
+	@Override
 	protected void openRestaurant(){
 		new Delegate_RestaurantWindow(list.get(table.getSelectedRow()), IP,port,serverName);
 		this.dispose();
 	}
 	
 	protected void logout(){
+		try {
+			rmi.getService().time(memDTO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.dispose();
-		System.exit(1);
 	}
 	
 }

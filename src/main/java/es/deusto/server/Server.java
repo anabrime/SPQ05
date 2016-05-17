@@ -80,5 +80,12 @@ public class Server extends UnicastRemoteObject implements IServer {
 		return dao.addMember(name, password, email);
 	}
 
+	public MemberDTO addPay(MemberDTO memberDTO, int months)throws RemoteException  {
+		return dao.addPay(memberDTO, months);
+	}
+	
+	public boolean time(MemberDTO memberDTO)throws RemoteException{
+		return dao.time(memberDTO);
+	}
 	
 }

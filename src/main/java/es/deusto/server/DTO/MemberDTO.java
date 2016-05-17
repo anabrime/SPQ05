@@ -11,6 +11,7 @@ public class MemberDTO implements Serializable{
 	
 	private String name;
 	private String passWord;
+	private int premium;
 	public MemberDTO(){}
 	public MemberDTO(String name, String password){
 		System.out.println(name+"                      "+password);
@@ -24,5 +25,13 @@ public class MemberDTO implements Serializable{
 	
 	public String getPassword(){
 		return this.passWord;
+	}
+	
+	public int getPremium(){
+		return this.premium;
+	}
+	
+	public void setPremium(int premium){
+		this.premium = premium;
 	}
 }

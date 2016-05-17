@@ -453,10 +453,10 @@ public class RestaurantAdvisorDAO {
 			Restaurant restaurant9 = new Restaurant("Smoking yewepe", "0", "0", "Asian", "", new ArrayList<Comment>(),city3);
 			
 			
-			Member member = new Member("asd@asd","jon","jon",new ArrayList<Comment>());
-			Member member2 = new Member("asd@asd","ana","ana",new ArrayList<Comment>());
-			Member member3 = new Member("asd@asd","asier","asier",new ArrayList<Comment>());
-			Member member4 = new Member("asd@asd","gorka","gorka",new ArrayList<Comment>());
+			Member member = new Member("asd@asd","jon","jon",new ArrayList<Comment>(),0);
+			Member member2 = new Member("asd@asd","ana","ana",new ArrayList<Comment>(),0);
+			Member member3 = new Member("asd@asd","asier","asier",new ArrayList<Comment>(),0);
+			Member member4 = new Member("asd@asd","gorka","gorka",new ArrayList<Comment>(),0);
 			
 
 			Comment comment = new Comment("Restaurante precioso", member, restaurant1);
@@ -617,7 +617,7 @@ public class RestaurantAdvisorDAO {
 	public boolean addMember(String name, String password, String email){
 		
 		List<Comment> commentsM = new ArrayList<Comment>();
-		Member member = new Member(email, name, password, commentsM);
+		Member member = new Member(email, name, password, commentsM, 0);
 		PersistenceManager pm = pmf.getPersistenceManager();
 	    Transaction tx = pm.currentTransaction();
 	    
@@ -704,5 +704,68 @@ public class RestaurantAdvisorDAO {
 	   		pm.close();
 	     }
 	}
+	
+	public MemberDTO addPay(MemberDTO memberDTO, int months){
+		Member member = new Member("", memberDTO.getName(), memberDTO.getPassword(), new ArrayList<Comment>(), memberDTO.getPremium()+months);
+		PersistenceManager pm = pmf.getPersistenceManager();
+	    Transaction tx = pm.currentTransaction();
+	    
+	    try {
+	    	tx.begin();
+		       System.out.println("   * Updating a member (premiun): " + months);
+
+		    Extent<Member> extent = pm.getExtent(Member.class, true);
+		    for (Member member2 : extent) {
+				if(member2.getName().toString().equals(memberDTO.getName().toString()))
+					pm.deletePersistent(member2);
+			}
+		    pm.makePersistent(member);
+	    	tx.commit();
+	    	memberDTO.setPremium(memberDTO.getPremium()+months);
+	     } catch (Exception ex) {
+		   	System.out.println("Error updating a user: " + ex.getMessage());
+	     } finally {
+		   	if (tx != null && tx.isActive()) {
+		   		tx.rollback();
+		   	}
+				
+	   		pm.close();
+	     }
+	     return memberDTO;
+	}
+	
+	public boolean time(MemberDTO memberDTO){
+		if(memberDTO.getPremium()>0){
+			Member member = new Member("", memberDTO.getName(), memberDTO.getPassword(), new ArrayList<Comment>(), memberDTO.getPremium()-1);
+			PersistenceManager pm = pmf.getPersistenceManager();
+			Transaction tx = pm.currentTransaction();
+	    
+			try {
+				tx.begin();
+				System.out.println("   * Updating a member (premiun): " + member.getPremium());
+
+				Extent<Member> extent = pm.getExtent(Member.class, true);
+			    for (Member member2 : extent) {
+					if(member2.getName().toString().equals(memberDTO.getName().toString()))
+						pm.deletePersistent(member2);
+				}
+			    pm.makePersistent(member);
+				tx.commit();
+				return true;
+			} catch (Exception ex) {
+				System.out.println("Error updating a user: " + ex.getMessage());
+				return false;
+			} finally {
+				if (tx != null && tx.isActive()) {
+					tx.rollback();
+				}
+				
+				pm.close();
+			}
+		}
+		else
+			return true;
+	}
+
 		
 }

@@ -22,6 +22,7 @@ public class Member{
 	@PrimaryKey
 	String name = "4lp4rg4t4";
 	String password = "4lp4rg4t4";
+	int premium = 0;
 
 	@Persistent(mappedBy = "member", dependentElement = "true")
 	@Join
@@ -29,12 +30,13 @@ public class Member{
 
 	public Member(){}
 	
-	public Member(String email, String name, String password, List<Comment> commentsM) {
+	public Member(String email, String name, String password, List<Comment> commentsM, int premium) {
 		super();
 		this.email = email;
 		this.name = name;
 		this.password = password;
 		this.commentsM = commentsM;
+		this.premium = premium;
 	}
 
 	public String getName() {
@@ -55,6 +57,14 @@ public class Member{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public int getPremium(){
+		return this.premium;
+	}
+	
+	public void setPremium(int premium){
+		this.premium = premium;
 	}
 
 }
