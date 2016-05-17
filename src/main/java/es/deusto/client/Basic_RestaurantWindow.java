@@ -237,7 +237,7 @@ public class Basic_RestaurantWindow extends JFrame {
 
 		JButton logoutButton = new JButton();
 		logoutButton.setBounds(742, 30, 35, 35);
-		ImageIcon icon3 = new ImageIcon(new File("img/logoutB").getAbsolutePath());
+		ImageIcon icon3 = new ImageIcon(new File("img/returnB.png").getAbsolutePath());
 		Image img3 = icon3.getImage() ;  
 		Image newimg3 = img3.getScaledInstance( logoutButton.getWidth(),logoutButton.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon3 = new ImageIcon( newimg3 );

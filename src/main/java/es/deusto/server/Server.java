@@ -70,7 +70,7 @@ public class Server extends UnicastRemoteObject implements IServer {
 	public boolean setComment(Comment comment)throws RemoteException  {
 		return dao.storeComment(comment);
 	}
-	public boolean addRateToRestaurant(Restaurant restaurant, String newRate) throws RemoteException{
+	public boolean addRateToRestaurant(RestaurantDTO restaurant, String newRate) throws RemoteException{
 		return dao.addRateToRestaurant(restaurant, newRate);
 	}
 	public MemberDTO retrieveMember(String name) throws RemoteException  {

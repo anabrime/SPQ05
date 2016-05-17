@@ -25,7 +25,7 @@ public interface IServer extends Remote {
 	public List<RestaurantDTO> getRestaurantByPlaceAndRate(String text, String text1)throws RemoteException ;
 	public List<RestaurantDTO> getRestaurantByCategoryAndRate(String text, String text1)throws RemoteException ;
 	public boolean setComment(Comment comment)throws RemoteException;
-	public boolean addRateToRestaurant(Restaurant restaurant, String newRate) throws RemoteException;
+	public boolean addRateToRestaurant(RestaurantDTO restaurant, String newRate) throws RemoteException;
 	public MemberDTO retrieveMember(String name)throws RemoteException ;
 	public boolean addMember(String name, String password, String email)throws RemoteException;
 	public MemberDTO addPay(MemberDTO memberDTO, int months) throws RemoteException;

@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import es.deusto.client.remote.RMIServiceLocator;
+import es.deusto.server.DTO.MemberDTO;
 import es.deusto.server.DTO.RestaurantDTO;
 import es.deusto.server.jdo.Comment;
 import es.deusto.server.jdo.Member;
@@ -17,13 +18,16 @@ public class Delegate_RestaurantWindow extends Basic_RestaurantWindow {
 	private static final long serialVersionUID = 1L;
 	RestaurantDTO restaurantDTO;
 	Restaurant restaurant;
-	Member user;
+	MemberDTO memberDTO;
+	Member member;
 	RMIServiceLocator rmi;
+	String IP,port,serverName;
 	boolean rate = false;
 
-	public Delegate_RestaurantWindow(RestaurantDTO restaurantDTO, String IP, String port, String serverName) {
+	public Delegate_RestaurantWindow(RestaurantDTO restaurantDTO, String IP, String port, String serverName, MemberDTO memberDTO) {
 		this.restaurantDTO = restaurantDTO;
-		this.user = user;
+		this.memberDTO = memberDTO;
+		this.member = new Member("", memberDTO.getName(), memberDTO.getPassword(), new ArrayList<Comment>(), 0);
 		this.restaurant = new Restaurant(restaurantDTO.getNameR(),
 											restaurantDTO.getRate(),
 											restaurantDTO.getNumRates(),
@@ -31,6 +35,9 @@ public class Delegate_RestaurantWindow extends Basic_RestaurantWindow {
 											restaurantDTO.getStreet(),
 											new ArrayList<Comment>(),
 											restaurantDTO.getCity());
+		this.IP = IP;
+		this.port = port;
+		this.serverName = serverName;
 		rmi = new RMIServiceLocator(IP, port, serverName);
 		putData();
 	}
@@ -47,7 +54,7 @@ public class Delegate_RestaurantWindow extends Basic_RestaurantWindow {
 		getComboBoxe();
 		if (rate) {
 			try {
-				rmi.getService().addRateToRestaurant(restaurant, comboBoxRate.getSelectedItem().toString());
+				rmi.getService().addRateToRestaurant(restaurantDTO, comboBoxRate.getSelectedItem().toString());
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -71,7 +78,7 @@ public class Delegate_RestaurantWindow extends Basic_RestaurantWindow {
 	@Override
 	protected void comment() {
 		String text = textField_CommentText.getText();
-		Comment comment = new Comment(text, user, restaurant);
+		Comment comment = new Comment(text, member, restaurant);
 		try {
 			rmi.getService().setComment(comment);
 		} catch (RemoteException e) {
@@ -82,7 +89,8 @@ public class Delegate_RestaurantWindow extends Basic_RestaurantWindow {
 
 	@Override
 	protected void logout() {
-		
+		this.dispose();
+		new Delegate_MainWindow(IP, port, serverName, memberDTO);
 	}
 
 	@Override

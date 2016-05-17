@@ -48,7 +48,7 @@ public class Basic_MainWindow extends JFrame {
 	protected String[] places = {"Bilbao", "Gorliz ", "Getxo" };
 	protected String[] categorys = {"Mexican", "Italian", "American", "Asian", "Basque" };
 	protected String[] rates = {"1", "2", "3", "4", "5" };
-	protected JLabel UserNameLabel;
+	protected JLabel userNameLabel;
 	protected JButton logoutButton;
 	protected JButton findButton;
 	protected JButton openRestaurantButton;
@@ -66,6 +66,8 @@ public class Basic_MainWindow extends JFrame {
 	protected String[] placesTriki = { "Place","Bilbao", "Gorliz ", "Getxo" };
 	protected String[] categorysTriki = { "Category","Mexican", "Italian", "American", "Asian" };
 	protected String[] ratesTriki = { "Rate","1", "2", "3", "4", "5" };
+	protected JPanel panelBonito2;
+	protected JPanel panelBonito3;
 
 	public Basic_MainWindow() {
 	    
@@ -77,10 +79,10 @@ public class Basic_MainWindow extends JFrame {
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
-		UserNameLabel = new JLabel("User A");
-		UserNameLabel.setBounds(469, 34, 54, 14);
-		UserNameLabel.setEnabled(false);
-		panel.add(UserNameLabel);
+		userNameLabel = new JLabel("User A");
+		userNameLabel.setBounds(469, 34, 54, 14);
+		userNameLabel.setEnabled(false);
+		panel.add(userNameLabel);
 
 		logoutButton = new JButton();
 		logoutButton.setBounds(542, 30, 35, 35);
@@ -102,7 +104,7 @@ public class Basic_MainWindow extends JFrame {
 		});
 
 		openRestaurantButton = new JButton();
-		openRestaurantButton.setBounds(570, 250,40,40);
+		openRestaurantButton.setBounds(537, 110,50,50);
 		ImageIcon icon3 = new ImageIcon(new File("img/openB.png").getAbsolutePath());
 		Image img3 = icon3.getImage() ;  
 		Image newimg3 = img3.getScaledInstance( openRestaurantButton.getWidth(),openRestaurantButton.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
@@ -169,12 +171,12 @@ public class Basic_MainWindow extends JFrame {
 
 		findButton = new JButton();
 		findButton.setBounds(434, 110, 50, 50);
+		findButton.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		ImageIcon icon1 = new ImageIcon(new File("img/findB.png").getAbsolutePath());
 		Image img1 = icon1.getImage() ;  
 		Image newimg1 = img1.getScaledInstance( findButton.getWidth(),findButton.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon1 = new ImageIcon( newimg1 );
 		findButton.setIcon(icon1);
-		findButton.setBorderPainted(false);
 		findButton.setContentAreaFilled(false); 
 	    findButton.setFocusPainted(false); 
 		findButton.setOpaque(false);
@@ -210,7 +212,27 @@ public class Basic_MainWindow extends JFrame {
 		ImageIcon imageIcon = new ImageIcon(dimg);
 
 		logoLabel.setIcon(imageIcon);
+		
+		JPanel panelBonito = new JPanel();
+		panelBonito.setBackground(Color.DARK_GRAY);
+		panelBonito.setBounds(78, 91, 383, 89);
+		panelBonito.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		panel.add(panelBonito);
+		
+		panelBonito2 = new JPanel();
+		panelBonito2.setBounds(537, 110, 50, 50);
+		panelBonito2.setBackground(Color.DARK_GRAY);
+		panelBonito2.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
+		panel.add(panelBonito2);
+		
+		panelBonito3 = new JPanel();
+		panelBonito3.setBounds(484, 133, 51, 2);
+		panelBonito3.setBackground(Color.DARK_GRAY);
+		panelBonito3.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+
+		panel.add(panelBonito3);
+		
 		
 		
 		this.setVisible(true);

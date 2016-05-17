@@ -32,6 +32,7 @@ public class Delegate_MainWindow extends Basic_MainWindow{
 		this.memDTO = memberDTO;
 		this.port = port;
 		this.serverName = serverName;
+		userNameLabel.setText(memberDTO.getName());
 		list = new ArrayList<RestaurantDTO>();
 	}
 	private void getComboBoxes(){
@@ -179,7 +180,7 @@ public class Delegate_MainWindow extends Basic_MainWindow{
 	
 	@Override
 	protected void openRestaurant(){
-		new Delegate_RestaurantWindow(list.get(table.getSelectedRow()), IP,port,serverName);
+		new Delegate_RestaurantWindow(list.get(table.getSelectedRow()), IP,port,serverName,memDTO);
 		this.dispose();
 	}
 	

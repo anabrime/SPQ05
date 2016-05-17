@@ -542,35 +542,39 @@ public class RestaurantAdvisorDAO {
 		return ok;
 	}
 
-	public boolean addRateToRestaurant(Restaurant restaurant, String newRate) {
-		boolean ok = false;
-		int newRate2 = Integer.parseInt(newRate);
-		int mediaRates = Integer.parseInt(restaurant.getRate());
-		int numRates = Integer.parseInt(restaurant.getNumRates());
-		int newMediaRates = ((mediaRates * numRates) + newRate2) / (numRates + 1);
-		restaurant.setRate(String.valueOf(newMediaRates));
-		restaurant.setNumRates(String.valueOf((numRates) + 1));
+	public boolean addRateToRestaurant(RestaurantDTO restaurant, String newRate) {
+		RestaurantDTO r = restaurant;
+		Restaurant restaurantTriki = null;
 		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
+	    Transaction tx = pm.currentTransaction();
+	    
+	    try {
+	    	tx.begin();
+		       System.out.println("   * Updating a rate: " + newRate);
 
-		try {
-			tx.begin();
-			System.out.println("   * Updating a restaurant (mediaRate): " + newMediaRates);
-
-			pm.makePersistent(restaurant);
-			tx.commit();
-			ok = true;
-
-		} catch (Exception ex) {
-			System.out.println("Error updating a user: " + ex.getMessage());
-		} finally {
-			if (tx != null && tx.isActive()) {
-				tx.rollback();
+		    Extent<Restaurant> extent = pm.getExtent(Restaurant.class, true);
+		    for (Restaurant restaurantT : extent) {
+				if(restaurantT.getNameR().toString().equals(r.getNameR().toString())){
+//					pm.deletePersistent(restaurantT);
+					restaurantTriki = restaurantT;
+				}
 			}
-
-			pm.close();
-		}
-	    return ok;
+		    restaurantTriki.setRate((Integer.parseInt(restaurantTriki.getRate())*Integer.parseInt(restaurantTriki.getNumRates()) 
+		    		+ (Integer.parseInt(newRate)) + Integer.parseInt(restaurantTriki.getNumRates()) + 1) +"");
+		    restaurantTriki.setNumRates(Integer.parseInt(restaurantTriki.getNumRates())+1+"");
+		    System.out.println("METIENDO EL RESTAURANTE OTRA VEZ EN LA BASE DE DATOS: "+restaurantTriki.getNameR());
+		    pm.makePersistent(restaurantTriki);
+	    	tx.commit();
+	     } catch (Exception ex) {
+		   	System.out.println("Error updating a user: " + ex.getMessage());
+	     } finally {
+		   	if (tx != null && tx.isActive()) {
+		   		tx.rollback();
+		   	}
+				
+	   		pm.close();
+	     }
+	     return true;
 
 	}
 	@SuppressWarnings("finally")
