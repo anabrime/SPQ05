@@ -26,7 +26,7 @@ public class Delegate_LoginWindow extends Basic_LoginWindow {
 		this.serverName = serverName;
 	}
 
-	private void getInfo() {
+	public void getInfo() {
 		if (!textFieldUsername.getText().equals("Username"))
 			name = true;
 
@@ -34,7 +34,7 @@ public class Delegate_LoginWindow extends Basic_LoginWindow {
 			password = true;
 	}
 
-	private void getData() {
+	public void getData() {
 
 		username = textFieldUsername.getText();
 		passwordS = textFieldPassword.getText();
