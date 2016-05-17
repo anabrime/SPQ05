@@ -10,6 +10,7 @@ import es.deusto.server.DTO.MemberDTO;
 import es.deusto.server.DTO.RestaurantDTO;
 import es.deusto.server.jdo.Comment;
 import es.deusto.server.jdo.Member;
+import es.deusto.server.jdo.Reservation;
 import es.deusto.server.jdo.Restaurant;
 
 
@@ -67,8 +68,8 @@ public class Server extends UnicastRemoteObject implements IServer {
 	public void createDatabase() {
 		dao.createDatabase();
 	}
-	public boolean setComment(Comment comment)throws RemoteException  {
-		return dao.storeComment(comment);
+	public boolean storeComment(String text, RestaurantDTO restaurant, MemberDTO memberDTO)throws RemoteException  {
+		return dao.storeComment(text, restaurant, memberDTO);
 	}
 	public boolean addRateToRestaurant(RestaurantDTO restaurant, String newRate) throws RemoteException{
 		return dao.addRateToRestaurant(restaurant, newRate);
@@ -86,6 +87,10 @@ public class Server extends UnicastRemoteObject implements IServer {
 	
 	public boolean time(MemberDTO memberDTO)throws RemoteException{
 		return dao.time(memberDTO);
+	}
+	
+	public Reservation makeBook(String time, String memberName, RestaurantDTO restaurantDTO)throws RemoteException{
+		return dao.makeBook(time, memberName, restaurantDTO);
 	}
 	
 }

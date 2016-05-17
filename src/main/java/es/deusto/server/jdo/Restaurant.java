@@ -26,10 +26,13 @@ public class Restaurant{
 	String description = null;
 	String pathImagen = null;
 	City city = new City();
+	//Cambios
+	List<Reservation> reservation;
 
 	@Persistent(mappedBy = "member", dependentElement = "true")
 	@Join
 	List<Comment> commentsR = new ArrayList<Comment>();
+	
 	public Restaurant(){
 		this.nameR="";
 		this.rate="";
@@ -37,6 +40,7 @@ public class Restaurant{
 		this.category="";
 		this.street="";
 		this.city=null;
+		this.reservation = new ArrayList<Reservation>();
 	}
 	public Restaurant(String nameR, String rate, String numRates,
 			String category, String street, List<Comment> commentsR, City city) {
@@ -48,6 +52,7 @@ public class Restaurant{
 		this.street = street;
 		this.commentsR = commentsR;
 		this.city=city;
+		this.reservation = new ArrayList<Reservation>();
 	}
 	private static final long serialVersionUID = 1L;
 	
@@ -130,6 +135,19 @@ public class Restaurant{
 
 	public void setPathImagen(String pathImagen) {
 		this.pathImagen = pathImagen;
+	}
+	
+	//Cambios
+	public List<Reservation> getReservations() {
+		return reservation;
+	}
+
+	public void setReservations(List<Reservation> reservation) {
+		this.reservation = reservation;
+	}
+	
+	public void addReservation(Reservation reservation){
+		this.reservation.add(reservation);	
 	}
 
 }

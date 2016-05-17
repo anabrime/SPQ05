@@ -18,6 +18,9 @@ import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTextPane;
+
+import es.deusto.server.jdo.Reservation;
+
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JEditorPane;
@@ -40,6 +43,7 @@ public class Basic_RestaurantWindow extends JFrame {
 	protected String imgLogo = "/home/gorka/Pictures/logo.png";
 	protected String imgPhotoRestaurant;
 	protected final JComboBox<String> comboBoxRate;
+	protected final JComboBox<String>comboBoxBook;
 
 	public Basic_RestaurantWindow() {
 		setResizable(false);
@@ -52,7 +56,7 @@ public class Basic_RestaurantWindow extends JFrame {
 		JButton btn_logo = new JButton();
 		btn_logo.setIcon(new ImageIcon(imgLogo));
 		btn_logo.setBounds(10, 10, 100, 75);
-		
+
 		ImageIcon icon2 = new ImageIcon("/home/gorka/Pictures/logo.png");
 		Image img2 = icon2.getImage() ;  
 		Image newimg2 = img2.getScaledInstance( btn_logo.getWidth(), btn_logo.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
@@ -62,7 +66,7 @@ public class Basic_RestaurantWindow extends JFrame {
 		btn_logo.setFocusPainted(false);
 		btn_logo.setOpaque(false);
 		btn_logo.setIcon(icon2);
-		
+
 		getContentPane().add(btn_logo);
 
 		BufferedImage img = null;
@@ -116,29 +120,29 @@ public class Basic_RestaurantWindow extends JFrame {
 		panel_1.add(panel_Photo);
 
 		JLabel lbl_photoRestaurant = new JLabel();
-//		lbl_photoRestaurant.setIcon(new ImageIcon(imgPhotoRestaurant)); // falta
-																		// poner
-																		// la
+		//		lbl_photoRestaurant.setIcon(new ImageIcon(imgPhotoRestaurant)); // falta
+		// poner
+		// la
 		// referencia
 		lbl_photoRestaurant.setBounds(10, 11, 147, 6);
 		panel_Photo.add(lbl_photoRestaurant);
 
-//		BufferedImage img_Restaurant = null;
-//		try {
-////			img_Restaurant = ImageIO.read(new File(imgPhotoRestaurant)); // falta
-//																			// poner
-//																			// la
-//			// referencia
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+		//		BufferedImage img_Restaurant = null;
+		//		try {
+		////			img_Restaurant = ImageIO.read(new File(imgPhotoRestaurant)); // falta
+		//																			// poner
+		//																			// la
+		//			// referencia
+		//		} catch (IOException e) {
+		//			e.printStackTrace();
+		//		}
 
-//		Image dimg_Restaurant = img_Restaurant.getScaledInstance(lbl_photoRestaurant.getWidth(),
-//				lbl_photoRestaurant.getHeight(), Image.SCALE_SMOOTH);
+		//		Image dimg_Restaurant = img_Restaurant.getScaledInstance(lbl_photoRestaurant.getWidth(),
+		//				lbl_photoRestaurant.getHeight(), Image.SCALE_SMOOTH);
 
-//		ImageIcon imageIcon_Restaurant = new ImageIcon(dimg_Restaurant);
+		//		ImageIcon imageIcon_Restaurant = new ImageIcon(dimg_Restaurant);
 
-//		lbl_photoRestaurant.setIcon(imageIcon_Restaurant);
+		//		lbl_photoRestaurant.setIcon(imageIcon_Restaurant);
 
 		textField_Name = new JTextField();
 		textField_Name.setBounds(250, 11, 115, 20);
@@ -212,23 +216,21 @@ public class Basic_RestaurantWindow extends JFrame {
 		btn_Rate.setBounds(697, 136, 89, 23);
 		getContentPane().add(btn_Rate);
 
-	/*	final JComboBox<String> comboBoxBook = new JComboBox<String>();
+		//Cambios
+		comboBoxBook = new JComboBox<String>();
 		comboBoxBook.setBounds(261, 137, 96, 20);
 		comboBoxBook.setModel(new DefaultComboBoxModel<String>(booksTriki));
 		getContentPane().add(comboBoxBook);
-		comboBoxBook.addFocusListener(new FocusListener() {
 
-			public void focusLost(FocusEvent e) {
-				comboBoxBook.setModel(new DefaultComboBoxModel<String>(booksTriki));
-				comboBoxBook.setSelectedIndex(0);
-				repaint();
-			}
+		JButton bookButton = new JButton();
+		bookButton.setBounds(375, 124, 35, 35);
+		getContentPane().add(bookButton);
+		bookButton.addActionListener(new ActionListener() {
 
-			public void focusGained(FocusEvent e) {
-				comboBoxBook.setModel(new DefaultComboBoxModel<String>(books));
-				repaint();
+			public void actionPerformed(ActionEvent e) {
+				book();
 			}
-		});*/
+		});
 
 		comboBoxRate = new JComboBox<String>();
 		comboBoxRate.setBounds(570, 137, 96, 20);
@@ -246,9 +248,9 @@ public class Basic_RestaurantWindow extends JFrame {
 		logoutButton.setContentAreaFilled(false); 
 		logoutButton.setFocusPainted(false); 
 		logoutButton.setOpaque(false);
-		add(logoutButton);
+		getContentPane().add(logoutButton);
 		logoutButton.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				logout();
 			}
@@ -268,7 +270,11 @@ public class Basic_RestaurantWindow extends JFrame {
 
 	protected void logout() {
 	}
-	
+
 	protected void goMainWindow() {
+	}
+
+	protected void book() {
+
 	}
 }

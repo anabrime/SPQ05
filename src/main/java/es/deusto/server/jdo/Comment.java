@@ -15,9 +15,9 @@ public class Comment implements Serializable {
 	@PrimaryKey
 	String text = null;
 	Member member = null;
-	Restaurant restaurant = null;
+	String restaurant = null;
 
-	public Comment(String text, Member member, Restaurant restaurant) {
+	public Comment(String text, Member member, String restaurant) {
 		super();
 		this.text = text;
 		this.restaurant = restaurant;
@@ -37,7 +37,7 @@ public class Comment implements Serializable {
 		return null;
 	}
 	
-	public Restaurant getRestaurant(){
+	public String getRestaurant(){
 		return this.restaurant;
 	}
 

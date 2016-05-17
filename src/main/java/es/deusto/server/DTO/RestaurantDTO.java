@@ -10,6 +10,8 @@ import javax.jdo.annotations.PrimaryKey;
 
 import es.deusto.server.jdo.City;
 import es.deusto.server.jdo.Comment;
+import es.deusto.server.jdo.Reservation;
+import es.deusto.server.jdo.Restaurant;
 
 public class RestaurantDTO implements Serializable{
 
@@ -27,6 +29,8 @@ public class RestaurantDTO implements Serializable{
 	String pathImagen = null;
 	City city = null;
 
+	List<Reservation> reservation;
+
 	@Persistent(mappedBy = "member", dependentElement = "true")
 	@Join
 	List<Comment> commentsR = new ArrayList<Comment>();
@@ -38,7 +42,19 @@ public class RestaurantDTO implements Serializable{
 		this.street="";
 		this.city=null;
 	}
-	public RestaurantDTO (String nameR, String rate, String numRates,
+	public RestaurantDTO (Restaurant restaurant) {
+		super();
+		this.nameR = restaurant.getNameR();
+		this.rate = restaurant.getRate();
+		this.numRates = restaurant.getNumRates();
+		this.category = restaurant.getCategory();
+		this.street = restaurant.getStreet();
+		this.commentsR = restaurant.getCommentsR();
+		this.city= restaurant.getCity();
+		this.reservation = new ArrayList<Reservation>();
+	}
+	
+	public RestaurantDTO(String nameR, String rate, String numRates,
 			String category, String street, List<Comment> commentsR, City city) {
 		super();
 		this.nameR = nameR;
@@ -48,6 +64,7 @@ public class RestaurantDTO implements Serializable{
 		this.street = street;
 		this.commentsR = commentsR;
 		this.city=city;
+		this.reservation = new ArrayList<Reservation>();
 	}
 	private static final long serialVersionUID = 1L;
 	
@@ -130,6 +147,19 @@ public class RestaurantDTO implements Serializable{
 
 	public void setPathImagen(String pathImagen) {
 		this.pathImagen = pathImagen;
+	}
+	
+	//Cambios
+	public List<Reservation> getReservations() {
+		return reservation;
+	}
+
+	public void setReservations(List<Reservation> reservation) {
+		this.reservation = reservation;
+	}
+	
+	public void addReservation(Reservation reservation){
+		this.reservation.add(reservation);
 	}
 
 }
