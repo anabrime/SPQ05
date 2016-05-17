@@ -569,16 +569,16 @@ public class RestaurantAdvisorTest {
 	@Test
 	public void RestaurantDAOTest() {
 		RestaurantDTO rdto = new RestaurantDTO("casaPaco", "5", "4455643", "rico", "asdf", new ArrayList<Comment>(),
-				new City());
+		new City());
 		new RestaurantDTO();
 		Restaurant r = new Restaurant();
 		r.setCategory(rdto.getCategory());
-		r.setCity(r.getCity());
+		r.setCity(rdto.getCity());
 		r.setCommentsR(rdto.getCommentsR());
 		r.setNameR(rdto.getNameR());
 		r.setRate(rdto.getNumRates());
 		r.setStreet(rdto.getStreet());
-		if (rdto.equals(r)) {
+		if (rdto.getNameR().equals(r.getNameR())&& rdto.getCategory().equals(r.getCategory())) {
 			assertTrue(true);
 		} else
 			assertTrue(false);

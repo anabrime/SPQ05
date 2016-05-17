@@ -195,13 +195,13 @@ public class Basic_MainWindow extends JFrame {
 		});
 				
 		logoLabel = new JLabel("");
-		logoLabel.setIcon(new ImageIcon("/home/gorka/Pictures/logo.png"));
+		logoLabel.setIcon(new ImageIcon("C:\\Users\\Jon\\git\\spqimg\\logo.png"));
 		logoLabel.setBounds(10, 10, 100, 75);
 		panel.add(logoLabel);
 
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new File("/home/gorka/Pictures/logo.png"));
+			img = ImageIO.read(new File("C:\\Users\\Jon\\git\\spqimg\\logo.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

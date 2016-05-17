@@ -97,7 +97,7 @@ public class Basic_LoginWindow extends JFrame{
 		
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new File("/home/gorka/Pictures/logo.png"));
+			img = ImageIO.read(new File("C:\\Users\\Jon\\git\\spqimg\\logo.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

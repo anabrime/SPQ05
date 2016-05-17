@@ -40,7 +40,7 @@ public class Basic_RestaurantWindow extends JFrame {
 	protected JTextField textField_Name;
 	protected JTextField textField_Location;
 	protected JTextField textField_Rate;
-	protected String imgLogo = "/home/gorka/Pictures/logo.png";
+	protected String imgLogo = "C:\\Users\\Jon\\git\\spqimg\\logo.png";
 	protected String imgPhotoRestaurant;
 	protected final JComboBox<String> comboBoxRate;
 	protected final JComboBox<String>comboBoxBook;
@@ -57,7 +57,7 @@ public class Basic_RestaurantWindow extends JFrame {
 		btn_logo.setIcon(new ImageIcon(imgLogo));
 		btn_logo.setBounds(10, 10, 100, 75);
 
-		ImageIcon icon2 = new ImageIcon("/home/gorka/Pictures/logo.png");
+		ImageIcon icon2 = new ImageIcon("C:\\Users\\Jon\\git\\spqimg\\logo.png");
 		Image img2 = icon2.getImage() ;  
 		Image newimg2 = img2.getScaledInstance( btn_logo.getWidth(), btn_logo.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon2 = new ImageIcon( newimg2 );
