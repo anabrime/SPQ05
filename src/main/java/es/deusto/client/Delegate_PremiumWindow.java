@@ -33,7 +33,7 @@ public class Delegate_PremiumWindow extends Basic_PremiumWindow{
 			pay = true;
 	}
 	
-	protected void makePay(){
+	public void makePay(){
 		getComboBox();
 		if(pay){
 			try {
@@ -56,7 +56,7 @@ public class Delegate_PremiumWindow extends Basic_PremiumWindow{
 		}
 	}
 	
-	protected void putText(){
+	public void putText(){
 		//String mesage = "You have "+memberDTO.getPremiun()+" days of premiun.";
 		//textPane.setText(mesage);	
 	}
