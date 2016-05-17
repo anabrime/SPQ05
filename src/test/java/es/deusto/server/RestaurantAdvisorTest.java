@@ -7,12 +7,15 @@ package es.deusto.server;
 import junit.framework.JUnit4TestAdapter;
 import es.deusto.client.Basic_LoginWindow;
 import es.deusto.client.Basic_MainWindow;
+import es.deusto.client.Basic_PremiumWindow;
 import es.deusto.client.Basic_RegistrationWindow;
 import es.deusto.client.Basic_RestaurantWindow;
 import es.deusto.client.Delegate_LoginWindow;
 import es.deusto.client.Delegate_MainWindow;
+import es.deusto.client.Delegate_PremiumWindow;
 import es.deusto.client.Delegate_RegistrationWindow;
 import es.deusto.client.Delegate_RestaurantWindow;
+import es.deusto.server.DAO.UserDAO;
 import es.deusto.server.DTO.MemberDTO;
 import es.deusto.server.DTO.RestaurantDTO;
 import es.deusto.server.jdo.City;
@@ -551,7 +554,18 @@ public class RestaurantAdvisorTest {
 			assertTrue(false);
 
 	}
-
+	@Test
+	public void UserDAOTest() {
+		
+		UserDAO udao= new UserDAO();
+		udao.storeUser(new Member());
+		udao.retrieveUser("ana");
+		udao.updateUser(m);
+		if (m.getEmail() == "ana") {
+			assertTrue(true);
+		} else
+			assertTrue(false);
+	}
 	@Test
 	public void RestaurantDAOTest() {
 		RestaurantDTO rdto = new RestaurantDTO("casaPaco", "5", "4455643", "rico", "asdf", new ArrayList<Comment>(),
@@ -570,20 +584,26 @@ public class RestaurantAdvisorTest {
 			assertTrue(false);
 
 	}
-
+	
 	@Test
 	public void WindowsTest() {
 
 		new Basic_LoginWindow();
 		new Basic_MainWindow();
 		new Basic_RegistrationWindow();
+		new Basic_PremiumWindow();
+		Delegate_PremiumWindow pw=new Delegate_PremiumWindow("127.0.0.1", "1099", "RestaurantAdvisor", new MemberDTO(m.getName(), m.getPassword()));
 		new Basic_RestaurantWindow();
-		new Delegate_LoginWindow("127.0.0.1", "1099", "RestaurantAdvisor");
-		// new Delegate_RestaurantWindow(r,"127.0.0.1", "1099",
-		// "RestaurantAdvisor");
+		Delegate_LoginWindow dlw=new Delegate_LoginWindow("127.0.0.1", "1099", "RestaurantAdvisor");
+//		Delegate_RestaurantWindow drw=new Delegate_RestaurantWindow(r,"127.0.0.1", "1099", "RestaurantAdvisor", new MemberDTO(m.getName(), m.getPassword()));
 		Delegate_RegistrationWindow dr = new Delegate_RegistrationWindow("127.0.0.1", "1099", "RestaurantAdvisor");
-		// new Delegate_MainWindow("127.0.0.1", "1099", "RestaurantAdvisor");
-		dr.getData();
+		new Delegate_MainWindow("127.0.0.1", "1099", "RestaurantAdvisor", new MemberDTO(m.getName(), m.getPassword()));
+pw.putText();
+pw.makePay();
+dlw.getInfo();
+//dlw.getData();
+
+//		dr.getData();
 	}
 
 	@After
