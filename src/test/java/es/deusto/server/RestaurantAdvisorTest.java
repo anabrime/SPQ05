@@ -130,14 +130,15 @@ public class RestaurantAdvisorTest {
 		}
 
 	}
+
 	@Before
 	public void setUpDatabase() {
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 		try {
-			tx.begin(); 
-  
+			tx.begin();
+
 			System.out.println("Deleting test members from persistence. Cleaningup.");
 			Query q1 = pm.newQuery(Member.class);
 			long numberInstancesDeleted = q1.deletePersistentAll();
@@ -175,6 +176,7 @@ public class RestaurantAdvisorTest {
 			e.printStackTrace();
 		}
 	}
+
 	@Before
 	public void setUpClient() {
 		try {
@@ -198,11 +200,11 @@ public class RestaurantAdvisorTest {
 	@Before
 	public void setUpData() {
 
-		m = new Member("a", "a", "a", null);
-		t.add(new RestaurantDTO("Foster", "3", "2", "Mexican", "asd", null, new City("Bilbao", null, null)));
+		m = new Member("ana", "ana", "ana", null, 0);
+		t.add(new RestaurantDTO("Foster", "0", "0", "American", "", null, new City("Bilbao", null, null)));
 
 		City city = new City();
-		new Comment("a", m, new Restaurant());
+		new Comment("a", m, "Foster");
 		city.getCodPostal();
 		// try {
 		// server.addMember("jb", "123", "asddf");
@@ -459,30 +461,35 @@ public class RestaurantAdvisorTest {
 
 	@Test
 	public void setCommentTest() {
-		boolean test = !false;
-		Restaurant rest = new Restaurant(t.get(0).getNameR(), t.get(0).getRate(), t.get(0).getNumRates(),
-				t.get(0).getCategory(), t.get(0).getStreet(), t.get(0).getCommentsR(), t.get(0).getCity());
+		boolean test = false;
+		RestaurantDTO rest = new RestaurantDTO(
+				new Restaurant("Foster", "0", "0", "American", null, null, new City("Bilbao", null, null)));
+		System.out.println("------------------------------------------------" + test);
+
 		try {
 			System.out.println("Test 11 - set a comment");
-			test = server.setComment(new Comment("new comment", m, rest));
-
+			test = server.storeComment("new comment", rest, (new MemberDTO(m.getName(), m.getPassword())));
+			System.out.println("------------------------------------------------" + test);
 		} catch (Exception re) {
 			System.err.println(" # Messenger RemoteException: " + re.getMessage());
 		}
 		/*
 		 * Very simple test
 		 */
+
 		assertTrue(test);
 	}
 
 	@Test
 	public void addRateToRestaurantTest() {
-		boolean test = !false;
+		boolean test = false;
 
 		try {
 			System.out.println("Test 12 - set a rate to a restaurant");
 			test = server.addRateToRestaurant(
-					new Restaurant("Foster", "3", "2", "Mexican", "asd", null, new City("Bilbao", null, null)), "2");
+					new RestaurantDTO(
+							new Restaurant("Foster", "0", "0", "American", null, null, new City("Bilbao", null, null))),
+					"2");
 
 		} catch (Exception re) {
 			System.err.println(" # Messenger RemoteException: " + re.getMessage());
@@ -495,7 +502,7 @@ public class RestaurantAdvisorTest {
 
 	@Test
 	public void addMemberTest() {
-		boolean test = !false;
+		boolean test = false;
 		try {
 			System.out.println("Test 13 - sget a member");
 			test = server.addMember("test", "1234", "gaizkatetts");
@@ -513,7 +520,7 @@ public class RestaurantAdvisorTest {
 
 	@Test
 	public void getMemberTest() {
-		boolean test = !false;
+		boolean test = false;
 		MemberDTO m = new MemberDTO();
 		try {
 			System.out.println("Test 13 - sget a member");
@@ -572,9 +579,10 @@ public class RestaurantAdvisorTest {
 		new Basic_RegistrationWindow();
 		new Basic_RestaurantWindow();
 		new Delegate_LoginWindow("127.0.0.1", "1099", "RestaurantAdvisor");
-//		new Delegate_RestaurantWindow(r,"127.0.0.1", "1099", "RestaurantAdvisor");
+		// new Delegate_RestaurantWindow(r,"127.0.0.1", "1099",
+		// "RestaurantAdvisor");
 		Delegate_RegistrationWindow dr = new Delegate_RegistrationWindow("127.0.0.1", "1099", "RestaurantAdvisor");
-//		new Delegate_MainWindow("127.0.0.1", "1099", "RestaurantAdvisor");
+		// new Delegate_MainWindow("127.0.0.1", "1099", "RestaurantAdvisor");
 		dr.getData();
 	}
 
@@ -634,4 +642,3 @@ public class RestaurantAdvisorTest {
 		}
 	}
 }
-
