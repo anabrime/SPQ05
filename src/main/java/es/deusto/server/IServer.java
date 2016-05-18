@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.jdo.Query;
 
+import org.datanucleus.enhancer.methods.GetTransactionalObjectId;
+
 import es.deusto.server.DTO.MemberDTO;
 import es.deusto.server.DTO.RestaurantDTO;
 import es.deusto.server.jdo.Comment;
@@ -32,4 +34,5 @@ public interface IServer extends Remote {
 	public MemberDTO addPay(MemberDTO memberDTO, int months) throws RemoteException;
 	public boolean time(MemberDTO memberDTO) throws RemoteException;
 	public Reservation makeBook(String time, String memberName, RestaurantDTO restaurantDTO)throws RemoteException;
+	public List<Comment> getAllCommentsOfRestaurant (RestaurantDTO restaurantDTO) throws RemoteException;
 }

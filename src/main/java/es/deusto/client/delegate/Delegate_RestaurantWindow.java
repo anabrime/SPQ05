@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import es.deusto.client.basic.Basic_RestaurantWindow;
 import es.deusto.client.remote.RMIServiceLocator;
 import es.deusto.server.DTO.CommentDTO;
 import es.deusto.server.DTO.MemberDTO;
@@ -79,7 +80,7 @@ public class Delegate_RestaurantWindow extends Basic_RestaurantWindow {
 		imgPhotoRestaurant = restaurant.getPathImagen();
 		//		textField_UserName.setText(user.getName());
 		//		textNombreDelUsuarioArriba.setText(user.getName());
-
+		setCommentsInTextField();
 	}
 
 	@Override
@@ -104,6 +105,18 @@ public class Delegate_RestaurantWindow extends Basic_RestaurantWindow {
 		super.goMainWindow();
 	}
 
+	private void setCommentsInTextField(){
+		System.out.println("AÑADIENDO COMENTARIOS FAK");
+		try {
+			for (Comment comment : rmi.getService().getAllCommentsOfRestaurant(restaurantDTO)) {
+				textField_Description.setText(comment.getText()+"\n");
+				System.out.println(comment.getText());
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	//Cambios
 	protected void book(){
 		getComboBoxe();

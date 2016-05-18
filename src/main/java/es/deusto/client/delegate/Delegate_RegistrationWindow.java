@@ -2,6 +2,7 @@ package es.deusto.client.delegate;
 
 import java.rmi.RemoteException;
 
+import es.deusto.client.basic.Basic_RegistrationWindow;
 import es.deusto.client.remote.RMIServiceLocator;
 
 public class Delegate_RegistrationWindow extends Basic_RegistrationWindow {

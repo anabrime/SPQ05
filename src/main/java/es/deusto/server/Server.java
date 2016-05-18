@@ -93,4 +93,7 @@ public class Server extends UnicastRemoteObject implements IServer {
 		return dao.makeBook(time, memberName, restaurantDTO);
 	}
 	
+	public List<Comment> getAllCommentsOfRestaurant (RestaurantDTO restaurantDTO) throws RemoteException{
+		return dao.getAllCommentsOfRestaurant(restaurantDTO);
+	}
 }

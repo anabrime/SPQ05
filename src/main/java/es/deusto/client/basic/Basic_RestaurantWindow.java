@@ -44,6 +44,7 @@ public class Basic_RestaurantWindow extends JFrame {
 	protected String imgPhotoRestaurant;
 	protected final JComboBox<String> comboBoxRate;
 	protected final JComboBox<String>comboBoxBook;
+	protected JButton bookButton;
 
 	public Basic_RestaurantWindow() {
 		setResizable(false);
@@ -111,8 +112,9 @@ public class Basic_RestaurantWindow extends JFrame {
 		txtpnRate.setBounds(168, 59, 80, 20);
 		panel_1.add(txtpnRate);
 
-		textField_Description = new JTextField("Description");
+		textField_Description = new JTextField();
 		textField_Description.setBounds(10, 90, 359, 148);
+		textField_Description.setEditable(false);
 		panel_1.add(textField_Description);
 
 		JPanel panel_Photo = new JPanel();
@@ -222,8 +224,18 @@ public class Basic_RestaurantWindow extends JFrame {
 		comboBoxBook.setModel(new DefaultComboBoxModel<String>(booksTriki));
 		getContentPane().add(comboBoxBook);
 
-		JButton bookButton = new JButton();
-		bookButton.setBounds(375, 124, 35, 35);
+		bookButton = new JButton();
+		bookButton.setBounds(369, 124, 108, 35);
+		ImageIcon icona = new ImageIcon(new File("img/bookB.png").getAbsolutePath());
+		Image imga = icona.getImage() ;  
+		Image newimga = imga.getScaledInstance( bookButton.getWidth(),bookButton.getHeight(),  java.awt.Image.SCALE_SMOOTH ) ;  
+		icona = new ImageIcon( newimga );
+		bookButton.setIcon(icona);
+		bookButton.setBorderPainted(false);
+		bookButton.setContentAreaFilled(false); 
+		bookButton.setFocusPainted(false); 
+		bookButton.setOpaque(false);
+
 		getContentPane().add(bookButton);
 		bookButton.addActionListener(new ActionListener() {
 

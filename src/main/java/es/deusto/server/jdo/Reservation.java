@@ -1,15 +1,18 @@
 package es.deusto.server.jdo;
 
+import java.io.Serializable;
+
 import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
-public class Reservation {
+public class Reservation implements Serializable{
 
 	@PrimaryKey
 	String time;
 	String memberName;
+	@PrimaryKey
 	String restaurantName;
 	
 	public Reservation(){

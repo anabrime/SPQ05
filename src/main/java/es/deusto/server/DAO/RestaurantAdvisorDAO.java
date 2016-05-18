@@ -9,6 +9,7 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
+import javax.swing.JOptionPane;
 
 import es.deusto.server.DTO.CommentDTO;
 import es.deusto.server.DTO.MemberDTO;
@@ -634,12 +635,12 @@ public class RestaurantAdvisorDAO {
 
 			Extent<Comment> extent = pm.getExtent(Comment.class, true);
 			for (Comment comment : extent) {
-				if(comment.getRestaurant().equals(restaurantDTO))
+				if(comment.getRestaurant().equals(restaurantDTO.getNameR()))
 					r.add(comment);
+					System.out.println(comment.getText());
 			}
-
 			tx.commit();
-			System.out.println("Restaurant retrieves successfully");
+			System.out.println("Comments retrieves successfully");
 		}catch(Exception e){
 			e.printStackTrace();
 			System.out.println("WARN: Exception when retrieving from database");
@@ -777,14 +778,14 @@ public class RestaurantAdvisorDAO {
 	
 			Extent<Restaurant> extent = pm.getExtent(Restaurant.class, true);
 			for (Restaurant restaurant2 : extent) {
-				if(restaurant2.getNameR().toString().equals(restaurantDTO.getNameR().toString()))
-					pm.deletePersistent(restaurant2);
+				if(restaurant2.getNameR().equals(restaurantDTO.getNameR()))
+					pm.makePersistent(reservation);
 			}
-		    pm.makePersistent(reservation);
 			tx.commit();
 			return reservation;
 		} catch (Exception ex) {
-			System.out.println("Error updating a user: " + ex.getMessage());
+			System.out.println("Error making a reservation: " + ex.getMessage());
+			JOptionPane.showMessageDialog(null, "At this time there is already a reservation.");
 			return null;
 		} finally {
 			if (tx != null && tx.isActive()) {

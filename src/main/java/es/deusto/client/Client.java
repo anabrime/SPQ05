@@ -1,6 +1,8 @@
 package es.deusto.client;
 
 import java.rmi.RMISecurityManager;
+
+import es.deusto.client.delegate.Delegate_LoginWindow;
 import es.deusto.server.IServer;
 
 public class Client {

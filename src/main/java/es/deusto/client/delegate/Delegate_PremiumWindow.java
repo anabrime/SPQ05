@@ -2,6 +2,7 @@ package es.deusto.client.delegate;
 
 import java.rmi.RemoteException;
 
+import es.deusto.client.basic.Basic_PremiumWindow;
 import es.deusto.client.remote.RMIServiceLocator;
 import es.deusto.server.DTO.MemberDTO;
 import es.deusto.server.jdo.Member;

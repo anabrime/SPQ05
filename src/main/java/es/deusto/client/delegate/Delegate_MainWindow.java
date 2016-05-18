@@ -9,6 +9,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import es.deusto.client.basic.Basic_MainWindow;
 import es.deusto.client.remote.RMIServiceLocator;
 import es.deusto.server.DTO.MemberDTO;
 import es.deusto.server.DTO.RestaurantDTO;
