@@ -1,4 +1,4 @@
-package es.deusto.client;
+package es.deusto.client.delegate;
 
 import java.rmi.RemoteException;
 

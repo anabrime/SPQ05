@@ -1,4 +1,4 @@
-package es.deusto.client;
+package es.deusto.client.basic;
 
 import javax.swing.JFrame;
 import java.awt.GridBagLayout;
