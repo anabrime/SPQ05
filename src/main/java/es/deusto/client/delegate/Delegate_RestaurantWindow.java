@@ -32,7 +32,7 @@ public class Delegate_RestaurantWindow extends Basic_RestaurantWindow {
 	public Delegate_RestaurantWindow(RestaurantDTO restaurantDTO, String IP, String port, String serverName, MemberDTO memberDTO) {
 		this.restaurantDTO = restaurantDTO;
 		this.memberDTO = memberDTO;
-		this.member = new Member("", memberDTO.getName(), memberDTO.getPassword(), new ArrayList<Comment>(), 0);
+		this.member = new Member("", memberDTO.getName(), memberDTO.getPassword(), new ArrayList<Comment>(), memberDTO.getPremium());
 		this.restaurant = new Restaurant(restaurantDTO.getNameR(),
 				restaurantDTO.getRate(),
 				restaurantDTO.getNumRates(),
@@ -81,6 +81,11 @@ public class Delegate_RestaurantWindow extends Basic_RestaurantWindow {
 		//		textField_UserName.setText(user.getName());
 		//		textNombreDelUsuarioArriba.setText(user.getName());
 		setCommentsInTextField();
+		System.out.println("PREMIUM DEL MEMBER: " + member.getPremium());
+		if(member.getPremium()<=0) 
+			bookButton.setEnabled(false);
+		else
+			bookButton.setEnabled(true);
 	}
 
 	@Override
@@ -106,7 +111,6 @@ public class Delegate_RestaurantWindow extends Basic_RestaurantWindow {
 	}
 
 	private void setCommentsInTextField(){
-		System.out.println("AÑADIENDO COMENTARIOS FAK");
 		try {
 			for (Comment comment : rmi.getService().getAllCommentsOfRestaurant(restaurantDTO)) {
 				textField_Description.setText(comment.getText()+"\n");
@@ -117,6 +121,7 @@ public class Delegate_RestaurantWindow extends Basic_RestaurantWindow {
 			e.printStackTrace();
 		}
 	}
+	
 	//Cambios
 	protected void book(){
 		getComboBoxe();

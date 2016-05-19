@@ -448,7 +448,7 @@ public class RestaurantAdvisorDAO {
 			//			Restaurant restaurant2 = new Restaurant("Telepizza", "0", "0", "Italian", "", new ArrayList<Comment>(), city2);
 			//			Restaurant restaurant3 = new Restaurant("Telepizza", "0", "0", "Italian", "", new ArrayList<Comment>(),city3);
 			Restaurant restaurant4 = new Restaurant("Deustoarrak", "0", "0", "Basque", "", new ArrayList<Comment>(), city);
-			Restaurant restaurant5 = new Restaurant("Foster", "0", "0", "American", "", new ArrayList<Comment>(),city);
+			Restaurant restaurant5 = new Restaurant("Foster", "0", "0", "American", "", new ArrayList<Comment>(),city2);
 			Restaurant restaurant6 = new Restaurant("MejicanoTere", "0", "0", "Mexican", "", new ArrayList<Comment>(), city);
 			//			Restaurant restaurant7 = new Restaurant("MejicanoTere", "0", "0", "Mexican", "", new ArrayList<Comment>(),city2);
 			//			Restaurant restaurant8 = new Restaurant("Smoking yewepe", "0", "0", "Asian", "", new ArrayList<Comment>(),city);
@@ -710,13 +710,20 @@ public class RestaurantAdvisorDAO {
 
 		try {
 			tx.begin();
-			System.out.println("   * Updating a member (premiun): " + months);
+			System.out.println("   * Updating a member (premium): " + months);
 
 			Extent<Member> extent = pm.getExtent(Member.class, true);
 			for (Member member2 : extent) {
 				if(member2.getName().toString().equals(memberDTO.getName().toString()))
-					pm.deletePersistent(member2);
-			}
+				{
+					member = member2;
+					member.setPremium(member2.getPremium()+months);
+//					pm.deletePersistent(member2);
+					pm.makePersistent(member2);
+				}
+				}
+			tx.commit();
+			tx.begin();
 			pm.makePersistent(member);
 			tx.commit();
 			memberDTO.setPremium(memberDTO.getPremium()+months);
@@ -745,7 +752,11 @@ public class RestaurantAdvisorDAO {
 				Extent<Member> extent = pm.getExtent(Member.class, true);
 				for (Member member2 : extent) {
 					if(member2.getName().toString().equals(memberDTO.getName().toString()))
-						pm.deletePersistent(member2);
+					{
+						member = member2;
+						member2.setPremium(120);
+						pm.makePersistent(member2);
+					}
 				}
 				pm.makePersistent(member);
 				tx.commit();
@@ -784,7 +795,6 @@ public class RestaurantAdvisorDAO {
 			tx.commit();
 			return reservation;
 		} catch (Exception ex) {
-			System.out.println("Error making a reservation: " + ex.getMessage());
 			JOptionPane.showMessageDialog(null, "At this time there is already a reservation.");
 			return null;
 		} finally {

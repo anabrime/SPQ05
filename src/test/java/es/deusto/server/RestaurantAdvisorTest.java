@@ -5,16 +5,8 @@
 package es.deusto.server;
 
 import junit.framework.JUnit4TestAdapter;
-import es.deusto.client.Basic_LoginWindow;
-import es.deusto.client.Basic_MainWindow;
-import es.deusto.client.Basic_PremiumWindow;
-import es.deusto.client.Basic_RegistrationWindow;
-import es.deusto.client.Basic_RestaurantWindow;
-import es.deusto.client.Delegate_LoginWindow;
-import es.deusto.client.Delegate_MainWindow;
-import es.deusto.client.Delegate_PremiumWindow;
-import es.deusto.client.Delegate_RegistrationWindow;
-import es.deusto.client.Delegate_RestaurantWindow;
+import es.deusto.client.basic.*;
+import es.deusto.client.delegate.*;
 import es.deusto.server.DAO.UserDAO;
 import es.deusto.server.DTO.MemberDTO;
 import es.deusto.server.DTO.RestaurantDTO;
