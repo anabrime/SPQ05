@@ -1,3 +1,6 @@
+/**@package es.deusto.client.basic
+   @brief Package composed by classes Basic_LoginWindow, Basic_MainWindow, Basic_PremiumWindow, Basic_RegistrationWindow and Basic_RestaurantWindow
+ */
 package es.deusto.client.basic;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -21,9 +24,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Label;
-
+/**
+ * A basic login window.
+ * 
+ * @author Team 05
+ * 
+ * @param textFieldUsername To write your username
+ * @param textFieldPassword To write your password
+ * @param panel Basic panel
+ * @param loginButton In order you have an account
+ * @param registerButton In order you need an account 
+ */
 public class Basic_LoginWindow extends JFrame{
-	
+
 	protected JTextField textFieldUsername, textFieldPassword;
 	protected JPanel panel;
 	protected JButton loginButton;
@@ -37,7 +50,7 @@ public class Basic_LoginWindow extends JFrame{
 		panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
 		getContentPane().add(panel, BorderLayout.CENTER);
-		
+
 		registerButton = new JButton();
 		registerButton.setBounds(100, 190, 100, 25);
 		ImageIcon icon1 = new ImageIcon(new File("img/registerB.png").getAbsolutePath());
@@ -47,17 +60,17 @@ public class Basic_LoginWindow extends JFrame{
 		registerButton.setIcon(icon1);
 		registerButton.setBorderPainted(false);
 		registerButton.setContentAreaFilled(false); 
-	    registerButton.setFocusPainted(false); 
+		registerButton.setFocusPainted(false); 
 		registerButton.setOpaque(false);
 		registerButton.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				register();
 			}
 		});
 		panel.setLayout(null);
 		panel.add(registerButton);		
-		
+
 		loginButton = new JButton("Login");
 		ImageIcon icon2 = new ImageIcon(new File("img/loginB.png").getAbsolutePath());
 		Image img2 = icon2.getImage() ;  
@@ -90,11 +103,11 @@ public class Basic_LoginWindow extends JFrame{
 		textFieldPassword.repaint();
 		panel.add(textFieldPassword);
 		textFieldPassword.setColumns(10);
-		
+
 		JLabel label = new JLabel();
 		label.setBounds(10, 10, 100, 75);
 		panel.add(label);
-		
+
 		BufferedImage img = null;
 		try {
 			img = ImageIO.read(new File("/home/gorka/Pictures/logo.png"));
@@ -105,16 +118,16 @@ public class Basic_LoginWindow extends JFrame{
 				Image.SCALE_SMOOTH);
 		ImageIcon imageIcon = new ImageIcon(dimg);
 		label.setIcon(imageIcon);
-		
+
 		revalidate();
 		repaint();
 		setVisible(true);
 	}
 	protected void login(){
-		 
+
 	}
-	
+
 	protected void register() {
-		
+
 	}
 }

@@ -5,11 +5,20 @@ import java.rmi.RemoteException;
 import es.deusto.client.basic.Basic_RegistrationWindow;
 import es.deusto.client.remote.RMIServiceLocator;
 
+/**
+ * A delegate registration window.
+ * 
+ * @author Team 05
+ *
+ * @param rmi RMIServiceLocator
+ * @param name
+ * @param password
+ * @param email
+ * @param nameS, passwordS, emailS
+ * @param IP, port, serverName
+ */
 public class Delegate_RegistrationWindow extends Basic_RegistrationWindow {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	RMIServiceLocator rmi;
 	Boolean name = false;
@@ -18,6 +27,11 @@ public class Delegate_RegistrationWindow extends Basic_RegistrationWindow {
 	String nameS, passwordS, emailS;
 	String IP,port,serverName;
 
+	/** Constructor method
+	 * @param IP
+	 * @param port
+	 * @param serverName
+	 */
 	public Delegate_RegistrationWindow(String IP, String port, String serverName) {
 		rmi = new RMIServiceLocator(IP, port, serverName);
 		this.IP = IP;
@@ -25,6 +39,9 @@ public class Delegate_RegistrationWindow extends Basic_RegistrationWindow {
 		this.serverName = serverName;
 	}
 
+	/**
+	 * Get the info for the registration
+	 */
 	private void getInfo() {
 		if (!textField.getText().equals(null))
 			name = true;
@@ -42,6 +59,10 @@ public class Delegate_RegistrationWindow extends Basic_RegistrationWindow {
 		emailS = txtEmail.getText();
 	}
 
+	/**
+	 * Subscribe a client
+	 * @see es.deusto.client.basic.Basic_RegistrationWindow#suscribe()
+	 */
 	@Override
 
 	protected void suscribe() {

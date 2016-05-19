@@ -14,11 +14,22 @@ import es.deusto.server.jdo.Comment;
 import es.deusto.server.jdo.Member;
 import es.deusto.server.jdo.Restaurant;
 
+/**
+ * A delegate restaurant window.
+ *
+ * @author Team 05
+ *
+ * @param restaurantDTO
+ * @param restaurant
+ * @param IP, port, serverName
+ * @param memberDTO
+ * @param member
+ * @param rmi RMIServiceLocator
+ * @param rate
+ * @param hour
+ */
 public class Delegate_RestaurantWindow extends Basic_RestaurantWindow {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	RestaurantDTO restaurantDTO;
 	Restaurant restaurant;
@@ -29,6 +40,14 @@ public class Delegate_RestaurantWindow extends Basic_RestaurantWindow {
 	boolean rate = false;
 	boolean hour = false;
 
+	/**
+	 * Constructor method
+	 * @param restaurantDTO 
+	 * @param IP
+	 * @param port
+	 * @param serverName
+	 * @param memberDTO
+	 */
 	public Delegate_RestaurantWindow(RestaurantDTO restaurantDTO, String IP, String port, String serverName, MemberDTO memberDTO) {
 		this.restaurantDTO = restaurantDTO;
 		this.memberDTO = memberDTO;
@@ -47,16 +66,22 @@ public class Delegate_RestaurantWindow extends Basic_RestaurantWindow {
 		putData();
 	}
 
+	/**
+	 * Get the rate and the hour of the restaurant
+	 */
 	private void getComboBoxe() {
 
 		if (!comboBoxRate.getSelectedItem().equals("Rate"))
 			rate = true;
-		
+
 		if (!comboBoxBook.getSelectedItem().equals("Hour"))
 			hour = true;
 
 	}
 
+	/** Add a rate to a restaurant
+	 * @see es.deusto.client.basic.Basic_RestaurantWindow#rate()
+	 */
 	@Override
 	protected void rate() {
 		getComboBoxe();
@@ -70,6 +95,9 @@ public class Delegate_RestaurantWindow extends Basic_RestaurantWindow {
 		}
 	}
 
+	/** Put all the information of the restaurant
+	 * @see es.deusto.client.basic.Basic_RestaurantWindow#putData()
+	 */
 	@Override
 	protected void putData() {
 		textField_Name.setText(restaurant.getNameR());
@@ -88,6 +116,9 @@ public class Delegate_RestaurantWindow extends Basic_RestaurantWindow {
 			bookButton.setEnabled(true);
 	}
 
+	/** Make a comment
+	 * @see es.deusto.client.basic.Basic_RestaurantWindow#comment()
+	 */
 	@Override
 	protected void comment() {
 		String text = textField_CommentText.getText();
@@ -99,17 +130,26 @@ public class Delegate_RestaurantWindow extends Basic_RestaurantWindow {
 		}
 	}
 
+	/** Logout from the application 
+	 * @see es.deusto.client.basic.Basic_RestaurantWindow#logout()
+	 */
 	@Override
 	protected void logout() {
 		this.dispose();
 		new Delegate_MainWindow(IP, port, serverName, memberDTO);
 	}
 
+	/** Go to tha main window
+	 * @see es.deusto.client.basic.Basic_RestaurantWindow#goMainWindow()
+	 */
 	@Override
 	protected void goMainWindow() {
 		super.goMainWindow();
 	}
 
+	/**
+	 * Change the comments, or introduce more comments to the restaurantDTO
+	 */
 	private void setCommentsInTextField(){
 		try {
 			for (Comment comment : rmi.getService().getAllCommentsOfRestaurant(restaurantDTO)) {
@@ -121,8 +161,11 @@ public class Delegate_RestaurantWindow extends Basic_RestaurantWindow {
 			e.printStackTrace();
 		}
 	}
+
 	
-	//Cambios
+	/** Book a restaurant, if at the time that you want to book is another reservation, we will notice you.
+	 * @see es.deusto.client.basic.Basic_RestaurantWindow#book()
+	 */
 	protected void book(){
 		getComboBoxe();
 		boolean reserved = false;

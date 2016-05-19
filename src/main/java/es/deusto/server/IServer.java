@@ -14,7 +14,12 @@ import es.deusto.server.jdo.Comment;
 import es.deusto.server.jdo.Member;
 import es.deusto.server.jdo.Reservation;
 import es.deusto.server.jdo.Restaurant;
-
+/**
+ * Interface of the Server class.
+ * 
+ * @author Team 05
+ *
+ */
 public interface IServer extends Remote {
 	
 	public List<RestaurantDTO> getRestaurantByName(String text) throws RemoteException;

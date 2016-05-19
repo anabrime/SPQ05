@@ -37,10 +37,34 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
+/**
+ * A basic main window. 
+ * 
+ * @author Team 05
+ * 
+ * @param table A basic table
+ * @param names Restaurant names (Telepizza, Deustoarrak, Foster, MejicanoTere, Smoking yewepe)
+ * @param places Location of the restaurants (Bilbao, Gorliz, Getxo)
+ * @param categorys Types of restaurants (Mexican, Italian, American, Asian, Basque)
+ * @param rates The rates of the restaurants from 1 till 5
+ * @param userNameLabel Your user name
+ * @param logoutButton A logout button
+ * @param findButton To find restaurants
+ * @param openRestaurantButton For opening a restaurant
+ * @param premiumButton For premium users
+ * @param panel A basic panel
+ * @param comboBoxName For selecting the name of a restaurant
+ * @param comboBoxCategory For selecting the category of a restaurant
+ * @param comboBoxPlace For selecting the place you want to go
+ * @param comboBoxRate For selecting the rate of a restaurant
+ * @param scrollPane A scroll pane
+ * @param logolabel The logo of our company
+ * @param panelBonito2 A panel
+ * @param pabelBonito3 A panel
+ */
+
 public class Basic_MainWindow extends JFrame {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	protected JTable table;
@@ -60,7 +84,7 @@ public class Basic_MainWindow extends JFrame {
 	protected JComboBox<String> comboBoxRate;
 	protected JScrollPane scrollPane;
 	protected JLabel logoLabel;
-	
+
 
 	protected String[] namesTriki = { "Name","Telepizza", "Deustoarrak", "Foster","MejicanoTere", "Smoking yewepe" };
 	protected String[] placesTriki = { "Place","Bilbao", "Gorliz ", "Getxo" };
@@ -70,7 +94,7 @@ public class Basic_MainWindow extends JFrame {
 	protected JPanel panelBonito3;
 
 	public Basic_MainWindow() {
-	    
+
 		setResizable(false );
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(700, 600);
@@ -97,7 +121,7 @@ public class Basic_MainWindow extends JFrame {
 		logoutButton.setOpaque(false);
 		panel.add(logoutButton);
 		logoutButton.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				logout();
 			}
@@ -116,12 +140,12 @@ public class Basic_MainWindow extends JFrame {
 		openRestaurantButton.setOpaque(false);
 		panel.add(openRestaurantButton);
 		openRestaurantButton.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				openRestaurant();
 			}
 		});
-		
+
 		premiumButton = new JButton();
 		premiumButton.setBounds(590, 30, 75, 75);
 		ImageIcon icon4 = new ImageIcon(new File("img/premiumB.png").getAbsolutePath());
@@ -135,12 +159,12 @@ public class Basic_MainWindow extends JFrame {
 		premiumButton.setOpaque(false);
 		panel.add(premiumButton);
 		premiumButton.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				openPremium();			
 			}
 		});
-		
+
 		comboBoxName = new JComboBox<String>();
 		comboBoxName.setBounds(93, 115, 120, 20);
 		comboBoxName.setModel(new DefaultComboBoxModel<String>(namesTriki));
@@ -165,7 +189,7 @@ public class Basic_MainWindow extends JFrame {
 		scrollPane = new JScrollPane(table);
 		table.setFillsViewportHeight(true);
 		scrollPane.setBounds(60, 200, 477, 303);
-//		scrollPane.setBorder(BorderFactory.createLineBorder(Color.RED));;
+		//		scrollPane.setBorder(BorderFactory.createLineBorder(Color.RED));;
 		panel.add(scrollPane);
 
 
@@ -178,14 +202,14 @@ public class Basic_MainWindow extends JFrame {
 		icon1 = new ImageIcon( newimg1 );
 		findButton.setIcon(icon1);
 		findButton.setContentAreaFilled(false); 
-	    findButton.setFocusPainted(false); 
+		findButton.setFocusPainted(false); 
 		findButton.setOpaque(false);
 		panel.add(findButton);
 		findButton.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					
+
 					public void run() {
 						// TODO Auto-generated method stub
 						execute();
@@ -193,7 +217,7 @@ public class Basic_MainWindow extends JFrame {
 				});
 			}
 		});
-				
+
 		logoLabel = new JLabel("");
 		logoLabel.setIcon(new ImageIcon("/home/gorka/Pictures/logo.png"));
 		logoLabel.setBounds(10, 10, 100, 75);
@@ -212,54 +236,54 @@ public class Basic_MainWindow extends JFrame {
 		ImageIcon imageIcon = new ImageIcon(dimg);
 
 		logoLabel.setIcon(imageIcon);
-		
+
 		JPanel panelBonito = new JPanel();
 		panelBonito.setBackground(Color.DARK_GRAY);
 		panelBonito.setBounds(78, 91, 383, 89);
 		panelBonito.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		panel.add(panelBonito);
-		
+
 		panelBonito2 = new JPanel();
 		panelBonito2.setBounds(537, 110, 50, 50);
 		panelBonito2.setBackground(Color.DARK_GRAY);
 		panelBonito2.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
 		panel.add(panelBonito2);
-		
+
 		panelBonito3 = new JPanel();
 		panelBonito3.setBounds(484, 133, 51, 2);
 		panelBonito3.setBackground(Color.DARK_GRAY);
 		panelBonito3.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
 		panel.add(panelBonito3);
-		
-		
-		
+
+
+
 		this.setVisible(true);
 
 	}
-	
+
 	protected void openPremium(){
-		
+
 	}
-	
-	
+
+
 	protected void execute(){
-		
+
 	}
-	
+
 	@Override
 	public void paint(Graphics g) {
-	    Graphics2D g2d = (Graphics2D)g.create();
-	    g2d.setColor(Color.RED);
-	    g2d.drawLine(100, 100, 400, 100);
+		Graphics2D g2d = (Graphics2D)g.create();
+		g2d.setColor(Color.RED);
+		g2d.drawLine(100, 100, 400, 100);
 	}
-	
+
 	protected void logout(){
-		
+
 	}
-	
+
 	protected void openRestaurant() {
-		
+
 	}
 }

@@ -7,11 +7,18 @@ import es.deusto.client.remote.RMIServiceLocator;
 import es.deusto.server.DTO.MemberDTO;
 import es.deusto.server.jdo.Member;
 
+/**
+ * A delegate premium window.
+ *
+ * @author Team 05
+ *
+ * @param rmi RMIServiceLocator
+ * @param pay
+ * @param IP, port, serverName
+ * @param memberDTO
+ */
 public class Delegate_PremiumWindow extends Basic_PremiumWindow{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	RMIServiceLocator rmi;
@@ -19,6 +26,12 @@ public class Delegate_PremiumWindow extends Basic_PremiumWindow{
 	String IP,port,serverName;
 	MemberDTO memberDTO;
 	
+	/** Constructor method
+	 * @param IP
+	 * @param port
+	 * @param serverName
+	 * @param memberDTO
+	 */
 	public Delegate_PremiumWindow(String IP, String port, String serverName, MemberDTO memberDTO) {
 		rmi = new RMIServiceLocator(IP, port, serverName);
 		this.IP = IP;
@@ -28,12 +41,18 @@ public class Delegate_PremiumWindow extends Basic_PremiumWindow{
 		this.memberDTO = memberDTO;  
 	}
 
+	/**
+	 * Get the number of months you want to pay for been premium
+	 */
 	private void getComboBox(){
 		pay = false;
 		if(!comboBox.getSelectedItem().equals("Months"))
 			pay = true;
 	}
 	
+	/** Once you have the number of months, make the payment
+	 * @see es.deusto.client.basic.Basic_PremiumWindow#makePay()
+	 */
 	protected void makePay(){
 		getComboBox();
 		if(pay){

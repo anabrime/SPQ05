@@ -14,10 +14,22 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Image;
 
+/**
+ * A basic registration window in case you don't have an account yet.
+ * 
+ * @author Team 05
+ * 
+ * @param textField Text field
+ * @param txtPasstword Password
+ * @param txtEmail Email
+ * @param suscribeButton The subscribe button, once you have introduced all the data, press this button
+ * @param txtpnIntroduceYourName For introducing your name
+ * @param txtpnIntroducePassword For introducing your password
+ * @param txtpnIntroduceEmail For introducing your email
+ *
+ */
 public class Basic_RegistrationWindow extends JFrame {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	protected JTextField textField;
 	protected JTextField txtPassword;

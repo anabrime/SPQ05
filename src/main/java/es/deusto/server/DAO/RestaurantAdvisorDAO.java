@@ -1,3 +1,6 @@
+/**@package es.deusto.server.DAO
+   @brief Package composed by classes RestaurantAdvisorDAO and UserDAO which inherit from IUserDAO
+*/
 package es.deusto.server.DAO;
 
 import java.util.ArrayList;
@@ -18,6 +21,11 @@ import es.deusto.server.jdo.*;
 
 import es.deusto.server.jdo.*;
 
+/**
+ * DAO of the Restaurant Advisor, it contains the Load Persistence Manager Factory, the Persistence Manager and the Transaction to group DB operations.
+ * 
+ * @author Team 05
+ */
 public class RestaurantAdvisorDAO {
 	// Load Persistence Manager Factory - referencing the Persistence Unit defined in persistence.xml
 	PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
@@ -26,6 +34,11 @@ public class RestaurantAdvisorDAO {
 	//Transaction to group DB operations
 	Transaction tx = null;	
 
+	/**
+	 * @param text
+	 * Get the information of the restaurant by name from the DB
+	 * @return a list of restaurantDTO
+	 */
 	@SuppressWarnings("finally")
 	public List<RestaurantDTO> getRestaurantByName(String text) {
 		List<RestaurantDTO> r = new ArrayList<RestaurantDTO>();
@@ -67,6 +80,11 @@ public class RestaurantAdvisorDAO {
 
 	}
 
+	/**
+	 * @param text
+	 * Get the information of the restaurant by category from the DB
+	 * @return a list of restaurantDTO
+	 */
 	@SuppressWarnings("finally")
 	public List<RestaurantDTO> getRestaurantByCategory(String text) {
 		List<RestaurantDTO> r = new ArrayList<RestaurantDTO>();
@@ -108,6 +126,11 @@ public class RestaurantAdvisorDAO {
 		}
 
 	}
+	/**
+	 * @param text
+	 * Get the information of the restaurant by place from the DB
+	 * @return a list of restaurantDTO
+	 */
 	@SuppressWarnings("finally")
 	public List<RestaurantDTO> getRestaurantByPlace(String text) {
 		List<RestaurantDTO> r = new ArrayList<RestaurantDTO>();
@@ -149,6 +172,11 @@ public class RestaurantAdvisorDAO {
 		}
 
 	}
+	/**
+	 * @param text
+	 * Get the information of the restaurant by rate from the DB
+	 * @return a list of restaurantDTO
+	 */
 	@SuppressWarnings("finally")
 	public List<RestaurantDTO> getRestaurantByRate(String text) {
 		List<RestaurantDTO> r = new ArrayList<RestaurantDTO>();
@@ -191,6 +219,12 @@ public class RestaurantAdvisorDAO {
 		}
 
 	}
+	/**
+	 * @param text
+	 * @param text1
+	 * Get the information of the restaurant by name and category from the DB
+	 * @return a list of restaurantDTO
+	 */
 	@SuppressWarnings("finally")
 	public List<RestaurantDTO> getRestaurantByNameAndCategory(String text, String text1) {
 		List<RestaurantDTO> r = new ArrayList<RestaurantDTO>();
@@ -232,6 +266,12 @@ public class RestaurantAdvisorDAO {
 		}
 
 	}
+	/**
+	 * @param text
+	 * @param text1
+	 * Get the information of the restaurant by name and rate from the DB
+	 * @return a list of restaurantDTO
+	 */
 	@SuppressWarnings("finally")
 	public List<RestaurantDTO> getRestaurantByNameAndRate(String text, String text1) {
 		List<RestaurantDTO> r = new ArrayList<RestaurantDTO>();
@@ -273,6 +313,12 @@ public class RestaurantAdvisorDAO {
 		}
 
 	}
+	/**
+	 * @param text
+	 * @param text1
+	 * Get the information of the restaurant by name and place from the DB
+	 * @return a list of restaurantDTO
+	 */
 	@SuppressWarnings("finally")
 	public List<RestaurantDTO> getRestaurantByNameAndPlace(String text, String text1) {
 		List<RestaurantDTO> r = new ArrayList<RestaurantDTO>();
@@ -315,6 +361,13 @@ public class RestaurantAdvisorDAO {
 
 
 	}
+	/**
+	 * @param text
+	 * @param text1
+	 * Get the information of the restaurant by place and category from the DB
+	 * @return a list of restaurantDTO
+	 */
+
 	@SuppressWarnings("finally")
 	public List<RestaurantDTO> getRestaurantByPlaceAndCategory(String text, String text1) {
 		List<RestaurantDTO> r = new ArrayList<RestaurantDTO>();
@@ -356,6 +409,12 @@ public class RestaurantAdvisorDAO {
 		}
 
 	}
+	/**
+	 * @param text
+	 * @param text1
+	 * Get the information of the restaurant by place and rate from the DB
+	 * @return a list of restaurantDTO
+	 */
 
 	@SuppressWarnings("finally")
 	public List<RestaurantDTO> getRestaurantByPlaceAndRate(String text, String text1) {
@@ -397,6 +456,12 @@ public class RestaurantAdvisorDAO {
 			return r;
 		}
 	}
+	/**
+	 * @param text
+	 * @param text1
+	 * Get the information of the restaurant by category and rate from the DB
+	 * @return a list of restaurantDTO
+	 */
 	@SuppressWarnings("finally")
 	public List<RestaurantDTO> getRestaurantByCategoryAndRate(String text, String text1) {
 		List<RestaurantDTO> r = new ArrayList<RestaurantDTO>();
@@ -437,6 +502,9 @@ public class RestaurantAdvisorDAO {
 
 	}
 
+	/**
+	 * Store objects in the DB
+	 */
 	public void createDatabase(){
 		try {
 			System.out.println("- Store objects in the DB");
@@ -521,6 +589,12 @@ public class RestaurantAdvisorDAO {
 		}
 	}
 
+	/** 
+	 * @param restaurant
+	 * @param newRate
+	 * Add a rate to a restaurant
+	 * @return true if it's right
+	 */
 	public boolean addRateToRestaurant(RestaurantDTO restaurant, String newRate) {
 		RestaurantDTO r = restaurant;
 		Restaurant restaurantTriki = null;
@@ -556,6 +630,11 @@ public class RestaurantAdvisorDAO {
 		return true;
 
 	}
+	/** 
+	 * @param name
+	 * Retrieve a member
+	 * @return MemberDTO
+	 */
 	@SuppressWarnings("finally")
 	public MemberDTO retrieveMember(String name){
 		Member m = new Member();
@@ -597,6 +676,13 @@ public class RestaurantAdvisorDAO {
 		return memberDTO;
 	}
 
+	/**
+	 * @param name
+	 * @param password
+	 * @param email
+	 * Add a member
+	 * @return true if it's right
+	 */
 	public boolean addMember(String name, String password, String email){
 
 		List<Comment> commentsM = new ArrayList<Comment>();
@@ -623,6 +709,11 @@ public class RestaurantAdvisorDAO {
 		}
 	}
 
+	/**
+	 * @param restaurantDTO
+	 * Get all the comments of a restaurant
+	 * @return a list of comments
+	 */
 	public List<Comment> getAllCommentsOfRestaurant(RestaurantDTO restaurantDTO) {
 		List<Comment> r = new ArrayList<Comment>();
 		try{
@@ -657,6 +748,13 @@ public class RestaurantAdvisorDAO {
 		return r;
 	}
 
+	/**
+	 * @param text
+	 * @param restaurant
+	 * @param memberDTO
+	 * Store comments from the restaurants
+	 * @return true if it's right
+	 */
 	public boolean storeComment(String text, RestaurantDTO restaurant, MemberDTO memberDTO){
 		Restaurant r = new Restaurant(restaurant.getNameR(),
 				restaurant.getRate(),
@@ -703,6 +801,12 @@ public class RestaurantAdvisorDAO {
 		}
 	}
 
+	/**
+	 * @param memberDTO
+	 * @param months
+	 * Add the payment of the client
+	 * @return a memberDTO
+	 */
 	public MemberDTO addPay(MemberDTO memberDTO, int months){
 		Member member = new Member("", memberDTO.getName(), memberDTO.getPassword(), new ArrayList<Comment>(), memberDTO.getPremium()+months);
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -739,6 +843,11 @@ public class RestaurantAdvisorDAO {
 		return memberDTO;
 	}
 
+	/**
+	 * @param memberDTO
+	 * Establish the time 
+	 * @return true 
+	 */
 	public boolean time(MemberDTO memberDTO){
 		if(memberDTO.getPremium()>0){
 			Member member = new Member("", memberDTO.getName(), memberDTO.getPassword(), new ArrayList<Comment>(), memberDTO.getPremium()-1);
@@ -775,6 +884,13 @@ public class RestaurantAdvisorDAO {
 		else
 			return true;
 	}
+	/**
+	 * @param time
+	 * @param memberName
+	 * @param restaurantDTO
+	 * Make a book
+	 * @return a reservation
+	 */
 	public Reservation makeBook(String time, String memberName, RestaurantDTO restaurantDTO){
 		Reservation reservation = new Reservation(time, memberName, restaurantDTO.getNameR());
 		Restaurant restaurant = new Restaurant(restaurantDTO.getNameR(), restaurantDTO.getRate(), restaurantDTO.getNumRates(), 

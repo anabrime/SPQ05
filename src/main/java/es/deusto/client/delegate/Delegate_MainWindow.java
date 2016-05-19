@@ -15,6 +15,21 @@ import es.deusto.server.DTO.MemberDTO;
 import es.deusto.server.DTO.RestaurantDTO;
 import es.deusto.server.jdo.*;
 
+/**
+ * A delegate main window.
+ * 
+ * @author Team 05
+ *
+ *@param rmi RMIServiceLocator
+ *@param name
+ *@param category
+ *@param rate
+ *@param place
+ *@param list
+ *@param contadorFilas
+ *@param memDTO
+ *@param IP, port, serverName
+ */
 public class Delegate_MainWindow extends Basic_MainWindow{
 
 	RMIServiceLocator rmi;
@@ -26,7 +41,14 @@ public class Delegate_MainWindow extends Basic_MainWindow{
 	int contadorFilas = 0;
 	MemberDTO memDTO;
 	String IP,port,serverName;
-	
+
+	/**
+	 * Constructor method
+	 * @param IP
+	 * @param port
+	 * @param serverName
+	 * @param memberDTO
+	 */
 	public Delegate_MainWindow(String IP, String port, String serverName, MemberDTO memberDTO) {
 		rmi = new RMIServiceLocator(IP, port, serverName);
 		this.IP = IP;
@@ -36,6 +58,9 @@ public class Delegate_MainWindow extends Basic_MainWindow{
 		userNameLabel.setText(memberDTO.getName());
 		list = new ArrayList<RestaurantDTO>();
 	}
+	/**
+	 * Get the information (that you choose) of the name, category, rate and place of a restaurant
+	 */
 	private void getComboBoxes(){
 		name = false;
 		category = false;
@@ -53,6 +78,9 @@ public class Delegate_MainWindow extends Basic_MainWindow{
 		if(!comboBoxRate.getSelectedItem().equals("Rate"))
 			rate = true;
 	}
+	/**
+	 * Get the right restaurant from the list taken into account the information of the method getComboBoxes()
+	 */
 	private void find(){
 		getComboBoxes();
 		if(category && !name && !place && !rate)
@@ -141,50 +169,68 @@ public class Delegate_MainWindow extends Basic_MainWindow{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 	}
-	
+
+	/**
+	 * Add to RestaurantDTO the name, category and rate of the restaurant
+	 */
 	private void addToTable () {
 		deleteFromTable();
 		find();
 		for (RestaurantDTO rest : list) {
-		    table.setValueAt(rest.getNameR(), contadorFilas, 0);
-		    table.setValueAt(rest.getCategory(), contadorFilas, 1);
-		    table.setValueAt(rest.getRate(), contadorFilas, 2);
-		    contadorFilas++;
+			table.setValueAt(rest.getNameR(), contadorFilas, 0);
+			table.setValueAt(rest.getCategory(), contadorFilas, 1);
+			table.setValueAt(rest.getRate(), contadorFilas, 2);
+			contadorFilas++;
 		}
 		scrollPane.repaint();
-	
+
 	}
-	
+
+	/**
+	 * Delete from the table
+	 */
 	private void deleteFromTable() {
-		
+
 		for (int i = 0; i < 10; i++) {
-		    table.setValueAt("", i, 0);
-		    table.setValueAt("", i, 1);
-		    table.setValueAt("", i, 2);
+			table.setValueAt("", i, 0);
+			table.setValueAt("", i, 1);
+			table.setValueAt("", i, 2);
 		}
 		contadorFilas = 0;
 		this.repaint();
 	}
-	
+
+	/** Execute the method addToTable()
+	 * @see es.deusto.client.basic.Basic_MainWindow#execute()
+	 */
 	protected void execute(){
 		addToTable();
 		this.repaint();
 	}
-	
+
+	/** openPremium() method. Open the Delegate_PremiumWindow
+	 * @see es.deusto.client.basic.Basic_MainWindow#openPremium()
+	 */
 	@Override
 	protected void openPremium(){
 		new Delegate_PremiumWindow(IP, port, serverName, memDTO);
 		this.dispose();
 	}
-	
+
+	/** openRestaurant() method. Open the Delegate_RestaurantWindow.
+	 * @see es.deusto.client.basic.Basic_MainWindow#openRestaurant()
+	 */
 	@Override
 	protected void openRestaurant(){
 		new Delegate_RestaurantWindow(list.get(table.getSelectedRow()), IP,port,serverName,memDTO);
 		this.dispose();
 	}
-	
+
+	/** Logout from the account.
+	 * @see es.deusto.client.basic.Basic_MainWindow#logout()
+	 */
 	protected void logout(){
 		try {
 			rmi.getService().time(memDTO);
@@ -194,5 +240,5 @@ public class Delegate_MainWindow extends Basic_MainWindow{
 		}
 		this.dispose();
 	}
-	
+
 }

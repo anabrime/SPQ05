@@ -28,6 +28,26 @@ import javax.swing.JLabel;
 import java.awt.Label;
 import java.awt.Color;
 
+/**
+ * A basic restaurant window for booking, rating...
+ * 
+ * @author Team 05
+ * 
+ * @param textField_UserName Text field for the user name
+ * @param textField_Description Text field for the description
+ * @param books The booking times (14:00, 14:30, 15:00, 21:00, 21:30, 22:00)
+ * @param rates The rates of the restaurants from 1 till 5
+ * @param textField_CommentText Text field for the comments
+ * @param textField_Name Text field for the name
+ * @param textField_Location Text field for the location
+ * @param textField_Rate Text field for the rates
+ * @param imgLogo The logo of the company
+ * @param imgPhotoRestaurant A photo restaurant
+ * @param comboBoxRate For selecting the rate of a restaurant
+ * @param comboBoxBook For select the booking time of a restaurant
+ * @param bookButton For booking a restaurant
+ *
+ */
 public class Basic_RestaurantWindow extends JFrame {
 
 	protected JTextField textField_UserName;
@@ -43,7 +63,7 @@ public class Basic_RestaurantWindow extends JFrame {
 	protected String imgLogo = "/home/gorka/Pictures/logo.png";
 	protected String imgPhotoRestaurant;
 	protected final JComboBox<String> comboBoxRate;
-	protected final JComboBox<String>comboBoxBook;
+	protected final JComboBox<String> comboBoxBook;
 	protected JButton bookButton;
 
 	public Basic_RestaurantWindow() {

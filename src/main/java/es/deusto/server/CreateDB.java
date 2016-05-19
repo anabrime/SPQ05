@@ -1,5 +1,10 @@
 package es.deusto.server;
-
+/**
+ * Creates the data base with the server
+ * 
+ * @author Team 05
+ *
+ */
 import java.rmi.Naming;
 
 public class CreateDB {

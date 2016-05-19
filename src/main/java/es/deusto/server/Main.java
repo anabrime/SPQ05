@@ -1,7 +1,12 @@
 package es.deusto.server;
 
 import java.rmi.Naming;
-
+/**
+ * A main class for the server and the DB.
+ * 
+ * @author Team 05
+ *
+ */
 public class Main {
 	public static void main(String[] args) {
 		if (System.getSecurityManager() == null) {

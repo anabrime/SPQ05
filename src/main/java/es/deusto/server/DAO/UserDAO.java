@@ -7,14 +7,27 @@ import javax.jdo.Transaction;
 
 import es.deusto.server.jdo.*;
 
+/**
+ * A userDAO class.
+ * @author Team 05
+ * 
+ * @param pmf PersistenceManagerFactory
+ *
+ */
 public class UserDAO implements IUserDAO {
 	
 	private PersistenceManagerFactory pmf;
 	
+	/**
+	 * Constructor method
+	 */
 	public UserDAO(){
 		pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	}
 
+	/** Store the user
+	 * @see es.deusto.server.DAO.IUserDAO#storeUser(es.deusto.server.jdo.Member)
+	 */
 	public void storeUser(Member u) {
 		
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -35,6 +48,10 @@ public class UserDAO implements IUserDAO {
 		}
 
 
+	/** Retrieve the user
+	 * @return a member
+	 * @see es.deusto.server.DAO.IUserDAO#retrieveUser(java.lang.String)
+	 */
 	public Member retrieveUser(String login) {
 		Member user = null;
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -60,6 +77,9 @@ public class UserDAO implements IUserDAO {
 		return user;
 	}
 
+	/** Update the user
+	 * @see es.deusto.server.DAO.IUserDAO#updateUser(es.deusto.server.jdo.Member)
+	 */
 	public void updateUser(Member u) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 	    Transaction tx = pm.currentTransaction();

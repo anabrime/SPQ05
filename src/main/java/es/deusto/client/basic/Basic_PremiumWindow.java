@@ -14,19 +14,26 @@ import javax.swing.JTextPane;
 import java.awt.Color;
 import java.awt.Image;
 
+/**
+ * A basic premium window.
+ * 
+ * @author Team 05
+ * 
+ * @param btnPay To pay for been premium
+ * @param comboBox To choose the pays
+ * @param textPane A text pane
+ * @param pays The different types of how long do you want to be premium (1, 3, 6 or 12 months)
+ */
 public class Basic_PremiumWindow extends JFrame{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	protected JButton btnPay;
 	protected JComboBox<String> comboBox;
 	protected JTextPane textPane;
 	protected String[] pays = {"1 Month", "3 Months", "6 Months", "12 Months"};
 	protected String[] paysTriki = {"Months", "1 Month", "3 Months", "6 Months", "12 Months"};
-	
+
 	public Basic_PremiumWindow() {
 		getContentPane().setBackground(Color.DARK_GRAY);
 		getContentPane().setLayout(null);
@@ -45,28 +52,28 @@ public class Basic_PremiumWindow extends JFrame{
 		btnPay.setOpaque(false);
 		add(btnPay);
 		btnPay.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				makePay();
 			}
 		});
-		
+
 		comboBox = new JComboBox<String>();
 		comboBox.setBounds(25, 45, 89, 22);
 		comboBox.setModel(new DefaultComboBoxModel<String>(paysTriki));
 		add(comboBox);
-		
+
 		textPane = new JTextPane();
 		textPane.setBounds(25, 11, 212, 23);
 		putText();
 		textPane.setEditable(false);
 		add(textPane);
-		
+
 		this.setVisible(true);
 		repaint();
 	}
-	
+
 	protected void makePay(){}
-	
+
 	protected void putText(){}
 }

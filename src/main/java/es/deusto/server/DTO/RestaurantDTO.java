@@ -13,6 +13,12 @@ import es.deusto.server.jdo.Comment;
 import es.deusto.server.jdo.Reservation;
 import es.deusto.server.jdo.Restaurant;
 
+/**
+ * A simple restaurantDTO
+ * 
+ * @author Team 05
+ *
+ */
 public class RestaurantDTO implements Serializable{
 
 	/**
@@ -34,6 +40,9 @@ public class RestaurantDTO implements Serializable{
 	@Persistent(mappedBy = "member", dependentElement = "true")
 	@Join
 	List<Comment> commentsR = new ArrayList<Comment>();
+	/**
+	 * Constructor method
+	 */
 	public RestaurantDTO(){
 		this.nameR="";
 		this.rate="";
@@ -42,6 +51,9 @@ public class RestaurantDTO implements Serializable{
 		this.street="";
 		this.city=null;
 	}
+	/**
+	 * @param restaurant
+	 */
 	public RestaurantDTO (Restaurant restaurant) {
 		super();
 		this.nameR = restaurant.getNameR();
@@ -54,6 +66,15 @@ public class RestaurantDTO implements Serializable{
 		this.reservation = new ArrayList<Reservation>();
 	}
 	
+	/**
+	 * @param nameR
+	 * @param rate
+	 * @param numRates
+	 * @param category
+	 * @param street
+	 * @param commentsR
+	 * @param city
+	 */
 	public RestaurantDTO(String nameR, String rate, String numRates,
 			String category, String street, List<Comment> commentsR, City city) {
 		super();
@@ -68,96 +89,151 @@ public class RestaurantDTO implements Serializable{
 	}
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * @return city
+	 */
 	public City getCity() {
 		return city;
 	}
 
+	/**
+	 * @return name of the restaurant
+	 */
 	public String getNameR() {
 		return nameR;
 	}
 
+	/**
+	 * @param nameR
+	 */
 	public void setNameR(String nameR) {
 		this.nameR = nameR;
 	}
 
+	/**
+	 * @return rate
+	 */
 	public String getRate() {
 		return rate;
 	}
 
+	/**
+	 * @param rate
+	 */
 	public void setRate(String rate) {
 		this.rate = rate;
 	}
 
+	/**
+	 * @return number of rates
+	 */
 	public String getNumRates() {
 		return numRates;
 	}
 
+	/**
+	 * @param numRates
+	 */
 	public void setNumRates(String numRates) {
 		this.numRates = numRates;
 	}
 
-	public String getCategpry() {
-		return category;
-	}
-
-	public void setCategpry(String categpry) {
-		this.category = categpry;
-	}
-
+	/**
+	 * @return category
+	 */
 	public String getCategory() {
 		return category;
 	}
 
+	/**
+	 * @param category
+	 */
 	public void setCategory(String category) {
 		this.category = category;
 	}
 
+	/**
+	 * @return street
+	 */
 	public String getStreet() {
 		return street;
 	}
 
+	/**
+	 * @param street
+	 */
 	public void setStreet(String street) {
 		this.street = street;
 	}
 
+	/**
+	 * @return comments of the restaurants
+	 */
 	public List<Comment> getCommentsR() {
 		return commentsR;
 	}
 
+	/**
+	 * @param commentsR
+	 */
 	public void setCommentsR(List<Comment> commentsR) {
 		this.commentsR = commentsR;
 	}
 
+	/**
+	 * @return description
+	 */
 	public String getDescription() {
 		return description;
 	}
 
+	/**
+	 * @param description
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
 
+	/**
+	 * @param city
+	 */
 	public void setCity(City city) {
 		this.city = city;
 	}
 
+	/**
+	 * @return the image
+	 */
 	public String getPathImagen() {
 		return pathImagen;
 	}
 
+	/**
+	 * @param pathImagen
+	 */
 	public void setPathImagen(String pathImagen) {
 		this.pathImagen = pathImagen;
 	}
 	
 	//Cambios
+	/**
+	 * @return a reservation
+	 */
 	public List<Reservation> getReservations() {
 		return reservation;
 	}
 
+	/**Change a reservation
+	 * @param reservation
+	 */
 	public void setReservations(List<Reservation> reservation) {
 		this.reservation = reservation;
 	}
 	
+	/**Add a reservation
+	 * @param reservation
+	 */
 	public void addReservation(Reservation reservation){
 		this.reservation.add(reservation);
 	}
