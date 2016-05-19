@@ -34,6 +34,21 @@
 			<artifactId>datanucleus-core</artifactId>
 			<version>[4.0.0-release, 4.9)</version>
 		</dependency>
+		
+		<dependency>
+            <groupId>org.databene</groupId>
+            <artifactId>contiperf</artifactId>
+            <version>2.2.0</version>
+            <scope>test</scope>
+        </dependency>
+		
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.12</version>
+			<scope>compile</scope>
+		</dependency>
+		
 
 		<dependency>
 			<groupId>org.datanucleus</groupId>
