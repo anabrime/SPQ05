@@ -48,7 +48,7 @@ public class Delegate_LoginWindow extends Basic_LoginWindow {
 	/**
 	 * Check the information of the client
 	 */
-	private void getInfo() {
+	public void getInfo() {
 		if (!textFieldUsername.getText().equals("Username"))
 			name = true;
 

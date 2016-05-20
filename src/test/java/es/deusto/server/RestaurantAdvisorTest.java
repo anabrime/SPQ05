@@ -1,12 +1,41 @@
 
+
 /**
  * 
  */
 package es.deusto.server;
 
-import junit.framework.JUnit4TestAdapter;
-import es.deusto.client.basic.*;
-import es.deusto.client.delegate.*;
+import static org.junit.Assert.assertTrue;
+
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.RMISecurityManager;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.jdo.JDOHelper;
+import javax.jdo.PersistenceManager;
+import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Query;
+import javax.jdo.Transaction;
+
+import org.databene.contiperf.PerfTest;
+import org.databene.contiperf.Required;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import es.deusto.client.basic.Basic_LoginWindow;
+import es.deusto.client.basic.Basic_MainWindow;
+import es.deusto.client.basic.Basic_PremiumWindow;
+import es.deusto.client.basic.Basic_RegistrationWindow;
+import es.deusto.client.delegate.Delegate_LoginWindow;
+import es.deusto.client.delegate.Delegate_MainWindow;
+import es.deusto.client.delegate.Delegate_PremiumWindow;
+import es.deusto.client.delegate.Delegate_RegistrationWindow;
 import es.deusto.server.DAO.UserDAO;
 import es.deusto.server.DTO.MemberDTO;
 import es.deusto.server.DTO.RestaurantDTO;
@@ -14,39 +43,13 @@ import es.deusto.server.jdo.City;
 import es.deusto.server.jdo.Comment;
 import es.deusto.server.jdo.Member;
 import es.deusto.server.jdo.Restaurant;
-
-import java.rmi.Naming;
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.List;
-import java.rmi.RMISecurityManager;
-
-
-
-import static org.junit.Assert.assertTrue;
-import org.junit.Rule;
-import org.databene.contiperf.Required;
-import org.databene.contiperf.PerfTest;
-import org.databene.contiperf.junit.ContiPerfRule;
-import org.databene.contiperf.report.EmptyReportModule;
-import java.net.MalformedURLException;
-
-import javax.jdo.JDOHelper;
-import javax.jdo.PersistenceManagerFactory;
-import javax.jdo.Query;
-import javax.jdo.PersistenceManager;
-import javax.jdo.Transaction;
-
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import junit.framework.JUnit4TestAdapter;
 
 /**
  * RMI Unit test for Simple Client / Server RMI Testing. Testing the only the
  * Remoteness
  */
+
 @SuppressWarnings("deprecation")
 public class RestaurantAdvisorTest {
 	// Properties are hard-coded because we want the test to be executed without
@@ -58,13 +61,13 @@ public class RestaurantAdvisorTest {
 	private static Thread rmiServerThread = null;
 
 	private IServer server;
+
 	Member m;
+
 	List<RestaurantDTO> t = new ArrayList<RestaurantDTO>();
+
 	RestaurantDTO r;
 
-	@Rule public ContiPerfRule rule = new ContiPerfRule();
-
-	
 	public static junit.framework.Test suite() {
 		return new JUnit4TestAdapter(RestaurantAdvisorTest.class);
 	}
@@ -136,8 +139,7 @@ public class RestaurantAdvisorTest {
 	}
 
 	@Before
-
-    public void setUpDatabase() {
+	public void setUpDatabase() {
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
@@ -183,7 +185,6 @@ public class RestaurantAdvisorTest {
 	}
 
 	@Before
-
 	public void setUpClient() {
 		try {
 			System.setProperty("java.security.policy", "target\\test-classes\\security\\java.policy");
@@ -204,7 +205,6 @@ public class RestaurantAdvisorTest {
 	}
 
 	@Before
-
 	public void setUpData() {
 
 		m = new Member("ana", "ana", "ana", null, 0);
@@ -234,9 +234,6 @@ public class RestaurantAdvisorTest {
 	 * assertTrue( true ); }
 	 */
 	@Test
-
-    @PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 120, average = 30)
 	public void getRestaurantByNameTest() {
 		boolean test = false;
 		int cont = 0;
@@ -264,9 +261,6 @@ public class RestaurantAdvisorTest {
 	}
 
 	@Test
-
-    @PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 120, average = 30)
 	public void getRestaurantByCategoryTest() {
 		boolean test = false;
 		int cont = 0;
@@ -292,9 +286,6 @@ public class RestaurantAdvisorTest {
 	}
 
 	@Test
-
-    @PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 120, average = 30)
 	public void getRestaurantByRateTest() {
 		boolean test = false;
 		int cont = 0;
@@ -318,9 +309,6 @@ public class RestaurantAdvisorTest {
 	}
 
 	@Test
-
-    @PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 120, average = 30)
 	public void getRestaurantByNameAndCategoryTest() {
 		boolean test = false;
 		int cont = 0;
@@ -348,9 +336,6 @@ public class RestaurantAdvisorTest {
 	}
 
 	@Test
-
-    @PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 120, average = 30)
 	public void getRestaurantByNameAndRateTest() {
 		boolean test = false;
 		int cont = 0;
@@ -377,9 +362,6 @@ public class RestaurantAdvisorTest {
 	}
 
 	@Test
-
-    @PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 120, average = 30)
 	public void getRestaurantByNameAndPlaceTest() {
 		boolean test = false;
 		int cont = 0;
@@ -406,9 +388,6 @@ public class RestaurantAdvisorTest {
 	}
 
 	@Test
-
-    @PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 120, average = 30)
 	public void getRestaurantByPlaceAndCategoryTest() {
 		boolean test = false;
 		int cont = 0;
@@ -437,9 +416,6 @@ public class RestaurantAdvisorTest {
 	}
 
 	@Test
-
-    @PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 120, average = 30)
 	public void getRestaurantByPlaceAndRateTest() {
 		boolean test = false;
 		int cont = 0;
@@ -466,9 +442,6 @@ public class RestaurantAdvisorTest {
 	}
 
 	@Test
-
-    @PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 120, average = 30)
 	public void getRestaurantByCategoryAndRateTest() {
 		boolean test = false;
 		int cont = 0;
@@ -494,9 +467,6 @@ public class RestaurantAdvisorTest {
 	}
 
 	@Test
-
-    @PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 120, average = 30)
 	public void setCommentTest() {
 		boolean test = false;
 		RestaurantDTO rest = new RestaurantDTO(
@@ -518,9 +488,6 @@ public class RestaurantAdvisorTest {
 	}
 
 	@Test
-
-    @PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 120, average = 30)
 	public void addRateToRestaurantTest() {
 		boolean test = false;
 
@@ -541,9 +508,6 @@ public class RestaurantAdvisorTest {
 	}
 
 	@Test
-
-    @PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 120, average = 30)
 	public void addMemberTest() {
 		boolean test = false;
 		try {
@@ -562,9 +526,6 @@ public class RestaurantAdvisorTest {
 	}
 
 	@Test
-
-    @PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 120, average = 30)
 	public void getMemberTest() {
 		boolean test = false;
 		MemberDTO m = new MemberDTO();
@@ -587,9 +548,6 @@ public class RestaurantAdvisorTest {
 	}
 
 	@Test
-
-    @PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 120, average = 30)
 	public void MemberDAOTest() {
 		MemberDTO mdto = new MemberDTO("manolo", "33");
 		mdto.getName();
@@ -600,13 +558,11 @@ public class RestaurantAdvisorTest {
 			assertTrue(false);
 
 	}
-	@Test
 
-    @PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 120, average = 30)
+	@Test
 	public void UserDAOTest() {
-		
-		UserDAO udao= new UserDAO();
+
+		UserDAO udao = new UserDAO();
 		udao.storeUser(new Member());
 		udao.retrieveUser("ana");
 		udao.updateUser(m);
@@ -615,13 +571,11 @@ public class RestaurantAdvisorTest {
 		} else
 			assertTrue(false);
 	}
-	@Test
 
-    @PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 120, average = 30)
+	@Test
 	public void RestaurantDAOTest() {
 		RestaurantDTO rdto = new RestaurantDTO("casaPaco", "5", "4455643", "rico", "asdf", new ArrayList<Comment>(),
-		new City());
+				new City());
 		new RestaurantDTO();
 		Restaurant r = new Restaurant();
 		r.setCategory(rdto.getCategory());
@@ -630,39 +584,38 @@ public class RestaurantAdvisorTest {
 		r.setNameR(rdto.getNameR());
 		r.setRate(rdto.getNumRates());
 		r.setStreet(rdto.getStreet());
-		if (rdto.getNameR().equals(r.getNameR())&& rdto.getCategory().equals(r.getCategory())) {
+		if (rdto.getNameR().equals(r.getNameR()) && rdto.getCategory().equals(r.getCategory())) {
 			assertTrue(true);
 		} else
 			assertTrue(false);
 
 	}
-	
-	@Test
 
-    @PerfTest(invocations = 1000, threads = 20)
-    @Required(max = 120, average = 30)
+	@Test
 	public void WindowsTest() {
 
 		new Basic_LoginWindow();
 		new Basic_MainWindow();
 		new Basic_RegistrationWindow();
 		new Basic_PremiumWindow();
-		Delegate_PremiumWindow pw=new Delegate_PremiumWindow("127.0.0.1", "1099", "RestaurantAdvisor", new MemberDTO(m.getName(), m.getPassword()));
-		new Basic_RestaurantWindow();
-		Delegate_LoginWindow dlw=new Delegate_LoginWindow("127.0.0.1", "1099", "RestaurantAdvisor");
-//		Delegate_RestaurantWindow drw=new Delegate_RestaurantWindow(r,"127.0.0.1", "1099", "RestaurantAdvisor", new MemberDTO(m.getName(), m.getPassword()));
+		Delegate_PremiumWindow pw = new Delegate_PremiumWindow("127.0.0.1", "1099", "RestaurantAdvisor",
+				new MemberDTO(m.getName(), m.getPassword()));
+		// Basic_RestaurantWindow brw = new Basic_RestaurantWindow();
+		Delegate_LoginWindow dlw = new Delegate_LoginWindow("127.0.0.1", "1099", "RestaurantAdvisor");
+		// Delegate_RestaurantWindow drw=new
+		// Delegate_RestaurantWindow(r,"127.0.0.1", "1099", "RestaurantAdvisor",
+		// new MemberDTO(m.getName(), m.getPassword()));
 		Delegate_RegistrationWindow dr = new Delegate_RegistrationWindow("127.0.0.1", "1099", "RestaurantAdvisor");
 		new Delegate_MainWindow("127.0.0.1", "1099", "RestaurantAdvisor", new MemberDTO(m.getName(), m.getPassword()));
-//pw.putText();
-//pw.makePay();
-//dlw.getInfo();
-//dlw.getData();
+		pw.putText();
+		pw.makePay();
+		dlw.getInfo();
+		// dlw.getData();
 
-//		dr.getData();
+		// dr.getData();
 	}
 
 	@After
-	
 	public void RestoreDatabase() {
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();

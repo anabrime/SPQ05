@@ -53,7 +53,7 @@ public class Delegate_PremiumWindow extends Basic_PremiumWindow{
 	/** Once you have the number of months, make the payment
 	 * @see es.deusto.client.basic.Basic_PremiumWindow#makePay()
 	 */
-	protected void makePay(){
+	public void makePay(){
 		getComboBox();
 		if(pay){
 			try {
@@ -76,7 +76,7 @@ public class Delegate_PremiumWindow extends Basic_PremiumWindow{
 		}
 	}
 	
-	protected void putText(){
+	public void putText(){
 		//String mesage = "You have "+memberDTO.getPremiun()+" days of premiun.";
 		//textPane.setText(mesage);	
 	}
